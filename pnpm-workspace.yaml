@@ -1,5 +1,6 @@
 packages:
   - .
 allowBuilds:
+  esbuild: false
   ffmpeg-static: set this to true or false
   sharp: true
