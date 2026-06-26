@@ -5,5 +5,6 @@ COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 COPY . .
 RUN pnpm run build
-EXPOSE 3000
+EXPOSE 80
+ENV PORT=80
 CMD ["node_modules/.bin/next", "start"]
