@@ -1,0 +1,15 @@
+{
+  "envId": "{{envId}}",
+  "framework": {
+    "name": "nextjs",
+    "plugins": {
+      "client": {
+        "use": "@cloudbase/framework-plugin-next",
+        "inputs": {
+          "buildCommand": "pnpm build",
+          "outputPath": ".next"
+        }
+      }
+    }
+  }
+}
