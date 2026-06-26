@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { ADMIN_COOKIE } from "@/lib/admin-auth";
+import { ADMIN_COOKIE, verifyPassword, createSessionToken } from "@/lib/admin-auth";
 
 function getBaseUrl(request: Request): URL {
   const forwarded = request.headers.get("x-forwarded-host");
@@ -11,16 +11,15 @@ function getBaseUrl(request: Request): URL {
 export async function POST(request: Request) {
   const formData = await request.formData();
   const password = String(formData.get("password") || "");
-  const expected = process.env.ADMIN_PASSWORD || "change-me";
 
-  if (password !== expected) {
+  if (!verifyPassword(password)) {
     const base = getBaseUrl(request);
     return NextResponse.redirect(new URL("/admin/login?error=1", base), { status: 303 });
   }
 
   const base = getBaseUrl(request);
   const response = NextResponse.redirect(new URL("/admin", base), { status: 303 });
-  response.cookies.set(ADMIN_COOKIE, password, {
+  response.cookies.set(ADMIN_COOKIE, createSessionToken(password), {
     httpOnly: true,
     sameSite: "lax",
     secure: true,
