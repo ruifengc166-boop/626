@@ -1,10 +1,9 @@
 FROM node:22-slim
 WORKDIR /app
-RUN corepack enable && corepack prepare pnpm@latest --activate
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+COPY package.json ./
+RUN npm install
 COPY . .
-RUN pnpm run build
+RUN npm run build
 EXPOSE 80
 ENV PORT=80
-CMD ["node_modules/.bin/next", "start"]
+CMD ["npm", "start"]
