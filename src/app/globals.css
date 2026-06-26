@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #050505;
+  --foreground: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+::selection {
+  background: #ededed;
+  color: #050505;
+}
+
+.video-shell {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.16), rgba(255,255,255,0.04) 36%, rgba(0,0,0,0.2) 100%),
+    #0d0d0d;
+}
+
+.input {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: #0d0d0d;
+  padding: 0.85rem 1rem;
+  font-size: 0.95rem;
+  color: #fff;
+  outline: none;
+}
+
+.input::placeholder {
+  color: rgba(255,255,255,0.36);
+}
+
+.input:focus {
+  border-color: rgba(255,255,255,0.38);
+  background: #111;
+}
