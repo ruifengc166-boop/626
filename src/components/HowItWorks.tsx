@@ -1,7 +1,7 @@
 const steps = [
-  ["01", "Pick the closest ad master", "Choose by product type and campaign goal instead of writing prompts from scratch."],
-  ["02", "Send assets for fit review", "Submit product link, images, logo, selling points and CTA. We check whether the style can work."],
-  ["03", "Get a production path", "Receive the fastest route: draft, human-fixed ad, multi-version pack or premium creator adaptation."],
+  ["01", "Send your product brief", "Share the product link, images, logo, key selling points, platform and CTA."],
+  ["02", "Choose the ad direction", "Pick a product demo, UGC hook, app workflow, premium launch, offer ad or game-style direction."],
+  ["03", "Receive a testable ad", "Get a short-form video creative made for quick market testing, with human-fix options when quality matters."],
 ];
 
 export function HowItWorks() {
@@ -9,8 +9,8 @@ export function HowItWorks() {
     <section className="border-y border-white/[0.08] bg-[#080808] px-6 py-24">
       <div className="mx-auto max-w-[1200px]">
         <div className="max-w-3xl">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/38">From product link to ad test</p>
-          <h2 className="text-3xl font-medium tracking-[-0.035em] text-white md:text-5xl">How it works</h2>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/38">From product to test creative</p>
+          <h2 className="text-3xl font-medium tracking-[-0.035em] text-white md:text-5xl">A faster way to get ads into market.</h2>
         </div>
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {steps.map(([number, title, body]) => (
