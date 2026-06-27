@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Template } from "@/data/templates";
 import { VideoFrame } from "@/components/VideoFrame";
 
-const trustLabels = ["Feed-ready look", "24-48h draft option", "Human polish available"];
+const trustLabels = ["Human-reviewed", "24-48h draft option", "Pay after scope confirmation"];
 
 export function HeroSection({ template }: { template: Template }) {
   return (
@@ -13,7 +13,7 @@ export function HeroSection({ template }: { template: Template }) {
           Product ads ready to test.
         </h1>
         <p className="mt-5 max-w-2xl text-base leading-7 text-white/64 md:text-lg">
-          Send product assets. Get short-form ad creatives for social feeds.
+          Human-reviewed short-form ads from your product assets.
         </p>
         <div className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3">
           <Metric value="24-48h" label="first draft" />
@@ -28,7 +28,8 @@ export function HeroSection({ template }: { template: Template }) {
             Browse Styles
           </Link>
         </div>
-        <div className="mt-8 flex max-w-2xl flex-wrap gap-2">
+        <p className="mt-4 text-sm text-white/42">Submit your brief first. Pay after scope confirmation.</p>
+        <div className="mt-6 flex max-w-2xl flex-wrap gap-2">
           {trustLabels.map((label) => (
             <span key={label} className="rounded-full border border-white/[0.08] bg-white/[0.035] px-3 py-1.5 text-xs text-white/50">
               {label}
