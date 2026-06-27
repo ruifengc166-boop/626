@@ -31,13 +31,20 @@ export default async function HomePage() {
         <div className="mx-auto max-w-[1200px]">
           <div className="max-w-2xl">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/38">Packages</p>
-            <h2 className="text-3xl font-medium tracking-[-0.035em] text-white md:text-5xl">Start small. Scale the winner.</h2>
+            <h2 className="text-3xl font-medium tracking-[-0.035em] text-white md:text-5xl">One-off orders or monthly output.</h2>
           </div>
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             <PricingCard title="Direction Draft" price="From $79" lines={["Low-res draft", "Direction check"]} />
             <PricingCard title="Polished Product Ad" price="From $399" lines={["Short-form ad", "Logo + caption check"]} featured />
             <PricingCard title="Testing Pack" price="From $1,499" lines={["5 variations", "Hooks + captions"]} />
             <PricingCard title="Launch-Grade" price="From $3,500" lines={["Premium adaptation", "Creator-level polish"]} />
+          </div>
+          <div className="mt-5 rounded-[24px] border border-white/[0.08] bg-white/[0.035] p-5 md:flex md:items-center md:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/38">For teams</p>
+              <h3 className="mt-2 text-2xl font-medium tracking-[-0.035em] text-white">Monthly Creative Desk</h3>
+            </div>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-white/50 md:mt-0">Recurring ad output, priority queue and shared delivery board. From $2,500 / month.</p>
           </div>
         </div>
       </section>
