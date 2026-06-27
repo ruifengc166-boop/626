@@ -11,7 +11,7 @@ export function FinalCTA() {
         </p>
         <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
           <Link href="/start" className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-white/85">
-            Start My Ad
+            Request Review
           </Link>
           <Link href="/templates" className="rounded-full border border-white/[0.12] bg-white/[0.06] px-6 py-3 text-sm font-medium text-white transition hover:bg-white/[0.1]">
             Browse Styles
