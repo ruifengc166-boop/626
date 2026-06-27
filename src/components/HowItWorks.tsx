@@ -1,7 +1,7 @@
 const steps = [
-  ["01", "Send the product and offer", "Share your product link, images, logo, key selling points, target platform and CTA."],
-  ["02", "Select the ad direction", "Choose a product demo, UGC hook, app walkthrough, premium launch, offer creative or teaser style."],
-  ["03", "Review the finished creative", "Receive a short-form video ad draft, then request polish or more versions when the direction is right."],
+  ["01", "Send assets", "Product link, logo, selling points."],
+  ["02", "Pick a style", "Choose the direction that fits."],
+  ["03", "Review the ad", "Polish or expand when ready."],
 ];
 
 export function HowItWorks() {
@@ -9,8 +9,8 @@ export function HowItWorks() {
     <section className="border-y border-white/[0.08] bg-[#080808] px-6 py-24">
       <div className="mx-auto max-w-[1200px]">
         <div className="max-w-3xl">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/38">Simple order flow</p>
-          <h2 className="text-3xl font-medium tracking-[-0.035em] text-white md:text-5xl">From product brief to reviewable ad creative.</h2>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/38">Order flow</p>
+          <h2 className="text-3xl font-medium tracking-[-0.035em] text-white md:text-5xl">Brief. Style. Ad.</h2>
         </div>
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {steps.map(([number, title, body]) => (
