@@ -3,9 +3,9 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useMemo, useState } from "react";
 import { templates } from "@/data/templates";
-import { formatCurrency, formatPlan } from "@/lib/utils";
+import { formatCurrency } from "@/lib/utils";
 
-const platforms = ["tiktok", "instagram_reels", "youtube_shorts", "meta_ads", "other"];
+const platforms = ["TikTok", "Instagram Reels", "YouTube Shorts", "Meta Ads", "Other"];
 
 export default function StartPage() {
   return (
@@ -43,10 +43,10 @@ function StartForm() {
         body: JSON.stringify(payload),
       });
       const result = await response.json();
-      if (!response.ok) throw new Error(result.error || "Failed to submit request");
+      if (!response.ok) throw new Error(result.error || "Failed to submit brief");
       router.push(`/thank-you?order=${encodeURIComponent(result.order.id)}&template=${encodeURIComponent(String(payload.selectedTemplateId))}&brand=${encodeURIComponent(String(payload.brandName))}`);
     } catch (submitError) {
-      setError(submitError instanceof Error ? submitError.message : "Failed to submit request");
+      setError(submitError instanceof Error ? submitError.message : "Failed to submit brief");
       setIsSubmitting(false);
     }
   }
@@ -54,18 +54,18 @@ function StartForm() {
   return (
     <main className="mx-auto max-w-5xl px-6 py-16">
       <div className="mb-10 max-w-3xl">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/40">Product Brief</p>
-        <h1 className="text-4xl font-semibold tracking-[-0.04em] text-white md:text-6xl">Start Your Remix</h1>
-        <p className="mt-5 text-lg leading-8 text-white/60">Send your product assets and selected video style. We will review the fit before production.</p>
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/40">Brief Review</p>
+        <h1 className="text-4xl font-semibold tracking-[-0.04em] text-white md:text-6xl">Request a scope review.</h1>
+        <p className="mt-5 text-lg leading-8 text-white/60">Submit your product and campaign goal. We confirm fit, scope and price before payment.</p>
       </div>
 
       <form onSubmit={handleSubmit} className="rounded-[1.75rem] border border-white/[0.08] bg-[#0d0d0d] p-6 shadow-2xl shadow-black/20 md:p-8">
         {selectedTemplate ? <SelectedTemplateCard template={selectedTemplate} /> : null}
         <div className="grid gap-5 md:grid-cols-2">
-          <Field label="Selected Template ID">
+          <Field label="Preferred Style">
             <select name="selectedTemplateId" value={templateId} onChange={(event) => setTemplateId(event.target.value)} className="input" required>
-              <option value="">Select a template</option>
-              {templates.map((template) => <option key={template.id} value={template.id}>{template.id} · {template.title}</option>)}
+              <option value="">Select a style</option>
+              {templates.map((template) => <option key={template.id} value={template.id}>{template.title}</option>)}
             </select>
           </Field>
           <Input label="Brand Name" name="brandName" required />
@@ -73,9 +73,9 @@ function StartForm() {
           <Input label="Product Link" name="productUrl" type="url" required />
           <Input label="Product Asset Links" name="productAssetLinks" placeholder="Drive, Dropbox, website link" required />
           <Input label="Logo Link" name="logoAssetLinks" placeholder="Transparent logo preferred" required />
-          <Input label="Selling Point 1" name="sellingPoint1" required />
-          <Input label="Selling Point 2" name="sellingPoint2" />
-          <Input label="Selling Point 3" name="sellingPoint3" />
+          <Input label="Main Selling Point" name="sellingPoint1" required />
+          <Input label="Second Selling Point" name="sellingPoint2" />
+          <Input label="Third Selling Point" name="sellingPoint3" />
           <Field label="Target Platform">
             <select name="targetPlatform" className="input" required>
               {platforms.map((platform) => <option key={platform} value={platform}>{platform}</option>)}
@@ -84,17 +84,18 @@ function StartForm() {
           <Input label="Target Language" name="targetLanguage" defaultValue="English" required />
           <Input label="CTA Text" name="ctaText" placeholder="Shop Now / Try Free / Join Waitlist" required />
           <Input label="Contact Email" name="contactEmail" type="email" required />
-          <Input label="Contact Handle" name="contactHandle" />
-          <Input label="Budget Range" name="budgetRange" placeholder="$49 / $299 / $999+" />
-          <Input label="Things to Avoid" name="thingsToAvoid" />
+          <Input label="Contact Handle" name="contactHandle" placeholder="Optional" />
+          <Input label="Expected Budget" name="budgetRange" placeholder="$249 pilot / $399 polished ad / $1,499 test pack" />
+          <Input label="Anything to Avoid" name="thingsToAvoid" />
         </div>
         <div className="mt-6 grid gap-3 md:grid-cols-2">
-          <label className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4 text-sm text-white/70"><input type="checkbox" name="needHumanOptimization" />Need Human Optimization?</label>
-          <label className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4 text-sm text-white/70"><input type="checkbox" name="needMultipleVersions" />Need Multiple Versions?</label>
+          <label className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4 text-sm text-white/70"><input type="checkbox" name="needHumanOptimization" />I want a polished ad</label>
+          <label className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4 text-sm text-white/70"><input type="checkbox" name="needMultipleVersions" />I want multiple versions</label>
         </div>
+        <p className="mt-6 text-sm text-white/42">No payment is required now. We will confirm scope before production starts.</p>
         {error ? <div className="mt-6 rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-100">{error}</div> : null}
         <button type="submit" disabled={isSubmitting} className="mt-8 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-white/85 disabled:cursor-not-allowed disabled:opacity-60">
-          {isSubmitting ? "Submitting..." : "Submit Request"}
+          {isSubmitting ? "Submitting..." : "Submit Brief"}
         </button>
       </form>
     </main>
@@ -106,11 +107,10 @@ function SelectedTemplateCard({ template }: { template: (typeof templates)[numbe
     <div className="mb-8 grid gap-5 rounded-[1.5rem] border border-white/[0.08] bg-white/[0.04] p-4 md:grid-cols-[160px_1fr]">
       <img src={template.thumbnailUrl} alt={template.title} className="aspect-[9/12] w-full rounded-[1rem] object-cover" />
       <div className="flex flex-col justify-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/42">Selected style</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/42">Preferred style</p>
         <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white">{template.title}</h2>
         <div className="mt-4 flex flex-wrap gap-2 text-sm text-white/58">
-          <span className="rounded-full border border-white/10 px-3 py-1">{template.id}</span>
-          <span className="rounded-full border border-white/10 px-3 py-1">{formatPlan(template.recommendedPlan)}</span>
+          <span className="rounded-full border border-white/10 px-3 py-1">Style preview</span>
           <span className="rounded-full border border-white/10 px-3 py-1">From {formatCurrency(template.priceFrom)}</span>
         </div>
       </div>
