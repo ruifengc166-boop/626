@@ -1,1 +1,162 @@
-[]
+[
+  {
+    "id": "T001",
+    "status": "active",
+    "priceFrom": 79,
+    "recommendedPlan": "auto_remix_draft",
+    "featured": true,
+    "updatedAt": "2026-06-27T00:00:00.000Z"
+  },
+  {
+    "id": "T002",
+    "status": "active",
+    "priceFrom": 79,
+    "recommendedPlan": "auto_remix_draft",
+    "featured": true,
+    "updatedAt": "2026-06-27T00:00:00.000Z"
+  },
+  {
+    "id": "T003",
+    "status": "active",
+    "priceFrom": 399,
+    "recommendedPlan": "fast_human_fixed",
+    "featured": false,
+    "updatedAt": "2026-06-27T00:00:00.000Z"
+  },
+  {
+    "id": "T004",
+    "status": "active",
+    "priceFrom": 399,
+    "recommendedPlan": "fast_human_fixed",
+    "featured": false,
+    "updatedAt": "2026-06-27T00:00:00.000Z"
+  },
+  {
+    "id": "T005",
+    "status": "active",
+    "priceFrom": 399,
+    "recommendedPlan": "fast_human_fixed",
+    "featured": false,
+    "updatedAt": "2026-06-27T00:00:00.000Z"
+  },
+  {
+    "id": "T006",
+    "status": "active",
+    "priceFrom": 399,
+    "recommendedPlan": "fast_human_fixed",
+    "featured": false,
+    "updatedAt": "2026-06-27T00:00:00.000Z"
+  },
+  {
+    "id": "T007",
+    "status": "active",
+    "priceFrom": 399,
+    "recommendedPlan": "fast_human_fixed",
+    "featured": true,
+    "updatedAt": "2026-06-27T00:00:00.000Z"
+  },
+  {
+    "id": "T008",
+    "status": "active",
+    "priceFrom": 399,
+    "recommendedPlan": "fast_human_fixed",
+    "featured": false,
+    "updatedAt": "2026-06-27T00:00:00.000Z"
+  },
+  {
+    "id": "T009",
+    "status": "active",
+    "priceFrom": 399,
+    "recommendedPlan": "fast_human_fixed",
+    "featured": false,
+    "updatedAt": "2026-06-27T00:00:00.000Z"
+  },
+  {
+    "id": "T010",
+    "status": "active",
+    "priceFrom": 79,
+    "recommendedPlan": "auto_remix_draft",
+    "featured": false,
+    "updatedAt": "2026-06-27T00:00:00.000Z"
+  },
+  {
+    "id": "T011",
+    "status": "active",
+    "priceFrom": 399,
+    "recommendedPlan": "fast_human_fixed",
+    "featured": true,
+    "updatedAt": "2026-06-27T00:00:00.000Z"
+  },
+  {
+    "id": "T012",
+    "status": "active",
+    "priceFrom": 399,
+    "recommendedPlan": "fast_human_fixed",
+    "featured": false,
+    "updatedAt": "2026-06-27T00:00:00.000Z"
+  },
+  {
+    "id": "T013",
+    "status": "active",
+    "priceFrom": 399,
+    "recommendedPlan": "fast_human_fixed",
+    "featured": false,
+    "updatedAt": "2026-06-27T00:00:00.000Z"
+  },
+  {
+    "id": "T014",
+    "status": "active",
+    "priceFrom": 1499,
+    "recommendedPlan": "multi_version",
+    "featured": false,
+    "updatedAt": "2026-06-27T00:00:00.000Z"
+  },
+  {
+    "id": "T015",
+    "status": "active",
+    "priceFrom": 3500,
+    "recommendedPlan": "premium_creator",
+    "featured": true,
+    "updatedAt": "2026-06-27T00:00:00.000Z"
+  },
+  {
+    "id": "T016",
+    "status": "active",
+    "priceFrom": 3500,
+    "recommendedPlan": "premium_creator",
+    "featured": false,
+    "updatedAt": "2026-06-27T00:00:00.000Z"
+  },
+  {
+    "id": "T017",
+    "status": "active",
+    "priceFrom": 3500,
+    "recommendedPlan": "premium_creator",
+    "featured": false,
+    "updatedAt": "2026-06-27T00:00:00.000Z"
+  },
+  {
+    "id": "T018",
+    "status": "active",
+    "priceFrom": 1499,
+    "recommendedPlan": "multi_version",
+    "featured": true,
+    "updatedAt": "2026-06-27T00:00:00.000Z"
+  },
+  {
+    "id": "T019",
+    "status": "active",
+    "priceFrom": 3500,
+    "recommendedPlan": "premium_creator",
+    "featured": false,
+    "updatedAt": "2026-06-27T00:00:00.000Z"
+  },
+  {
+    "id": "T020",
+    "status": "active",
+    "priceFrom": 1499,
+    "recommendedPlan": "multi_version",
+    "featured": false,
+    "updatedAt": "2026-06-27T00:00:00.000Z"
+  }
+]
