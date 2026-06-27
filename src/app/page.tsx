@@ -5,6 +5,7 @@ import { FeaturedTemplates } from "@/components/FeaturedTemplates";
 import { FinalCTA } from "@/components/FinalCTA";
 import { HeroSection } from "@/components/HeroSection";
 import { HowItWorks } from "@/components/HowItWorks";
+import { OrderConfidence } from "@/components/OrderConfidence";
 import { PlatformAdvantages } from "@/components/PlatformAdvantages";
 import { PricingCard } from "@/components/PricingCard";
 import { listEffectiveTemplates } from "@/lib/template-admin";
@@ -24,6 +25,7 @@ export default async function HomePage() {
       <HowItWorks />
       <ConversionComparison />
       <CasePreview />
+      <OrderConfidence />
 
       <section className="border-y border-white/[0.08] bg-[#080808] px-6 py-24">
         <div className="mx-auto max-w-[1200px]">
