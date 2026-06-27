@@ -2,11 +2,7 @@ import Link from "next/link";
 import type { Template } from "@/data/templates";
 import { VideoFrame } from "@/components/VideoFrame";
 
-const trustLabels = [
-  "Made for product launches and paid social tests",
-  "Clear entry options before larger campaign spend",
-  "Human polish available for brand-safe delivery",
-];
+const trustLabels = ["Feed-ready look", "24-48h draft option", "Human polish available"];
 
 export function HeroSection({ template }: { template: Template }) {
   return (
@@ -14,25 +10,25 @@ export function HeroSection({ template }: { template: Template }) {
       <div className="pt-4">
         <p className="mb-5 text-xs font-semibold uppercase tracking-[0.32em] text-white/38">Product Video Ads</p>
         <h1 className="max-w-5xl text-[2.75rem] font-medium leading-[1.05] tracking-[-0.045em] text-white md:text-6xl lg:text-[4.7rem]">
-          Get product ads that look ready to test.
+          Product ads ready to test.
         </h1>
-        <p className="mt-5 max-w-3xl text-base leading-7 text-white/64 md:text-lg">
-          Send your product, logo and selling points. We turn them into polished short-form ad creatives for TikTok, Reels, Shorts and paid social.
+        <p className="mt-5 max-w-2xl text-base leading-7 text-white/64 md:text-lg">
+          Send product assets. Get short-form ad creatives for social feeds.
         </p>
-        <div className="mt-8 grid max-w-3xl gap-3 sm:grid-cols-3">
-          <Metric value="24-48h" label="first review draft option" />
-          <Metric value="$399+" label="polished product ad" />
-          <Metric value="5×" label="creative testing pack" />
+        <div className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3">
+          <Metric value="24-48h" label="first draft" />
+          <Metric value="$399+" label="polished ad" />
+          <Metric value="5×" label="test pack" />
         </div>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
           <Link href="/start" className="inline-flex justify-center rounded-none bg-white px-7 py-4 text-sm font-medium text-black transition hover:bg-white/85 sm:rounded-sm">
             Start My Ad
           </Link>
           <Link href="/templates" className="inline-flex justify-center rounded-none border border-white/[0.12] bg-white/[0.06] px-7 py-4 text-sm font-medium text-white transition hover:bg-white/[0.1] sm:rounded-sm">
-            Browse Ad Styles
+            Browse Styles
           </Link>
         </div>
-        <div className="mt-8 flex max-w-3xl flex-wrap gap-2">
+        <div className="mt-8 flex max-w-2xl flex-wrap gap-2">
           {trustLabels.map((label) => (
             <span key={label} className="rounded-full border border-white/[0.08] bg-white/[0.035] px-3 py-1.5 text-xs text-white/50">
               {label}
