@@ -20,8 +20,8 @@ export function HeroSection({ template }: { template: Template }) {
           Send your product, logo and selling points. We turn them into polished short-form ad creatives for TikTok, Reels, Shorts and paid social.
         </p>
         <div className="mt-8 grid max-w-3xl gap-3 sm:grid-cols-3">
-          <Metric value="24-48h" label="first draft option" />
-          <Metric value="$299+" label="polished product ad" />
+          <Metric value="24-48h" label="first review draft option" />
+          <Metric value="$399+" label="polished product ad" />
           <Metric value="5×" label="creative testing pack" />
         </div>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
