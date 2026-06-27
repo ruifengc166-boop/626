@@ -22,7 +22,7 @@ export function HeroSection({ template }: { template: Template }) {
         </div>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
           <Link href="/start" className="inline-flex justify-center rounded-none bg-white px-7 py-4 text-sm font-medium text-black transition hover:bg-white/85 sm:rounded-sm">
-            Start My Ad
+            Request Review
           </Link>
           <Link href="/templates" className="inline-flex justify-center rounded-none border border-white/[0.12] bg-white/[0.06] px-7 py-4 text-sm font-medium text-white transition hover:bg-white/[0.1] sm:rounded-sm">
             Browse Styles
