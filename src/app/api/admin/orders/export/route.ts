@@ -14,6 +14,8 @@ export async function GET() {
     "id",
     "createdAt",
     "status",
+    "sourceChannel",
+    "sourceReviewId",
     "selectedTemplateId",
     "brandName",
     "productName",
