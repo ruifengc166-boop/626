@@ -50,7 +50,7 @@ export default async function AdminOrderDetailPage({ params }: { params: Promise
             <Info label="Product Assets" value={order.productAssetLinks.join("\n")} />
             <Info label="Logo Assets" value={order.logoAssetLinks.join("\n")} />
             <Info label="Selling Points" value={[order.sellingPoint1, order.sellingPoint2, order.sellingPoint3].filter(Boolean).join("\n")} />
-            <Info label="Platform" value={order.targetPlatform} />
+            <Info label="Platform" value={formatPlatform(order.targetPlatform)} />
             <Info label="Language" value={order.targetLanguage} />
             <Info label="CTA" value={order.ctaText} />
             <Info label="Contact" value={`${order.contactEmail}${order.contactHandle ? ` / ${order.contactHandle}` : ""}`} />
@@ -116,4 +116,19 @@ function Textarea({ label, ...props }: React.TextareaHTMLAttributes<HTMLTextArea
 
 function Select({ label, name, defaultValue, options }: { label: string; name: string; defaultValue: string; options: string[] }) {
   return <label className="block"><span className="mb-2 block text-sm font-medium text-white/74">{label}</span><select name={name} defaultValue={defaultValue} className="input">{options.map((option) => <option key={option} value={option}>{option}</option>)}</select></label>;
+}
+
+function formatPlatform(value: string) {
+  switch (value) {
+    case "tiktok":
+      return "TikTok";
+    case "instagram_reels":
+      return "Instagram Reels";
+    case "youtube_shorts":
+      return "YouTube Shorts";
+    case "meta_ads":
+      return "Meta Ads";
+    default:
+      return "Other";
+  }
 }
