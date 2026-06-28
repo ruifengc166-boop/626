@@ -19,6 +19,7 @@ function StartForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [templateId, setTemplateId] = useState(searchParams.get("template") || "");
+  const recommendedPlan = searchParams.get("plan") || "";
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const selectedTemplate = useMemo(
@@ -60,6 +61,7 @@ function StartForm() {
       </div>
 
       <form onSubmit={handleSubmit} className="rounded-[1.75rem] border border-white/[0.08] bg-[#0d0d0d] p-6 shadow-2xl shadow-black/20 md:p-8">
+        {recommendedPlan ? <div className="mb-6 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4 text-sm text-white/62">Recommended next step: <span className="text-white">{recommendedPlan}</span></div> : null}
         {selectedTemplate ? <SelectedTemplateCard template={selectedTemplate} /> : null}
         <div className="grid gap-5 md:grid-cols-2">
           <Field label="Preferred Style">
@@ -85,7 +87,7 @@ function StartForm() {
           <Input label="CTA Text" name="ctaText" placeholder="Shop Now / Try Free / Join Waitlist" required />
           <Input label="Contact Email" name="contactEmail" type="email" required />
           <Input label="Contact Handle" name="contactHandle" placeholder="Optional" />
-          <Input label="Expected Budget" name="budgetRange" placeholder="$249 pilot / $399 polished ad / $1,499 test pack" />
+          <Input label="Expected Budget" name="budgetRange" defaultValue={recommendedPlan} placeholder="$249 pilot / $399 polished ad / $1,499 test pack" />
           <Input label="Anything to Avoid" name="thingsToAvoid" />
         </div>
         <div className="mt-6 grid gap-3 md:grid-cols-2">
