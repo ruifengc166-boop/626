@@ -37,19 +37,25 @@ export default function FreeAdReviewPage() {
     <main className="mx-auto max-w-6xl px-6 py-16">
       <section className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
         <div className="pt-6">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-white/40">Free Ad Creative Review</p>
-          <h1 className="text-4xl font-semibold tracking-[-0.045em] text-white md:text-6xl">Check what your ad needs before you remake it.</h1>
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-white/40">Instant Free Ad Review</p>
+          <h1 className="text-4xl font-semibold tracking-[-0.045em] text-white md:text-6xl">Generate your ad review now.</h1>
           <p className="mt-5 max-w-xl text-lg leading-8 text-white/60">
-            Paste your current ad or video link. Get a quick review on hook, product clarity, pacing, captions and CTA.
+            Paste your current ad or video link. Your creative review opens immediately on the next page, with checks on hook, product clarity, pacing, captions and CTA.
           </p>
           <div className="mt-8 grid max-w-xl gap-3 sm:grid-cols-3">
-            <Badge title="No payment" body="Free review" />
+            <Badge title="Instant result" body="Opens next page" />
+            <Badge title="Email saved" body="Not required to wait" />
             <Badge title="Creative only" body="No ROAS claims" />
-            <Badge title="Next step" body="Fix or remake" />
           </div>
+          <p className="mt-5 max-w-xl text-sm leading-6 text-white/42">
+            Email is used to save the review record and contact you only if you request production. The review itself is not delayed for email delivery.
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="rounded-[28px] border border-white/[0.08] bg-[#0d0d0d] p-6 shadow-2xl shadow-black/20 md:p-8">
+          <div className="mb-6 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4 text-sm leading-6 text-white/58">
+            After you submit, we generate the review and take you directly to the result page.
+          </div>
           <div className="grid gap-5 md:grid-cols-2">
             <Input label="Ad or Video Link" name="adUrl" type="url" placeholder="TikTok, Reels, YouTube, Drive, Dropbox..." required />
             <Input label="Product Name" name="productName" required />
@@ -60,7 +66,7 @@ export default function FreeAdReviewPage() {
               </select>
             </Field>
             <Input label="Campaign Goal" name="campaignGoal" placeholder="More clicks / app installs / product launch" required />
-            <Input label="Contact Email" name="contactEmail" type="email" required />
+            <Input label="Email to Save Review" name="contactEmail" type="email" placeholder="Used to save the review and follow up if needed" required />
           </div>
           <div className="mt-5 grid gap-5">
             <Field label="What worries you about this ad?">
@@ -75,7 +81,7 @@ export default function FreeAdReviewPage() {
           </p>
           {error ? <div className="mt-5 rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-100">{error}</div> : null}
           <button type="submit" disabled={isSubmitting} className="mt-7 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-white/85 disabled:cursor-not-allowed disabled:opacity-60">
-            {isSubmitting ? "Reviewing..." : "Get Free Review"}
+            {isSubmitting ? "Generating review..." : "Generate Instant Review"}
           </button>
         </form>
       </section>
