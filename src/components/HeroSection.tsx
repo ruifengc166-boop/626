@@ -2,18 +2,18 @@ import Link from "next/link";
 import type { Template } from "@/data/templates";
 import { VideoFrame } from "@/components/VideoFrame";
 
-const trustLabels = ["Human-reviewed", "24-48h draft option", "Pay after scope confirmation"];
+const trustLabels = ["Creator-led studio", "Human-reviewed", "Pay after scope confirmation"];
 
 export function HeroSection({ template }: { template: Template }) {
   return (
     <section className="mx-auto grid max-w-[1200px] gap-12 px-6 py-24 md:py-28 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-start">
       <div className="pt-4">
-        <p className="mb-5 text-xs font-semibold uppercase tracking-[0.32em] text-white/38">Product Video Ads</p>
+        <p className="mb-5 text-xs font-semibold uppercase tracking-[0.32em] text-white/38">Creator-Led Product Ad Studio</p>
         <h1 className="max-w-5xl text-[2.75rem] font-medium leading-[1.05] tracking-[-0.045em] text-white md:text-6xl lg:text-[4.7rem]">
           Product ads ready to test.
         </h1>
         <p className="mt-5 max-w-2xl text-base leading-7 text-white/64 md:text-lg">
-          Human-reviewed short-form ads from your product assets.
+          Short-form social ads made from your product assets, reviewed by creators before delivery.
         </p>
         <div className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3">
           <Metric value="24-48h" label="first draft" />
