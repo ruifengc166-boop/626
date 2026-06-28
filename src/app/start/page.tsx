@@ -55,9 +55,9 @@ function StartForm() {
   return (
     <main className="mx-auto max-w-5xl px-6 py-16">
       <div className="mb-10 max-w-3xl">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/40">Creator-Led Studio Review</p>
-        <h1 className="text-4xl font-semibold tracking-[-0.04em] text-white md:text-6xl">Request a scope review.</h1>
-        <p className="mt-5 text-lg leading-8 text-white/60">Submit your product and campaign goal. A creator-led team will confirm fit, scope and price before payment.</p>
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/40">New Product Ad Request</p>
+        <h1 className="text-4xl font-semibold tracking-[-0.04em] text-white md:text-6xl">Request a new product ad.</h1>
+        <p className="mt-5 text-lg leading-8 text-white/60">Send your product assets and campaign goal. A creator-led team will confirm fit, scope and price before payment.</p>
       </div>
 
       <form onSubmit={handleSubmit} className="rounded-[1.75rem] border border-white/[0.08] bg-[#0d0d0d] p-6 shadow-2xl shadow-black/20 md:p-8">
