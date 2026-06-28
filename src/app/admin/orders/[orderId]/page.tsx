@@ -39,6 +39,13 @@ export default async function AdminOrderDetailPage({ params }: { params: Promise
           <div className="mt-6 space-y-4 text-sm">
             <Info label="Product" value={order.productName} />
             <Info label="Template" value={order.selectedTemplateId} />
+            <Info label="Source" value={order.sourceChannel || "direct"} />
+            {order.sourceReviewId ? (
+              <div>
+                <p className="text-xs uppercase tracking-[0.2em] text-white/36">Source Review</p>
+                <Link href={`/admin/ad-reviews/${order.sourceReviewId}`} className="mt-1 inline-block text-white underline decoration-white/30 underline-offset-4">{order.sourceReviewId}</Link>
+              </div>
+            ) : null}
             <Info label="Website" value={order.productUrl} />
             <Info label="Product Assets" value={order.productAssetLinks.join("\n")} />
             <Info label="Logo Assets" value={order.logoAssetLinks.join("\n")} />
