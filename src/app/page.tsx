@@ -5,6 +5,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { HowItWorks } from "@/components/HowItWorks";
 import { OrderConfidence } from "@/components/OrderConfidence";
 import { PricingCard } from "@/components/PricingCard";
+import { StudioIdentity } from "@/components/StudioIdentity";
 import { listEffectiveTemplates } from "@/lib/template-admin";
 
 export const dynamic = "force-dynamic";
@@ -16,6 +17,7 @@ export default async function HomePage() {
   return (
     <main>
       <HeroSection template={heroTemplate} />
+      <StudioIdentity />
       <CasePreview />
       <OrderConfidence />
       <HowItWorks />
@@ -27,7 +29,7 @@ export default async function HomePage() {
             <h2 className="text-3xl font-medium tracking-[-0.035em] text-white md:text-5xl">Start with one product.</h2>
           </div>
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
-            <PricingCard title="Founder Pilot" price="From $249" lines={["Early client slot", "Portfolio permission"]} featured />
+            <PricingCard title="Founder Pilot" price="From $249" lines={["Discounted early slot", "For selected first clients"]} featured />
             <PricingCard title="Direction Draft" price="From $79" lines={["Low-res draft", "Direction check"]} />
             <PricingCard title="Polished Ad" price="From $399" lines={["Short-form ad", "1 review round"]} />
             <PricingCard title="Testing Pack" price="From $1,499" lines={["5 variations", "Hooks + captions"]} />
@@ -48,6 +50,7 @@ export default async function HomePage() {
           <h2 className="text-3xl font-medium tracking-[-0.035em] text-white md:text-5xl">FAQ</h2>
         </div>
         <div className="mt-10 overflow-hidden rounded-[24px] border border-white/[0.08] bg-[#0d0d0d]">
+          <FAQItem question="Who makes the ads?" answer="A creator-led product ad studio. Polished ads are reviewed for product clarity, logo, captions and CTA before delivery." />
           <FAQItem question="Do I need to pay before review?" answer="No. Submit your brief first. We confirm the scope before payment." />
           <FAQItem question="Are these real client cases?" answer="Current examples are concept samples. Client work will be added with permission." />
           <FAQItem question="What is included in a polished ad?" answer="A short-form video ad, product adaptation, logo and caption check, CTA check, MP4 delivery and one review round." />
