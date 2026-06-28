@@ -1,6 +1,7 @@
 import { CasePreview } from "@/components/CasePreview";
 import { FAQItem } from "@/components/FAQItem";
 import { FinalCTA } from "@/components/FinalCTA";
+import { FreeAdReviewCTA } from "@/components/FreeAdReviewCTA";
 import { HeroSection } from "@/components/HeroSection";
 import { HowItWorks } from "@/components/HowItWorks";
 import { OrderConfidence } from "@/components/OrderConfidence";
@@ -17,6 +18,7 @@ export default async function HomePage() {
   return (
     <main>
       <HeroSection template={heroTemplate} />
+      <FreeAdReviewCTA />
       <StudioIdentity />
       <CasePreview />
       <OrderConfidence />
@@ -50,6 +52,7 @@ export default async function HomePage() {
           <h2 className="text-3xl font-medium tracking-[-0.035em] text-white md:text-5xl">FAQ</h2>
         </div>
         <div className="mt-10 overflow-hidden rounded-[24px] border border-white/[0.08] bg-[#0d0d0d]">
+          <FAQItem question="What does the free ad review check?" answer="It reviews the ad creative itself: hook strength, product clarity, pacing, captions, CTA and platform fit. It does not predict ROAS or conversion rate." />
           <FAQItem question="Who works on my ad?" answer="Your brief is reviewed by a creator-led studio. For selected projects, we match the style with AI video creators from active communities, including VACAT, then review delivery before handoff." />
           <FAQItem question="Do I need to pay before review?" answer="No. Submit your brief first. We confirm the scope before payment." />
           <FAQItem question="Are these real client cases?" answer="Current examples are concept samples. Client work will be added with permission." />
