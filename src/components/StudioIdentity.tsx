@@ -1,7 +1,7 @@
 const points = [
-  ["Creator-led", "Built by AI video creators who understand short-form visuals."],
-  ["Ad-reviewed", "Checked for product clarity, logo, captions and CTA."],
-  ["Lean by design", "Start with one direction before a bigger campaign."],
+  ["Selected creator network", "Access to AI video creators across active creator communities, including VACAT."],
+  ["Studio review", "Every polished ad is checked for product clarity, logo, captions and CTA."],
+  ["Product-first delivery", "The goal is a clear product ad, not just a generated clip."],
 ];
 
 export function StudioIdentity() {
@@ -11,10 +11,10 @@ export function StudioIdentity() {
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/38">Who makes your ad</p>
-            <h2 className="mt-5 text-3xl font-medium tracking-[-0.04em] text-white md:text-5xl">A creator-led product ad studio.</h2>
+            <h2 className="mt-5 text-3xl font-medium tracking-[-0.04em] text-white md:text-5xl">A creator-led studio backed by selected AI video creators.</h2>
           </div>
           <p className="max-w-2xl text-base leading-7 text-white/56">
-            We turn product assets into short-form ad directions for social testing, with human review before delivery.
+            We connect product briefs with creators from active visual AI communities and production programs, then review each polished ad before delivery.
           </p>
         </div>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
