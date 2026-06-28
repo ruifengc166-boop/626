@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { AdCreativeReviewInput, AdReviewPlatform } from "@/lib/ad-review-types";
-import { generateAdCreativeReview } from "@/lib/ad-review-ai";
-import { countRecentReviews, createAdReview } from "@/lib/ad-reviews";
+import { generateAdCreativeReview, generateFallbackAdCreativeReview } from "@/lib/ad-review-ai";
+import { countRecentReviews, createAdReview, findReusableAdReview } from "@/lib/ad-reviews";
 
 const platforms: AdReviewPlatform[] = ["TikTok", "Instagram Reels", "YouTube Shorts", "Meta Ads", "Other"];
 
@@ -19,10 +19,17 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Daily review limit reached. Please try again later." }, { status: 429 });
     }
 
-    const report = await generateAdCreativeReview(input);
+    const reusableReview = await findReusableAdReview(input);
+    if (reusableReview) {
+      return NextResponse.json({ reviewId: reusableReview.id, reused: true }, { status: 200 });
+    }
+
+    const dailyAiLimit = readPositiveIntegerEnv("FREE_REVIEW_DAILY_AI_LIMIT", 100);
+    const shouldUseFallback = process.env.FREE_REVIEW_AI_ENABLED === "false" || counts.total >= dailyAiLimit;
+    const report = shouldUseFallback ? generateFallbackAdCreativeReview(input) : await generateAdCreativeReview(input);
     const saved = await createAdReview(input, report, clientIp);
 
-    return NextResponse.json({ reviewId: saved.id }, { status: 201 });
+    return NextResponse.json({ reviewId: saved.id, aiGenerated: !shouldUseFallback }, { status: 201 });
   } catch (error) {
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to generate ad review" },
@@ -49,7 +56,7 @@ function normalizeInput(raw: Record<string, unknown>): AdCreativeReviewInput {
     targetPlatform,
     campaignGoal,
     currentConcern: optionalString(raw.currentConcern),
-    transcriptOrCaption: optionalString(raw.transcriptOrCaption),
+    transcriptOrCaption: optionalString(raw.transcriptOrCaption, 2000),
     contactEmail,
   };
 }
@@ -60,9 +67,14 @@ function requiredString(value: unknown, label: string) {
   return text.slice(0, 1200);
 }
 
-function optionalString(value: unknown) {
+function optionalString(value: unknown, maxLength = 4000) {
   const text = String(value || "").trim();
-  return text ? text.slice(0, 4000) : undefined;
+  return text ? text.slice(0, maxLength) : undefined;
+}
+
+function readPositiveIntegerEnv(name: string, fallback: number) {
+  const parsed = Number(process.env[name]);
+  return Number.isFinite(parsed) && parsed > 0 ? Math.floor(parsed) : fallback;
 }
 
 function getClientIp(request: Request) {
