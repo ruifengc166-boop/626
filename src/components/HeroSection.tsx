@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Template } from "@/data/templates";
 import { VideoFrame } from "@/components/VideoFrame";
 
-const trustLabels = ["New ads", "Ad remakes", "Studio-reviewed delivery"];
+const trustLabels = ["Instant review page", "New ads", "Studio-reviewed delivery"];
 
 export function HeroSection({ template }: { template: Template }) {
   return (
@@ -13,22 +13,22 @@ export function HeroSection({ template }: { template: Template }) {
           Create or improve product ads for social.
         </h1>
         <p className="mt-5 max-w-2xl text-base leading-7 text-white/64 md:text-lg">
-          Get a free creative review for your current ad, or request a new short-form product ad from our creator-led studio.
+          Get an instant creative review page for your current ad, or request a new short-form product ad from our creator-led studio.
         </p>
         <div className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3">
-          <Metric value="Free" label="current ad review" />
+          <Metric value="Instant" label="free ad review" />
           <Metric value="$249+" label="new ad pilot" />
           <Metric value="$399+" label="polished ad" />
         </div>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
           <Link href="/free-ad-review" className="inline-flex justify-center rounded-none bg-white px-7 py-4 text-sm font-medium text-black transition hover:bg-white/85 sm:rounded-sm">
-            Get Free Ad Review
+            Generate Free Review
           </Link>
           <Link href="/start" className="inline-flex justify-center rounded-none border border-white/[0.12] bg-white/[0.06] px-7 py-4 text-sm font-medium text-white transition hover:bg-white/[0.1] sm:rounded-sm">
             Request New Product Ad
           </Link>
         </div>
-        <p className="mt-4 text-sm text-white/42">Have an ad? Review it first. Need a new one? Send the brief.</p>
+        <p className="mt-4 text-sm text-white/42">The free review opens on the next page. Email is used to save the review and follow up if needed.</p>
         <div className="mt-6 flex max-w-2xl flex-wrap gap-2">
           {trustLabels.map((label) => (
             <span key={label} className="rounded-full border border-white/[0.08] bg-white/[0.035] px-3 py-1.5 text-xs text-white/50">
