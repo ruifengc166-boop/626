@@ -19,7 +19,6 @@ export default async function HomePage() {
   return (
     <main>
       <HeroSection template={heroTemplate} />
-      <FreeAdReviewCTA />
       <NewAdCTA />
       <StudioIdentity />
       <CasePreview />
@@ -37,17 +36,17 @@ export default async function HomePage() {
             <div>
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-white/38">Improve existing ad</p>
               <div className="grid gap-5 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                <PricingCard title="Direction Fix" price="From $79" lines={["Hook diagnosis", "Fix priority"]} />
-                <PricingCard title="Polished Remake" price="From $399" lines={["Remake current ad", "1 review round"]} featured />
-                <PricingCard title="Testing Variants" price="From $1,499" lines={["5 variations", "Hooks + captions"]} />
+                <PricingCard title="Direction Draft" price="From $99" lines={["Hook diagnosis", "Fix priority"]} />
+                <PricingCard title="Polished Ad" price="From $399" lines={["Remake current ad", "1 review round"]} featured />
+                <PricingCard title="Testing Pack" price="From $1,499" lines={["3-5 variations", "Hooks + captions"]} />
               </div>
             </div>
 
             <div>
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-white/38">Create new product ad</p>
               <div className="grid gap-5 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                <PricingCard title="Founder Pilot" price="From $249" lines={["Discounted early slot", "For selected first clients"]} />
-                <PricingCard title="Polished Product Ad" price="From $399" lines={["Short-form ad", "Studio review"]} featured />
+                <PricingCard title="Direction Draft" price="From $99" lines={["Starter direction", "Ad structure"]} />
+                <PricingCard title="Polished Ad" price="From $399" lines={["Short-form ad", "Studio review"]} featured />
                 <PricingCard title="Launch-Grade" price="From $3,500" lines={["Premium adaptation", "Creator-level polish"]} />
               </div>
             </div>
@@ -62,6 +61,8 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      <FreeAdReviewCTA />
 
       <section className="mx-auto max-w-[1200px] px-6 py-24">
         <div className="max-w-2xl">
