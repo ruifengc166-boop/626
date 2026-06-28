@@ -101,7 +101,7 @@ export async function createOrder(input: Record<string, unknown>) {
     sellingPoint1: String(input.sellingPoint1).trim(),
     sellingPoint2: optionalString(input.sellingPoint2),
     sellingPoint3: optionalString(input.sellingPoint3),
-    targetPlatform: String(input.targetPlatform || "other") as Order["targetPlatform"],
+    targetPlatform: normalizeTargetPlatform(input.targetPlatform),
     targetLanguage: String(input.targetLanguage || "English").trim(),
     ctaText: String(input.ctaText).trim(),
     contactEmail: String(input.contactEmail).trim(),
@@ -171,4 +171,20 @@ function normalizeSourceChannel(value: unknown, sourceReviewId?: string): OrderS
   const allowed: OrderSourceChannel[] = ["direct", "template", "free_ad_review", "manual"];
   if (channel && allowed.includes(channel)) return channel;
   return sourceReviewId ? "free_ad_review" : undefined;
+}
+
+function normalizeTargetPlatform(value: unknown): Order["targetPlatform"] {
+  const platform = String(value || "").trim().toLowerCase().replace(/[\s-]+/g, "_");
+  switch (platform) {
+    case "tiktok":
+      return "tiktok";
+    case "instagram_reels":
+      return "instagram_reels";
+    case "youtube_shorts":
+      return "youtube_shorts";
+    case "meta_ads":
+      return "meta_ads";
+    default:
+      return "other";
+  }
 }

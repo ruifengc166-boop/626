@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Template } from "@/data/templates";
 import { VideoFrame } from "@/components/VideoFrame";
 
-const trustLabels = ["Instant review page", "New ads", "Studio-reviewed delivery"];
+const trustLabels = ["New product ads", "Studio-reviewed delivery", "Free review as helper"];
 
 export function HeroSection({ template }: { template: Template }) {
   return (
@@ -10,25 +10,27 @@ export function HeroSection({ template }: { template: Template }) {
       <div className="pt-4">
         <p className="mb-5 text-xs font-semibold uppercase tracking-[0.32em] text-white/38">Creator-Led Product Ad Studio</p>
         <h1 className="max-w-5xl text-[2.75rem] font-medium leading-[1.05] tracking-[-0.045em] text-white md:text-6xl lg:text-[4.7rem]">
-          Create or improve product ads for social.
+          Create short-form product ads for social.
         </h1>
         <p className="mt-5 max-w-2xl text-base leading-7 text-white/64 md:text-lg">
-          Get an instant creative review page for your current ad, or request a new short-form product ad from our creator-led studio.
+          Request a new AI-assisted product ad, choose a proven visual style, and let our creator-led studio review scope, price and delivery before production starts.
         </p>
         <div className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3">
-          <Metric value="Instant" label="free ad review" />
           <Metric value="$249+" label="new ad pilot" />
           <Metric value="$399+" label="polished ad" />
+          <Metric value="3-5" label="testing variants" />
         </div>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <Link href="/free-ad-review" className="inline-flex justify-center rounded-none bg-white px-7 py-4 text-sm font-medium text-black transition hover:bg-white/85 sm:rounded-sm">
-            Generate Free Review
-          </Link>
-          <Link href="/start" className="inline-flex justify-center rounded-none border border-white/[0.12] bg-white/[0.06] px-7 py-4 text-sm font-medium text-white transition hover:bg-white/[0.1] sm:rounded-sm">
+          <Link href="/start" className="inline-flex justify-center rounded-none bg-white px-7 py-4 text-sm font-medium text-black transition hover:bg-white/85 sm:rounded-sm">
             Request New Product Ad
           </Link>
+          <Link href="/templates" className="inline-flex justify-center rounded-none border border-white/[0.12] bg-white/[0.06] px-7 py-4 text-sm font-medium text-white transition hover:bg-white/[0.1] sm:rounded-sm">
+            View Ad Styles
+          </Link>
         </div>
-        <p className="mt-4 text-sm text-white/42">The free review opens on the next page. Email is used to save the review and follow up if needed.</p>
+        <p className="mt-4 text-sm text-white/42">
+          Already have an ad? <Link href="/free-ad-review" className="text-white underline decoration-white/30 underline-offset-4">Get a free creative review</Link> before requesting a fix or remake.
+        </p>
         <div className="mt-6 flex max-w-2xl flex-wrap gap-2">
           {trustLabels.map((label) => (
             <span key={label} className="rounded-full border border-white/[0.08] bg-white/[0.035] px-3 py-1.5 text-xs text-white/50">
