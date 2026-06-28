@@ -1,6 +1,6 @@
 import { promises as fs } from "fs";
 import path from "path";
-import { defaultChecklist, type Order, type OrderPlan, type OrderStatus } from "@/lib/order-types";
+import { defaultChecklist, type Order, type OrderPlan, type OrderSourceChannel, type OrderStatus } from "@/lib/order-types";
 
 const ordersPath = path.join(process.cwd(), "data", "orders.json");
 
@@ -81,14 +81,18 @@ export async function createOrder(input: Record<string, unknown>) {
 
   const now = new Date().toISOString();
   const id = `ORD-${Date.now()}-${Math.random().toString(36).slice(2, 7).toUpperCase()}`;
+  const sourceReviewId = optionalString(input.sourceReviewId);
+  const sourceChannel = normalizeSourceChannel(input.sourceChannel, sourceReviewId);
 
   const order: Order = {
     id,
     createdAt: now,
     updatedAt: now,
     status: "new",
+    sourceChannel,
+    sourceReviewId,
     selectedTemplateId: String(input.selectedTemplateId).trim(),
-    plan: (optionalString(input.plan) as OrderPlan) || "not_sure",
+    plan: normalizePlan(input.plan),
     brandName: String(input.brandName).trim(),
     productName: String(input.productName).trim(),
     productUrl: String(input.productUrl).trim(),
@@ -154,4 +158,17 @@ export async function updateOrder(id: string, input: Record<string, unknown>) {
   orders[index] = updated;
   await writeOrders(orders);
   return updated;
+}
+
+function normalizePlan(value: unknown): OrderPlan {
+  const plan = optionalString(value) as OrderPlan | undefined;
+  const allowed: OrderPlan[] = ["auto_remix_draft", "fast_human_fixed", "multi_version", "premium_creator", "not_sure"];
+  return plan && allowed.includes(plan) ? plan : "not_sure";
+}
+
+function normalizeSourceChannel(value: unknown, sourceReviewId?: string): OrderSourceChannel | undefined {
+  const channel = optionalString(value) as OrderSourceChannel | undefined;
+  const allowed: OrderSourceChannel[] = ["direct", "template", "free_ad_review", "manual"];
+  if (channel && allowed.includes(channel)) return channel;
+  return sourceReviewId ? "free_ad_review" : undefined;
 }

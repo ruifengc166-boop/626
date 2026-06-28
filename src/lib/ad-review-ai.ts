@@ -1,51 +1,9 @@
 import type { AdCreativeReviewInput, AdCreativeReviewReport, RecommendedService } from "@/lib/ad-review-types";
-
-const reviewSchema = {
-  type: "object",
-  additionalProperties: false,
-  required: [
-    "creativeReadinessScore",
-    "scoreSummary",
-    "mainIssue",
-    "whatWorks",
-    "whatToFix",
-    "firstThreeSecondsReview",
-    "productClarityReview",
-    "pacingReview",
-    "captionCtaReview",
-    "platformFit",
-    "suggestedHook",
-    "fixPriority",
-    "recommendedService",
-    "nextStepReason",
-    "leadScore",
-    "internalSignals",
-    "disclaimer",
-  ],
-  properties: {
-    creativeReadinessScore: { type: "number", minimum: 0, maximum: 100 },
-    scoreSummary: { type: "string" },
-    mainIssue: { type: "string" },
-    whatWorks: { type: "array", minItems: 2, maxItems: 4, items: { type: "string" } },
-    whatToFix: { type: "array", minItems: 3, maxItems: 5, items: { type: "string" } },
-    firstThreeSecondsReview: { type: "string" },
-    productClarityReview: { type: "string" },
-    pacingReview: { type: "string" },
-    captionCtaReview: { type: "string" },
-    platformFit: { type: "string" },
-    suggestedHook: { type: "string" },
-    fixPriority: { type: "string" },
-    recommendedService: { type: "string", enum: ["Founder Pilot", "Direction Draft", "Polished Ad", "Testing Pack", "Launch-Grade"] },
-    nextStepReason: { type: "string" },
-    leadScore: { type: "number", minimum: 0, maximum: 100 },
-    internalSignals: { type: "array", minItems: 2, maxItems: 5, items: { type: "string" } },
-    disclaimer: { type: "string" },
-  },
-} as const;
+import { AD_REVIEW_SYSTEM_PROMPT, buildAdReviewPrompt, reviewSchema } from "@/lib/ad-review-prompts";
 
 export async function generateAdCreativeReview(input: AdCreativeReviewInput): Promise<AdCreativeReviewReport> {
   const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) return fallbackReview(input);
+  if (!apiKey || process.env.FREE_REVIEW_AI_ENABLED === "false") return generateFallbackAdCreativeReview(input);
 
   try {
     const linkContext = await fetchLinkContext(input.adUrl);
@@ -63,15 +21,7 @@ export async function generateAdCreativeReview(input: AdCreativeReviewInput): Pr
             content: [
               {
                 type: "input_text",
-                text: [
-                  "You are an ad creative strategist for a creator-led product ad studio.",
-                  "Review the ad creative itself, not the product business potential.",
-                  "Do not predict ROAS, conversion rate, revenue, virality, or guaranteed performance.",
-                  "Do not create a full production plan or complete script for free.",
-                  "Focus on hook strength, product clarity, benefit clarity, pacing, captions, CTA, and target platform fit.",
-                  "Give practical, concise feedback a brand can understand.",
-                  "The report is a free diagnostic that should identify the first paid next step when appropriate.",
-                ].join("\n"),
+                text: AD_REVIEW_SYSTEM_PROMPT,
               },
             ],
           },
@@ -80,7 +30,7 @@ export async function generateAdCreativeReview(input: AdCreativeReviewInput): Pr
             content: [
               {
                 type: "input_text",
-                text: buildPrompt(input, linkContext),
+                text: buildAdReviewPrompt(input, linkContext),
               },
             ],
           },
@@ -96,31 +46,16 @@ export async function generateAdCreativeReview(input: AdCreativeReviewInput): Pr
       }),
     });
 
-    if (!response.ok) return fallbackReview(input);
+    if (!response.ok) return generateFallbackAdCreativeReview(input);
     const data = await response.json();
     const text = extractOutputText(data);
-    if (!text) return fallbackReview(input);
+    if (!text) return generateFallbackAdCreativeReview(input);
 
     const parsed = JSON.parse(text) as AdCreativeReviewReport;
     return normalizeReport(parsed, input);
   } catch {
-    return fallbackReview(input);
+    return generateFallbackAdCreativeReview(input);
   }
-}
-
-function buildPrompt(input: AdCreativeReviewInput, linkContext: string) {
-  return [
-    `Ad or video URL: ${input.adUrl}`,
-    `Product name: ${input.productName}`,
-    `Product category: ${input.productCategory || "Not provided"}`,
-    `Target platform: ${input.targetPlatform}`,
-    `Campaign goal: ${input.campaignGoal}`,
-    `Client concern: ${input.currentConcern || "Not provided"}`,
-    `Transcript / caption / ad copy: ${input.transcriptOrCaption || "Not provided"}`,
-    `Link context: ${linkContext || "No reliable link context extracted."}`,
-    "",
-    "Generate a free ad creative review. Judge the ad material itself. If the URL cannot be inspected, use the transcript, caption, campaign goal, and provided context to infer the likely review. Be transparent and avoid performance guarantees.",
-  ].join("\n");
 }
 
 async function fetchLinkContext(url: string) {
@@ -183,16 +118,18 @@ function clampScore(value: number) {
   return Math.max(0, Math.min(100, Math.round(value)));
 }
 
-function fallbackReview(input: AdCreativeReviewInput): AdCreativeReviewReport {
+export function generateFallbackAdCreativeReview(input: AdCreativeReviewInput): AdCreativeReviewReport {
   const hasTranscript = Boolean(input.transcriptOrCaption?.trim());
   const hasConcern = Boolean(input.currentConcern?.trim());
+  const hasCategory = Boolean(input.productCategory?.trim());
   const score = hasTranscript ? 72 : 64;
   const recommendedService: RecommendedService = hasTranscript || hasConcern ? "Polished Ad" : "Direction Draft";
+  const leadScore = clampScore((hasTranscript ? 28 : 12) + (hasConcern ? 24 : 10) + (hasCategory ? 10 : 4) + 28);
 
   return {
     creativeReadinessScore: score,
     scoreSummary: hasTranscript
-      ? "The ad has enough creative context to review the message, hook and platform fit, but it still needs a sharper short-form structure."
+      ? "The ad has enough submitted creative context to review the message, hook and platform fit, but it still needs a sharper short-form structure."
       : "The ad can be reviewed at a high level from the link and campaign goal, but adding captions or transcript would make the review more precise.",
     mainIssue: "The first improvement area is likely the opening hook: the product benefit should be clearer before the viewer scrolls away.",
     whatWorks: [
@@ -210,17 +147,18 @@ function fallbackReview(input: AdCreativeReviewInput): AdCreativeReviewReport {
     productClarityReview: "The product should be visually identifiable early, with a simple caption explaining what it does or why it matters.",
     pacingReview: "For short-form social, the ad should move quickly from hook to product proof to CTA. Any scene that does not clarify the offer should be shortened.",
     captionCtaReview: "Use short captions that carry the selling point even when sound is off. The CTA should be direct and platform-appropriate.",
-    platformFit: `${input.targetPlatform} usually rewards fast hooks, clear visuals and simple captions. The ad should be evaluated against those basics before polishing.`,
+    platformFit: `${input.targetPlatform} usually rewards fast hooks, clear visuals and simple captions. This instant review is based on the submitted link, caption and campaign context rather than a full frame-by-frame video inspection.`,
     suggestedHook: `Still looking for a better way to ${input.campaignGoal.toLowerCase()}? Try ${input.productName}.`,
     fixPriority: "Fix the first three seconds first: product, benefit and viewer reason to keep watching.",
     recommendedService,
     nextStepReason: recommendedService === "Direction Draft"
       ? "A Direction Draft is enough if you only need a clearer creative route before production."
       : "A Polished Ad is the right next step if you want the current material reworked into a cleaner social ad.",
-    leadScore: hasTranscript || hasConcern ? 76 : 58,
+    leadScore,
     internalSignals: [
       hasTranscript ? "User provided ad copy/transcript" : "User did not provide transcript",
       hasConcern ? "User has a stated creative concern" : "No stated creative concern",
+      hasCategory ? `Product category: ${input.productCategory}` : "No product category provided",
       `Target platform: ${input.targetPlatform}`,
     ],
     disclaimer: defaultDisclaimer(input.targetPlatform),

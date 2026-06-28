@@ -3,6 +3,7 @@ import path from "path";
 import type { AdCreativeReview, AdCreativeReviewInput, AdCreativeReviewReport } from "@/lib/ad-review-types";
 
 const reviewsPath = path.join(process.cwd(), "data", "ad-reviews.json");
+const ONE_DAY_MS = 24 * 60 * 60 * 1000;
 
 async function ensureStore() {
   await fs.mkdir(path.dirname(reviewsPath), { recursive: true });
@@ -35,6 +36,14 @@ export async function getAdReview(id: string) {
   return reviews.find((review) => review.id === id) || null;
 }
 
+export async function findReusableAdReview(input: AdCreativeReviewInput) {
+  const reviews = await readReviews();
+  const since = Date.now() - ONE_DAY_MS;
+  const inputKey = reviewInputKey(input);
+
+  return reviews.find((review) => Date.parse(review.createdAt) >= since && reviewInputKey(review.input) === inputKey) || null;
+}
+
 export async function createAdReview(input: AdCreativeReviewInput, report: AdCreativeReviewReport, clientIp?: string) {
   const now = new Date().toISOString();
   const id = `REV-${Date.now()}-${Math.random().toString(36).slice(2, 7).toUpperCase()}`;
@@ -54,16 +63,34 @@ export async function createAdReview(input: AdCreativeReviewInput, report: AdCre
   return review;
 }
 
-export async function countRecentReviews({ email, clientIp }: { email?: string; clientIp?: string }) {
+export async function countRecentReviews({ email, clientIp }: { email?: string; clientIp?: string } = {}) {
   const reviews = await readReviews();
-  const since = Date.now() - 24 * 60 * 60 * 1000;
+  const since = Date.now() - ONE_DAY_MS;
+  const recentReviews = reviews.filter((review) => Date.parse(review.createdAt) >= since);
   const emailKey = String(email || "").trim().toLowerCase();
   const byEmail = emailKey
-    ? reviews.filter((review) => review.input.contactEmail.toLowerCase() === emailKey && Date.parse(review.createdAt) >= since).length
+    ? recentReviews.filter((review) => review.input.contactEmail.toLowerCase() === emailKey).length
     : 0;
   const byIp = clientIp
-    ? reviews.filter((review) => review.clientIp === clientIp && Date.parse(review.createdAt) >= since).length
+    ? recentReviews.filter((review) => review.clientIp === clientIp).length
     : 0;
 
-  return { byEmail, byIp };
+  return { byEmail, byIp, total: recentReviews.length };
+}
+
+function reviewInputKey(input: AdCreativeReviewInput) {
+  return [
+    normalizeKey(input.adUrl),
+    normalizeKey(input.productName),
+    normalizeKey(input.targetPlatform),
+    normalizeKey(input.campaignGoal),
+  ].join("|");
+}
+
+function normalizeKey(value: string) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .replace(/\/$/, "");
 }

@@ -19,6 +19,8 @@ export type OrderPlan =
   | "premium_creator"
   | "not_sure";
 
+export type OrderSourceChannel = "direct" | "template" | "free_ad_review" | "manual";
+
 export type ChecklistItem = {
   label: string;
   done: boolean;
@@ -29,6 +31,8 @@ export type Order = {
   createdAt: string;
   updatedAt: string;
   status: OrderStatus;
+  sourceChannel?: OrderSourceChannel;
+  sourceReviewId?: string;
   selectedTemplateId: string;
   plan: OrderPlan;
   brandName: string;

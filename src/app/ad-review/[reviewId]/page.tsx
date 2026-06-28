@@ -10,6 +10,7 @@ export default async function AdReviewResultPage({ params }: { params: Promise<{
   if (!review) notFound();
 
   const { input, report } = review;
+  const startHref = `/start?plan=${encodeURIComponent(report.recommendedService)}&review=${encodeURIComponent(review.id)}`;
 
   return (
     <main className="mx-auto max-w-[1200px] px-6 py-16">
@@ -26,9 +27,10 @@ export default async function AdReviewResultPage({ params }: { params: Promise<{
             <p><span className="text-white/72">Product:</span> {input.productName}</p>
             <p><span className="text-white/72">Platform:</span> {input.targetPlatform}</p>
             <p><span className="text-white/72">Recommended:</span> {report.recommendedService}</p>
+            <p><span className="text-white/72">Review ID:</span> {review.id}</p>
           </div>
           <div className="mt-7 grid gap-3">
-            <Link href={`/start?plan=${encodeURIComponent(report.recommendedService)}`} className="rounded-full bg-white px-6 py-3 text-center text-sm font-medium text-black transition hover:bg-white/85">
+            <Link href={startHref} className="rounded-full bg-white px-6 py-3 text-center text-sm font-medium text-black transition hover:bg-white/85">
               Request Fix or Remake
             </Link>
             <Link href="/free-ad-review" className="rounded-full border border-white/[0.12] bg-white/[0.06] px-6 py-3 text-center text-sm font-medium text-white transition hover:bg-white/[0.1]">
@@ -84,7 +86,7 @@ export default async function AdReviewResultPage({ params }: { params: Promise<{
           </ReportCard>
 
           <p className="rounded-2xl border border-white/[0.08] bg-white/[0.035] p-4 text-xs leading-5 text-white/38">
-            {report.disclaimer}
+            {report.disclaimer} This instant review is based on the submitted link, caption and campaign context. Request a creator review if you need frame-by-frame diagnosis.
           </p>
         </section>
       </div>
