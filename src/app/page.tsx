@@ -50,7 +50,7 @@ export default async function HomePage() {
           <h2 className="text-3xl font-medium tracking-[-0.035em] text-white md:text-5xl">FAQ</h2>
         </div>
         <div className="mt-10 overflow-hidden rounded-[24px] border border-white/[0.08] bg-[#0d0d0d]">
-          <FAQItem question="Who makes the ads?" answer="A creator-led product ad studio. Polished ads are reviewed for product clarity, logo, captions and CTA before delivery." />
+          <FAQItem question="Who works on my ad?" answer="Your brief is reviewed by a creator-led studio. For selected projects, we match the style with AI video creators from active communities, including VACAT, then review delivery before handoff." />
           <FAQItem question="Do I need to pay before review?" answer="No. Submit your brief first. We confirm the scope before payment." />
           <FAQItem question="Are these real client cases?" answer="Current examples are concept samples. Client work will be added with permission." />
           <FAQItem question="What is included in a polished ad?" answer="A short-form video ad, product adaptation, logo and caption check, CTA check, MP4 delivery and one review round." />
