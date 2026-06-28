@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Template } from "@/data/templates";
 import { VideoFrame } from "@/components/VideoFrame";
 
-const trustLabels = ["Creator-led studio", "Human-reviewed", "Pay after scope confirmation"];
+const trustLabels = ["Selected creator network", "Studio-reviewed", "Pay after scope confirmation"];
 
 export function HeroSection({ template }: { template: Template }) {
   return (
@@ -13,7 +13,7 @@ export function HeroSection({ template }: { template: Template }) {
           Product ads ready to test.
         </h1>
         <p className="mt-5 max-w-2xl text-base leading-7 text-white/64 md:text-lg">
-          Short-form social ads made from your product assets, reviewed by creators before delivery.
+          Short-form social ads made from your product assets, backed by selected AI video creators and reviewed before delivery.
         </p>
         <div className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3">
           <Metric value="24-48h" label="first draft" />
