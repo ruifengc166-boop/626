@@ -69,6 +69,7 @@ export default async function HomePage() {
         </div>
         <div className="mt-10 overflow-hidden rounded-[24px] border border-white/[0.08] bg-[#0d0d0d]">
           <FAQItem question="Do you only fix existing ads?" answer="No. We support both paths: free creative review for current ads, and new product ad production for brands that want a fresh short-form ad." />
+          <FAQItem question="When do I get the free review?" answer="Immediately after submission. The review opens on a result page; it is not delayed for email delivery. Email is used to save the review record and follow up if you request production." />
           <FAQItem question="What does the free ad review check?" answer="It reviews the ad creative itself: hook strength, product clarity, pacing, captions, CTA and platform fit. It does not predict ROAS or conversion rate." />
           <FAQItem question="Who works on my ad?" answer="Your brief is reviewed by a creator-led studio. For selected projects, we match the style with AI video creators from active communities, including VACAT, then review delivery before handoff." />
           <FAQItem question="Do I need to pay before review?" answer="No. Submit your brief first. We confirm the scope before payment." />
