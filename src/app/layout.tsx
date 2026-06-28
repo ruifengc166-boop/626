@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Ad Remix Studio",
-  description: "Creator-led product ad studio with free ad creative review.",
+  description: "Creator-led product ad studio for new ads, remakes and testing variants.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -24,7 +24,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 Styles
               </Link>
               <Link href="/start" className="rounded-full border border-white/10 bg-white px-4 py-2 text-black transition hover:bg-white/85">
-                Request Production
+                New Product Ad
               </Link>
             </nav>
           </div>
