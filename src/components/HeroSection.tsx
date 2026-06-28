@@ -16,19 +16,19 @@ export function HeroSection({ template }: { template: Template }) {
           Short-form social ads made from your product assets, backed by selected AI video creators and reviewed before delivery.
         </p>
         <div className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3">
-          <Metric value="24-48h" label="first draft" />
+          <Metric value="Free" label="ad creative review" />
           <Metric value="$399+" label="polished ad" />
           <Metric value="5×" label="test pack" />
         </div>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <Link href="/start" className="inline-flex justify-center rounded-none bg-white px-7 py-4 text-sm font-medium text-black transition hover:bg-white/85 sm:rounded-sm">
-            Request Review
+          <Link href="/free-ad-review" className="inline-flex justify-center rounded-none bg-white px-7 py-4 text-sm font-medium text-black transition hover:bg-white/85 sm:rounded-sm">
+            Get Free Ad Review
           </Link>
-          <Link href="/templates" className="inline-flex justify-center rounded-none border border-white/[0.12] bg-white/[0.06] px-7 py-4 text-sm font-medium text-white transition hover:bg-white/[0.1] sm:rounded-sm">
-            Browse Styles
+          <Link href="/start" className="inline-flex justify-center rounded-none border border-white/[0.12] bg-white/[0.06] px-7 py-4 text-sm font-medium text-white transition hover:bg-white/[0.1] sm:rounded-sm">
+            Request Production Review
           </Link>
         </div>
-        <p className="mt-4 text-sm text-white/42">Submit your brief first. Pay after scope confirmation.</p>
+        <p className="mt-4 text-sm text-white/42">Review the ad first. Pay only after scope confirmation.</p>
         <div className="mt-6 flex max-w-2xl flex-wrap gap-2">
           {trustLabels.map((label) => (
             <span key={label} className="rounded-full border border-white/[0.08] bg-white/[0.035] px-3 py-1.5 text-xs text-white/50">
