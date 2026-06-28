@@ -1,0 +1,4 @@
+Tencent Cloud deployment trigger
+Triggered at: 2026-06-28T15:08:00Z
+Branch: main
+Reason: redeploy latest MVP mainline alignment build
