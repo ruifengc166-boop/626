@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { requireAdmin } from "@/lib/admin-auth";
 import { listOrders } from "@/lib/orders";
+import { listAdReviews } from "@/lib/ad-reviews";
 import { listCases } from "@/lib/cases";
 import { templates } from "@/data/templates";
 import { formatCurrency } from "@/lib/utils";
@@ -10,15 +11,19 @@ export const dynamic = "force-dynamic";
 export default async function AdminPage() {
   await requireAdmin();
   const orders = await listOrders();
+  const reviews = await listAdReviews();
   const cases = await listCases();
   const paidOrders = orders.filter((order) => ["paid", "in_production", "human_fixing", "delivered", "completed"].includes(order.status));
   const totalQuote = orders.reduce((sum, order) => sum + (order.quoteUsd || 0), 0);
   const avgHumanMinutes = orders.length ? Math.round(orders.reduce((sum, order) => sum + (order.humanFixMinutes || 0), 0) / orders.length) : 0;
   const avgModelCost = orders.length ? orders.reduce((sum, order) => sum + (order.modelCostUsd || 0), 0) / orders.length : 0;
+  const hotReviews = reviews.filter((review) => review.report.leadScore >= 75);
 
   const stats = [
     { label: "Orders", value: String(orders.length) },
     { label: "New", value: String(orders.filter((order) => order.status === "new").length) },
+    { label: "Free Reviews", value: String(reviews.length) },
+    { label: "Hot Reviews", value: String(hotReviews.length) },
     { label: "Paid / Active", value: String(paidOrders.length) },
     { label: "Templates", value: String(templates.length) },
     { label: "Cases", value: String(cases.length) },
@@ -38,7 +43,7 @@ export default async function AdminPage() {
           <button className="rounded-full border border-white/10 bg-white/[0.06] px-5 py-3 text-sm font-medium text-white">Logout</button>
         </form>
       </div>
-      <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
         {stats.map((item) => (
           <div key={item.label} className="rounded-[1.5rem] border border-white/[0.08] bg-[#0d0d0d] p-6 shadow-2xl shadow-black/20">
             <p className="text-xs uppercase tracking-[0.2em] text-white/36">{item.label}</p>
@@ -46,7 +51,8 @@ export default async function AdminPage() {
           </div>
         ))}
       </div>
-      <section className="mt-10 grid gap-4 md:grid-cols-3">
+      <section className="mt-10 grid gap-4 md:grid-cols-4">
+        <AdminLink href="/admin/ad-reviews" title="Free Reviews" description="Review instant diagnostics, lead scores, emails, and recommended services." />
         <AdminLink href="/admin/orders" title="Orders" description="Review submissions, quote projects, and track delivery." />
         <AdminLink href="/admin/templates" title="Templates" description="Manage template status, prices, asset URLs and production notes." />
         <AdminLink href="/admin/cases" title="Cases" description="Manage homepage case previews and case-study video assets." />
