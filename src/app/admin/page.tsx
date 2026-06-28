@@ -22,12 +22,12 @@ export default async function AdminPage() {
   const stats = [
     { label: "Orders", value: String(orders.length) },
     { label: "New", value: String(orders.filter((order) => order.status === "new").length) },
-    { label: "Free Reviews", value: String(reviews.length) },
-    { label: "Hot Reviews", value: String(hotReviews.length) },
+    { label: "Quoted", value: formatCurrency(totalQuote) },
     { label: "Paid / Active", value: String(paidOrders.length) },
     { label: "Templates", value: String(templates.length) },
     { label: "Cases", value: String(cases.length) },
-    { label: "Quoted", value: formatCurrency(totalQuote) },
+    { label: "Free Reviews", value: String(reviews.length) },
+    { label: "Hot Reviews", value: String(hotReviews.length) },
     { label: "Avg Human Time", value: `${avgHumanMinutes} min` },
     { label: "Avg Model Cost", value: formatCurrency(avgModelCost) },
   ];
@@ -52,10 +52,10 @@ export default async function AdminPage() {
         ))}
       </div>
       <section className="mt-10 grid gap-4 md:grid-cols-4">
-        <AdminLink href="/admin/ad-reviews" title="Free Reviews" description="Review instant diagnostics, lead scores, emails, and recommended services." />
         <AdminLink href="/admin/orders" title="Orders" description="Review submissions, quote projects, and track delivery." />
         <AdminLink href="/admin/templates" title="Templates" description="Manage template status, prices, asset URLs and production notes." />
         <AdminLink href="/admin/cases" title="Cases" description="Manage homepage case previews and case-study video assets." />
+        <AdminLink href="/admin/ad-reviews" title="Free Reviews" description="Review instant diagnostics, lead scores, emails, and recommended services." />
       </section>
     </main>
   );
