@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useMemo, useState } from "react";
 import { templates } from "@/data/templates";
 import { formatCurrency } from "@/lib/utils";
+import type { OrderPlan } from "@/lib/order-types";
 
 const platforms = ["TikTok", "Instagram Reels", "YouTube Shorts", "Meta Ads", "Other"];
 
@@ -20,6 +21,8 @@ function StartForm() {
   const searchParams = useSearchParams();
   const [templateId, setTemplateId] = useState(searchParams.get("template") || "");
   const recommendedPlan = searchParams.get("plan") || "";
+  const sourceReviewId = searchParams.get("review") || "";
+  const mappedOrderPlan = useMemo(() => mapRecommendedServiceToOrderPlan(recommendedPlan), [recommendedPlan]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const selectedTemplate = useMemo(
@@ -61,7 +64,11 @@ function StartForm() {
       </div>
 
       <form onSubmit={handleSubmit} className="rounded-[1.75rem] border border-white/[0.08] bg-[#0d0d0d] p-6 shadow-2xl shadow-black/20 md:p-8">
+        <input type="hidden" name="sourceReviewId" value={sourceReviewId} />
+        <input type="hidden" name="sourceChannel" value={sourceReviewId ? "free_ad_review" : "direct"} />
+        <input type="hidden" name="plan" value={mappedOrderPlan} />
         {recommendedPlan ? <div className="mb-6 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4 text-sm text-white/62">Recommended next step: <span className="text-white">{recommendedPlan}</span></div> : null}
+        {sourceReviewId ? <div className="mb-6 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4 text-sm text-white/62">Source review: <span className="text-white">{sourceReviewId}</span></div> : null}
         {selectedTemplate ? <SelectedTemplateCard template={selectedTemplate} /> : null}
         <div className="grid gap-5 md:grid-cols-2">
           <Field label="Preferred Style">
@@ -102,6 +109,22 @@ function StartForm() {
       </form>
     </main>
   );
+}
+
+function mapRecommendedServiceToOrderPlan(service: string): OrderPlan {
+  switch (service) {
+    case "Polished Ad":
+      return "fast_human_fixed";
+    case "Testing Pack":
+      return "multi_version";
+    case "Launch-Grade":
+      return "premium_creator";
+    case "Founder Pilot":
+    case "Direction Draft":
+      return "auto_remix_draft";
+    default:
+      return "not_sure";
+  }
 }
 
 function SelectedTemplateCard({ template }: { template: (typeof templates)[number] }) {
