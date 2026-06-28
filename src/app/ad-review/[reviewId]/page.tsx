@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAdReview } from "@/lib/ad-reviews";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdReviewResultPage({ params }: { params: Promise<{ reviewId: string }> }) {
   const { reviewId } = await params;
   const review = await getAdReview(reviewId);
