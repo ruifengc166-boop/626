@@ -6,8 +6,11 @@ A lightweight MVP for a creator-led product ad studio with free ad creative revi
 
 - Premium dark landing page
 - Free Ad Creative Review funnel
+- Prompt-system based AI ad diagnosis
 - AI-assisted structured ad review report
 - Review result page
+- Free review admin lead pool
+- Review-to-order source tracking
 - Template/style library
 - Template detail pages
 - Production request form
@@ -16,6 +19,7 @@ A lightweight MVP for a creator-led product ad studio with free ad creative revi
 - Thank-you page with request ID
 - Simple admin password gate
 - Admin dashboard
+- Admin free reviews list/detail pages
 - Admin orders list
 - Admin order detail/edit page
 - Checklist tracking
@@ -27,6 +31,8 @@ A lightweight MVP for a creator-led product ad studio with free ad creative revi
 - Payment
 - File upload
 - Direct video file analysis
+- Email delivery for review links
+- CAPTCHA / Turnstile protection
 - AI video generation
 - Online video editor
 - Customer dashboard
@@ -61,9 +67,13 @@ ADMIN_PASSWORD=change-me
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 OPENAI_API_KEY=your-openai-api-key
 OPENAI_MODEL=gpt-4.1-mini
+FREE_REVIEW_AI_ENABLED=true
+FREE_REVIEW_DAILY_AI_LIMIT=100
 ```
 
-`OPENAI_API_KEY` is used by `/api/ad-review` to generate the free ad creative review. If it is missing or the API call fails, the app returns a rule-based fallback report so the funnel still works.
+`OPENAI_API_KEY` is used by `/api/ad-review` to generate the free ad creative review. If it is missing, `FREE_REVIEW_AI_ENABLED=false`, the daily AI limit is reached, or the API call fails, the app returns a rule-based fallback report so the funnel still works.
+
+`FREE_REVIEW_DAILY_AI_LIMIT` caps daily AI-generated free reviews. Repeated matching submissions within 24 hours reuse the previous review instead of calling OpenAI again.
 
 `DATABASE_URL` is not used yet. Orders and ad reviews are stored locally in:
 
@@ -77,39 +87,65 @@ This is intended for the current local-server MVP stage. Do not use this file st
 ## Routes
 
 ```txt
-/                         Home
-/free-ad-review           Free Ad Creative Review form
-/ad-review/[reviewId]     Free Ad Creative Review result
-/templates                Style library
-/templates/[templateId]   Style detail
-/start                    Production request form
-/start?template=T001      Request form with selected style
-/thank-you                Submission confirmation
-/admin/login              Admin login
-/admin                    Admin dashboard
-/admin/orders             Admin order list
-/admin/orders/[orderId]   Admin order detail
+/                              Home
+/free-ad-review                Free Ad Creative Review form
+/ad-review/[reviewId]          Free Ad Creative Review result
+/templates                     Style library
+/templates/[templateId]        Style detail
+/start                         Production request form
+/start?template=T001           Request form with selected style
+/start?plan=Polished%20Ad&review=REV_ID  Request form sourced from a free review
+/thank-you                     Submission confirmation
+/admin/login                   Admin login
+/admin                         Admin dashboard
+/admin/ad-reviews              Admin free review lead list
+/admin/ad-reviews/[reviewId]   Admin free review detail
+/admin/orders                  Admin order list
+/admin/orders/[orderId]        Admin order detail
 ```
 
 ## Free ad review flow
 
 1. Customer pastes an existing ad or video link.
 2. Customer provides product name, target platform, campaign goal and email.
-3. `/api/ad-review` generates a structured creative review.
-4. The app stores the review in `data/ad-reviews.json`.
-5. Customer lands on `/ad-review/[reviewId]`.
-6. Result page recommends whether to fix, polish or remake the ad.
+3. `/api/ad-review` validates the request and checks email/IP limits.
+4. If a matching review was generated in the last 24 hours, the app returns the existing `reviewId`.
+5. Otherwise, the prompt system in `src/lib/ad-review-prompts.ts` generates a structured creative review through `src/lib/ad-review-ai.ts`.
+6. The app stores the review in `data/ad-reviews.json`.
+7. Customer lands on `/ad-review/[reviewId]` immediately.
+8. The result page recommends whether to fix, polish or remake the ad.
+9. If the customer clicks Request Fix or Remake, `/start` receives the source review ID.
+10. Admin can review all generated free reviews at `/admin/ad-reviews` and inspect lead score, recommended service and internal signals.
 
 The free review checks creative clarity only: hook strength, product clarity, pacing, captions, CTA and platform fit. It does not predict ROAS, conversion rate or paid media performance.
+
+## Prompt system
+
+The free review is not a generic OpenAI wrapper. It uses a fixed prompt system:
+
+```txt
+src/lib/ad-review-prompts.ts
+```
+
+The prompt system defines:
+
+- Diagnostic role and boundaries
+- Private scorecard
+- Service mapping rules
+- Lead score rules
+- Structured JSON schema
+- Output rules that prevent giving away a full script or production plan for free
 
 ## Order flow
 
 1. Customer submits `/start` form.
-2. The app creates an order in `data/orders.json`.
-3. Customer lands on `/thank-you?order=ORDER_ID`.
-4. Admin logs in at `/admin/login`.
-5. Admin reviews orders at `/admin/orders`.
-6. Admin updates quote, status, notes, cost, delivery link and checklist.
+2. If the order came from a free review, `sourceReviewId` and `sourceChannel=free_ad_review` are stored on the order.
+3. The app creates an order in `data/orders.json`.
+4. Customer lands on `/thank-you?order=ORDER_ID`.
+5. Admin logs in at `/admin/login`.
+6. Admin reviews orders at `/admin/orders`.
+7. Admin updates quote, status, notes, cost, delivery link and checklist.
+8. Admin can open the source free review from an order detail page.
 
 ## Add a new template
 
