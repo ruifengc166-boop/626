@@ -54,9 +54,9 @@ function StartForm() {
   return (
     <main className="mx-auto max-w-5xl px-6 py-16">
       <div className="mb-10 max-w-3xl">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/40">Brief Review</p>
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/40">Creator-Led Studio Review</p>
         <h1 className="text-4xl font-semibold tracking-[-0.04em] text-white md:text-6xl">Request a scope review.</h1>
-        <p className="mt-5 text-lg leading-8 text-white/60">Submit your product and campaign goal. We confirm fit, scope and price before payment.</p>
+        <p className="mt-5 text-lg leading-8 text-white/60">Submit your product and campaign goal. A creator-led team will confirm fit, scope and price before payment.</p>
       </div>
 
       <form onSubmit={handleSubmit} className="rounded-[1.75rem] border border-white/[0.08] bg-[#0d0d0d] p-6 shadow-2xl shadow-black/20 md:p-8">
@@ -89,7 +89,7 @@ function StartForm() {
           <Input label="Anything to Avoid" name="thingsToAvoid" />
         </div>
         <div className="mt-6 grid gap-3 md:grid-cols-2">
-          <label className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4 text-sm text-white/70"><input type="checkbox" name="needHumanOptimization" />I want a polished ad</label>
+          <label className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4 text-sm text-white/70"><input type="checkbox" name="needHumanOptimization" />I want creator review</label>
           <label className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4 text-sm text-white/70"><input type="checkbox" name="needMultipleVersions" />I want multiple versions</label>
         </div>
         <p className="mt-6 text-sm text-white/42">No payment is required now. We will confirm scope before production starts.</p>
