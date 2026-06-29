@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="zh-CN">
+    <html lang="en">
       <body>
         <header className="vv-navbar">
           <div className="vv-container">
@@ -20,16 +20,16 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <img src={logo} alt="VACAT" />
             </Link>
             <nav className="vv-nav-links">
-              <Link href="/vacavaca#discover">发现</Link>
-              <Link href="/vacavaca#creators">创作人</Link>
-              <Link href="/vacavaca#works">作品</Link>
-              <Link href="/vacavaca#award">瓦卡奖</Link>
-              <Link href="/vacavaca#events">活动</Link>
-              <Link href="/vacavaca#referral">引荐</Link>
+              <Link href="/vacavaca#overview">Overview</Link>
+              <Link href="/vacavaca#works">Works</Link>
+              <Link href="/vacavaca#creators">Creators</Link>
+              <Link href="/vacavaca#award">VACAT Award</Link>
+              <Link href="/vacavaca#events">Events</Link>
+              <Link href="/vacavaca#referral">Referral</Link>
             </nav>
             <div className="vv-nav-actions">
-              <Link href="/templates" className="vv-btn-nav">风格库</Link>
-              <Link href="/start" className="vv-btn-reg">提交需求</Link>
+              <Link href="/templates" className="vv-btn-nav">Style Library</Link>
+              <Link href="/start" className="vv-btn-reg">Submit Brief</Link>
             </div>
           </div>
         </header>
