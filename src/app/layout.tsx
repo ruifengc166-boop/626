@@ -3,8 +3,8 @@ import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Ad Remix Studio",
-  description: "Creator-led product ad studio for new ads, remakes and testing variants.",
+  title: "AI REMIX Studio",
+  description: "Creator-led product ad studio backed by the VacaVaca / VACAT AI visual creator ecosystem.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -14,9 +14,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-[#050505]/82 backdrop-blur-xl">
           <div className="mx-auto flex max-w-[1200px] items-center justify-between px-6 py-4">
             <Link href="/" className="text-sm font-semibold tracking-tight text-white">
-              Ad Remix Studio
+              AI REMIX
             </Link>
             <nav className="flex items-center gap-5 text-sm text-white/60">
+              <Link href="/vacavaca" className="hidden transition hover:text-white md:inline">
+                VacaVaca
+              </Link>
               <Link href="/free-ad-review" className="transition hover:text-white">
                 Free Review
               </Link>
