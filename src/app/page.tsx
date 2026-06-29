@@ -8,6 +8,7 @@ import { NewAdCTA } from "@/components/NewAdCTA";
 import { OrderConfidence } from "@/components/OrderConfidence";
 import { PricingCard } from "@/components/PricingCard";
 import { StudioIdentity } from "@/components/StudioIdentity";
+import { VacavacaProof } from "@/components/VacavacaProof";
 import { listEffectiveTemplates } from "@/lib/template-admin";
 
 export const dynamic = "force-dynamic";
@@ -19,6 +20,7 @@ export default async function HomePage() {
   return (
     <main>
       <HeroSection template={heroTemplate} />
+      <VacavacaProof />
       <NewAdCTA />
       <StudioIdentity />
       <CasePreview />
