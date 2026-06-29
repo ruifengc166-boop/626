@@ -4,7 +4,7 @@ import { getAdReview } from "@/lib/ad-reviews";
 
 export const dynamic = "force-dynamic";
 
-export default async function AdReviewResultPage({ params }: { params: Promise<{ reviewId: string }> }) {
+export default async function CreativeReviewResultPage({ params }: { params: Promise<{ reviewId: string }> }) {
   const { reviewId } = await params;
   const review = await getAdReview(reviewId);
   if (!review) notFound();
@@ -13,80 +13,52 @@ export default async function AdReviewResultPage({ params }: { params: Promise<{
   const startHref = `/start?plan=${encodeURIComponent(report.recommendedService)}&review=${encodeURIComponent(review.id)}`;
 
   return (
-    <main className="mx-auto max-w-[1200px] px-6 py-16">
+    <main className="vacat-container px-6 py-16">
       <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-        <aside className="rounded-[28px] border border-white/[0.08] bg-[#0d0d0d] p-6 lg:sticky lg:top-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/38">Creative Review</p>
-          <h1 className="mt-4 text-4xl font-medium tracking-[-0.045em] text-white md:text-5xl">Your ad review is ready.</h1>
-          <div className="mt-7 rounded-[24px] border border-white/[0.08] bg-white/[0.04] p-5">
-            <p className="text-sm text-white/44">Creative Readiness Score</p>
-            <p className="mt-2 text-6xl font-semibold tracking-[-0.06em] text-white">{report.creativeReadinessScore}</p>
-            <p className="mt-3 text-sm leading-6 text-white/54">{report.scoreSummary}</p>
+        <aside className="vacat-card rounded-[28px] p-6 lg:sticky lg:top-24">
+          <p className="vacat-eyebrow">Creative Review</p>
+          <h1 className="vacat-title mt-4 text-4xl font-medium md:text-5xl">Your creative review is ready.</h1>
+          <div className="vacat-card mt-7 rounded-[24px] p-5">
+            <p className="text-sm text-[var(--text3)]">Creative Readiness Score</p>
+            <p className="mt-2 text-6xl font-semibold tracking-[-0.06em] text-[var(--text)]">{report.creativeReadinessScore}</p>
+            <p className="mt-3 text-sm leading-6 text-[var(--text3)]">{report.scoreSummary}</p>
           </div>
-          <div className="mt-5 space-y-2 text-sm text-white/50">
-            <p><span className="text-white/72">Product:</span> {input.productName}</p>
-            <p><span className="text-white/72">Platform:</span> {input.targetPlatform}</p>
-            <p><span className="text-white/72">Recommended:</span> {report.recommendedService}</p>
-            <p><span className="text-white/72">Review ID:</span> {review.id}</p>
+          <div className="mt-5 space-y-2 text-sm text-[var(--text3)]">
+            <p><span className="text-[var(--text2)]">Project:</span> {input.productName}</p>
+            <p><span className="text-[var(--text2)]">Format:</span> {input.targetPlatform}</p>
+            <p><span className="text-[var(--text2)]">Recommended:</span> {report.recommendedService}</p>
+            <p><span className="text-[var(--text2)]">Review ID:</span> {review.id}</p>
           </div>
           <div className="mt-7 grid gap-3">
-            <Link href={startHref} className="rounded-full bg-white px-6 py-3 text-center text-sm font-medium text-black transition hover:bg-white/85">
-              Request Fix or Remake
+            <Link href={startHref} className="vacat-button-primary px-6 py-3 text-center text-sm">
+              Commission Next Step
             </Link>
-            <Link href="/free-ad-review" className="rounded-full border border-white/[0.12] bg-white/[0.06] px-6 py-3 text-center text-sm font-medium text-white transition hover:bg-white/[0.1]">
-              Review Another Ad
+            <Link href="/free-ad-review" className="vacat-button-secondary px-6 py-3 text-center text-sm">
+              Review Another Visual
             </Link>
           </div>
         </aside>
 
         <section className="space-y-5">
-          <ReportCard title="Main Issue">
-            <p>{report.mainIssue}</p>
-          </ReportCard>
-
+          <ReportCard title="Main Issue"><p>{report.mainIssue}</p></ReportCard>
           <div className="grid gap-5 md:grid-cols-2">
-            <ReportCard title="What Works">
-              <List items={report.whatWorks} />
-            </ReportCard>
-            <ReportCard title="What to Fix">
-              <List items={report.whatToFix} />
-            </ReportCard>
+            <ReportCard title="What Works"><List items={report.whatWorks} /></ReportCard>
+            <ReportCard title="What to Improve"><List items={report.whatToFix} /></ReportCard>
           </div>
-
           <div className="grid gap-5 md:grid-cols-2">
-            <ReportCard title="First 3 Seconds">
-              <p>{report.firstThreeSecondsReview}</p>
-            </ReportCard>
-            <ReportCard title="Product Clarity">
-              <p>{report.productClarityReview}</p>
-            </ReportCard>
-            <ReportCard title="Pacing">
-              <p>{report.pacingReview}</p>
-            </ReportCard>
-            <ReportCard title="Caption & CTA">
-              <p>{report.captionCtaReview}</p>
-            </ReportCard>
+            <ReportCard title="Opening Moment"><p>{report.firstThreeSecondsReview}</p></ReportCard>
+            <ReportCard title="Subject Clarity"><p>{report.productClarityReview}</p></ReportCard>
+            <ReportCard title="Pacing"><p>{report.pacingReview}</p></ReportCard>
+            <ReportCard title="Caption and Ending"><p>{report.captionCtaReview}</p></ReportCard>
           </div>
-
-          <ReportCard title="Platform Fit">
-            <p>{report.platformFit}</p>
-          </ReportCard>
-
+          <ReportCard title="Format Fit"><p>{report.platformFit}</p></ReportCard>
           <div className="grid gap-5 md:grid-cols-2">
-            <ReportCard title="Suggested Hook">
-              <p className="text-xl leading-8 text-white">“{report.suggestedHook}”</p>
-            </ReportCard>
-            <ReportCard title="Fix Priority">
-              <p>{report.fixPriority}</p>
-            </ReportCard>
+            <ReportCard title="Suggested Opening"><p className="text-xl leading-8 text-[var(--text)]">“{report.suggestedHook}”</p></ReportCard>
+            <ReportCard title="Priority"><p>{report.fixPriority}</p></ReportCard>
           </div>
-
-          <ReportCard title="Recommended Next Step">
-            <p>{report.nextStepReason}</p>
-          </ReportCard>
-
-          <p className="rounded-2xl border border-white/[0.08] bg-white/[0.035] p-4 text-xs leading-5 text-white/38">
-            {report.disclaimer} This instant review is based on the submitted link, caption and campaign context. Request a creator review if you need frame-by-frame diagnosis.
+          <ReportCard title="Recommended Next Step"><p>{report.nextStepReason}</p></ReportCard>
+          <p className="vacat-card rounded-2xl p-4 text-xs leading-5 text-[var(--text3)]">
+            {report.disclaimer} This instant review is based on the submitted link, caption and project context. Request a VacaVaca Studio review if you need a frame-by-frame diagnosis.
           </p>
         </section>
       </div>
@@ -96,9 +68,9 @@ export default async function AdReviewResultPage({ params }: { params: Promise<{
 
 function ReportCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <article className="rounded-[24px] border border-white/[0.08] bg-[#0d0d0d] p-6">
-      <h2 className="text-xl font-medium tracking-[-0.03em] text-white">{title}</h2>
-      <div className="mt-4 text-sm leading-7 text-white/58">{children}</div>
+    <article className="vacat-card rounded-[24px] p-6">
+      <h2 className="text-xl font-medium tracking-[-0.03em] text-[var(--text)]">{title}</h2>
+      <div className="mt-4 text-sm leading-7 text-[var(--text3)]">{children}</div>
     </article>
   );
 }
@@ -108,7 +80,7 @@ function List({ items }: { items: string[] }) {
     <ul className="space-y-3">
       {items.map((item) => (
         <li key={item} className="flex gap-3">
-          <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-white/40" />
+          <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[var(--gold)]" />
           <span>{item}</span>
         </li>
       ))}
