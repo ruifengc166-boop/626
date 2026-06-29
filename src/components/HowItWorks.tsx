@@ -16,7 +16,7 @@ export function HowItWorks() {
         <div className="mt-10 grid gap-5 md:grid-cols-4">
           {steps.map(([number, title, body]) => (
             <div key={number} className="vacat-card rounded-[24px] p-6">
-              <p className="text-5xl font-medium tracking-[-0.04em] text-[var(--gold)]/40">{number}</p>
+              <p className="text-5xl font-medium tracking-[-0.04em] text-[var(--gold)] opacity-45">{number}</p>
               <h3 className="mt-10 text-xl font-medium tracking-tight text-[var(--text)]">{title}</h3>
               <p className="mt-3 text-sm leading-6 text-[var(--text3)]">{body}</p>
             </div>
