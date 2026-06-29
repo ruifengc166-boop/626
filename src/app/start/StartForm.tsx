@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import type { Template } from "@/data/templates";
+import { vacaVacaSupport } from "@/data/vacavaca-support";
 import { formatCurrency } from "@/lib/utils";
 import type { OrderPlan } from "@/lib/order-types";
 
@@ -62,6 +63,12 @@ export function StartForm({ templates }: { templates: Template[] }) {
         {recommendedPlan ? <div className="mb-6 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4 text-sm text-white/62">Recommended next step: <span className="text-white">{recommendedPlan}</span></div> : null}
         {sourceReviewId ? <div className="mb-6 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4 text-sm text-white/62">Source review: <span className="text-white">{sourceReviewId}</span></div> : null}
         {selectedTemplate ? <SelectedTemplateCard template={selectedTemplate} /> : null}
+        <div className="mb-8 rounded-[1.5rem] border border-white/[0.08] bg-white/[0.035] p-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/38">VacaVaca support layer</p>
+          <p className="mt-3 text-sm leading-6 text-white/58">
+            Optional references from VacaVaca help the studio understand visual ambition and creator-lane fit. They do not create open bidding or bypass the studio review workflow.
+          </p>
+        </div>
         <div className="grid gap-5 md:grid-cols-2">
           <Field label="Preferred Style">
             <select name="selectedTemplateId" value={templateId} onChange={(event) => setTemplateId(event.target.value)} className="input" required>
@@ -82,12 +89,24 @@ export function StartForm({ templates }: { templates: Template[] }) {
               {platforms.map((platform) => <option key={platform} value={platform}>{platform}</option>)}
             </select>
           </Field>
+          <Field label="VacaVaca Reference Lane">
+            <select name="vacaVacaReference" className="input" defaultValue="">
+              <option value="">Let the studio choose if useful</option>
+              {vacaVacaSupport.caseReferences.map((reference) => (
+                <option key={reference.id} value={reference.id}>{reference.title}</option>
+              ))}
+            </select>
+          </Field>
           <Input label="Target Language" name="targetLanguage" defaultValue="English" required />
           <Input label="CTA Text" name="ctaText" placeholder="Shop Now / Try Free / Join Waitlist" required />
           <Input label="Contact Email" name="contactEmail" type="email" required />
           <Input label="Contact Handle" name="contactHandle" placeholder="Optional" />
           <Input label="Expected Budget" name="budgetRange" defaultValue={recommendedPlan} placeholder="$249 pilot / $399 polished ad / $1,499 test pack" />
           <Input label="Anything to Avoid" name="thingsToAvoid" />
+        </div>
+        <div className="mt-5 grid gap-5 md:grid-cols-2">
+          <Textarea label="Creative Reference Links" name="creativeReferenceLinks" placeholder="Optional: VacaVaca work, competitor ad, mood reference, YouTube/TikTok/Bilibili link" />
+          <Textarea label="Creator / Style Fit Notes" name="creatorFitNotes" placeholder="Optional: the kind of creator lane, visual energy, or award-style reference you want us to consider" />
         </div>
         <div className="mt-6 grid gap-3 md:grid-cols-2">
           <label className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4 text-sm text-white/70"><input type="checkbox" name="needHumanOptimization" />I want creator review</label>
@@ -141,4 +160,8 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 
 function Input({ label, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label: string }) {
   return <Field label={label}><input {...props} className="input" /></Field>;
+}
+
+function Textarea({ label, ...props }: React.TextareaHTMLAttributes<HTMLTextAreaElement> & { label: string }) {
+  return <Field label={label}><textarea {...props} className="input min-h-28" /></Field>;
 }
