@@ -9,10 +9,10 @@ export async function CasePreview() {
     <section className="mx-auto max-w-[1200px] px-6 py-24">
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div className="max-w-2xl">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/38">Sample adaptations</p>
-          <h2 className="text-3xl font-medium tracking-[-0.035em] text-white md:text-5xl">See the format.</h2>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/38">VACAVACA visual proof</p>
+          <h2 className="text-3xl font-medium tracking-[-0.035em] text-white md:text-5xl">Use cases as style references before production.</h2>
         </div>
-        <p className="max-w-sm text-sm leading-6 text-white/42">Concept samples built to show style, structure and delivery quality.</p>
+        <p className="max-w-sm text-sm leading-6 text-white/42">Concept samples and selected visuals help brands understand taste, format and remix direction before submitting a brief.</p>
       </div>
       <div className="mt-10 grid gap-6 md:grid-cols-3">
         {cases.map((caseItem) => (
@@ -25,7 +25,7 @@ export async function CasePreview() {
                   <div className="aspect-[16/10] bg-white/[0.04]" />
                 )}
                 <div className="absolute left-3 top-3 rounded-full bg-black/60 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-white/70 backdrop-blur">
-                  Style
+                  Style Proof
                 </div>
               </div>
               <div className="mx-auto my-4 flex h-8 w-px items-center justify-center bg-white/[0.12]">
@@ -38,7 +38,7 @@ export async function CasePreview() {
                   <img src={caseItem.thumbnailUrl} alt={`${caseItem.title} sample adaptation`} className="aspect-[16/10] h-full w-full object-cover" />
                 )}
                 <div className="absolute left-3 top-3 rounded-full bg-black/60 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-white/70 backdrop-blur">
-                  Sample Ad
+                  Remix Sample
                 </div>
               </div>
             </div>
