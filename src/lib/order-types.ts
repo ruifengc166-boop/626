@@ -31,6 +31,7 @@ export type Order = {
   createdAt: string;
   updatedAt: string;
   status: OrderStatus;
+  clientIp?: string;
   sourceChannel?: OrderSourceChannel;
   sourceReviewId?: string;
   selectedTemplateId: string;
