@@ -3,6 +3,7 @@ import path from "path";
 import { defaultChecklist, type Order, type OrderPlan, type OrderSourceChannel, type OrderStatus } from "@/lib/order-types";
 
 const ordersPath = path.join(process.cwd(), "data", "orders.json");
+const ONE_DAY_MS = 24 * 60 * 60 * 1000;
 
 async function ensureStore() {
   await fs.mkdir(path.dirname(ordersPath), { recursive: true });
@@ -18,11 +19,16 @@ function splitLinks(value: unknown): string[] {
   return String(value || "")
     .split(/[\n,]+/)
     .map((item) => item.trim())
-    .filter(Boolean);
+    .filter(Boolean)
+    .slice(0, 10);
 }
 
-function optionalString(value: unknown) {
-  const text = String(value || "").trim();
+function cleanString(value: unknown, maxLength = 1200) {
+  return String(value || "").trim().slice(0, maxLength);
+}
+
+function optionalString(value: unknown, maxLength = 1200) {
+  const text = cleanString(value, maxLength);
   return text.length ? text : undefined;
 }
 
@@ -59,7 +65,20 @@ export async function getOrder(id: string) {
   return orders.find((order) => order.id === id) || null;
 }
 
-export async function createOrder(input: Record<string, unknown>) {
+export async function countRecentOrders({ email, clientIp }: { email?: string; clientIp?: string }) {
+  const since = Date.now() - ONE_DAY_MS;
+  const normalizedEmail = email?.trim().toLowerCase();
+  const orders = await readOrders();
+  const recent = orders.filter((order) => Date.parse(order.createdAt) >= since);
+
+  return {
+    byEmail: normalizedEmail ? recent.filter((order) => order.contactEmail.toLowerCase() === normalizedEmail).length : 0,
+    byIp: clientIp ? recent.filter((order) => order.clientIp === clientIp).length : 0,
+    total: recent.length,
+  };
+}
+
+export async function createOrder(input: Record<string, unknown>, clientIp?: string) {
   const required = [
     "selectedTemplateId",
     "brandName",
@@ -81,7 +100,7 @@ export async function createOrder(input: Record<string, unknown>) {
 
   const now = new Date().toISOString();
   const id = `ORD-${Date.now()}-${Math.random().toString(36).slice(2, 7).toUpperCase()}`;
-  const sourceReviewId = optionalString(input.sourceReviewId);
+  const sourceReviewId = optionalString(input.sourceReviewId, 120);
   const sourceChannel = normalizeSourceChannel(input.sourceChannel, sourceReviewId);
 
   const order: Order = {
@@ -89,30 +108,31 @@ export async function createOrder(input: Record<string, unknown>) {
     createdAt: now,
     updatedAt: now,
     status: "new",
+    clientIp,
     sourceChannel,
     sourceReviewId,
-    selectedTemplateId: String(input.selectedTemplateId).trim(),
+    selectedTemplateId: cleanString(input.selectedTemplateId, 80),
     plan: normalizePlan(input.plan),
-    brandName: String(input.brandName).trim(),
-    productName: String(input.productName).trim(),
-    productUrl: String(input.productUrl).trim(),
+    brandName: cleanString(input.brandName, 160),
+    productName: cleanString(input.productName, 160),
+    productUrl: cleanString(input.productUrl, 1200),
     productAssetLinks: splitLinks(input.productAssetLinks),
     logoAssetLinks: splitLinks(input.logoAssetLinks),
-    sellingPoint1: String(input.sellingPoint1).trim(),
-    sellingPoint2: optionalString(input.sellingPoint2),
-    sellingPoint3: optionalString(input.sellingPoint3),
+    sellingPoint1: cleanString(input.sellingPoint1, 800),
+    sellingPoint2: optionalString(input.sellingPoint2, 800),
+    sellingPoint3: optionalString(input.sellingPoint3, 800),
     targetPlatform: normalizeTargetPlatform(input.targetPlatform),
-    targetLanguage: String(input.targetLanguage || "English").trim(),
-    ctaText: String(input.ctaText).trim(),
-    contactEmail: String(input.contactEmail).trim(),
-    contactHandle: optionalString(input.contactHandle),
-    brandColors: optionalString(input.brandColors),
-    existingAdsOrReferences: optionalString(input.existingAdsOrReferences),
-    thingsToAvoid: optionalString(input.thingsToAvoid),
-    budgetRange: optionalString(input.budgetRange),
+    targetLanguage: cleanString(input.targetLanguage || "English", 80),
+    ctaText: cleanString(input.ctaText, 160),
+    contactEmail: cleanString(input.contactEmail, 240).toLowerCase(),
+    contactHandle: optionalString(input.contactHandle, 240),
+    brandColors: optionalString(input.brandColors, 500),
+    existingAdsOrReferences: optionalString(input.existingAdsOrReferences, 2000),
+    thingsToAvoid: optionalString(input.thingsToAvoid, 1200),
+    budgetRange: optionalString(input.budgetRange, 240),
     needHumanOptimization: toBool(input.needHumanOptimization),
     needMultipleVersions: toBool(input.needMultipleVersions),
-    deliveryDeadline: optionalString(input.deliveryDeadline),
+    deliveryDeadline: optionalString(input.deliveryDeadline, 240),
     productFitsTemplate: "unchecked",
     canBePublicCase: false,
     checklist: defaultChecklist.map((item) => ({ ...item })),
@@ -141,13 +161,13 @@ export async function updateOrder(id: string, input: Record<string, unknown>) {
     estimatedModelCostUsd: optionalNumber(input.estimatedModelCostUsd),
     estimatedHumanMinutes: optionalNumber(input.estimatedHumanMinutes),
     quoteUsd: optionalNumber(input.quoteUsd),
-    internalNotes: optionalString(input.internalNotes),
+    internalNotes: optionalString(input.internalNotes, 4000),
     modelRuns: optionalNumber(input.modelRuns),
     modelCostUsd: optionalNumber(input.modelCostUsd),
     humanFixMinutes: optionalNumber(input.humanFixMinutes),
     revisionCount: optionalNumber(input.revisionCount),
     finalDeliveryUrl: optionalString(input.finalDeliveryUrl),
-    clientFeedback: optionalString(input.clientFeedback),
+    clientFeedback: optionalString(input.clientFeedback, 4000),
     canBePublicCase: toBool(input.canBePublicCase),
     checklist: current.checklist.map((item, itemIndex) => ({
       ...item,
