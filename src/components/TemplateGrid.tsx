@@ -21,10 +21,10 @@ export function TemplateGrid({ templates }: { templates: Template[] }) {
             key={category}
             onClick={() => setActive(category)}
             className={cn(
-              "rounded-full border px-4 py-2 text-sm transition",
+              "rounded-full border px-4 py-2 text-sm font-semibold transition",
               active === category
-                ? "border-white bg-white text-black"
-                : "border-white/10 bg-white/[0.04] text-white/58 hover:border-white/25 hover:text-white"
+                ? "border-[rgba(202,254,97,0.65)] bg-[rgba(202,254,97,0.18)] text-[var(--vacat-gold)] shadow-[0_0_24px_rgba(202,254,97,0.12)]"
+                : "border-white/10 bg-white/[0.04] text-white/58 hover:border-[rgba(202,254,97,0.35)] hover:text-[var(--vacat-gold)]"
             )}
           >
             {category}

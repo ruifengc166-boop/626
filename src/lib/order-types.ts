@@ -53,6 +53,9 @@ export type Order = {
   existingAdsOrReferences?: string;
   thingsToAvoid?: string;
   budgetRange?: string;
+  vacaVacaReference?: string;
+  creativeReferenceLinks?: string[];
+  creatorFitNotes?: string;
   needHumanOptimization: boolean;
   needMultipleVersions: boolean;
   deliveryDeadline?: string;
@@ -101,6 +104,7 @@ export const defaultChecklist: ChecklistItem[] = [
   "Check product assets",
   "Check logo asset",
   "Check selected template fit",
+  "Check VacaVaca reference fit",
   "Replace product image",
   "Replace logo",
   "Replace captions",
