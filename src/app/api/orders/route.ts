@@ -4,6 +4,8 @@ import { countRecentOrders, createOrder } from "@/lib/orders";
 export async function POST(request: Request) {
   try {
     const input = await request.json();
+    validatePublicOrderInput(input);
+
     const clientIp = getClientIp(request);
     const email = String(input.contactEmail || "").trim().toLowerCase();
     const counts = await countRecentOrders({ email, clientIp });
@@ -25,6 +27,19 @@ export async function POST(request: Request) {
       { error: error instanceof Error ? error.message : "Failed to create order" },
       { status: 400 }
     );
+  }
+}
+
+function validatePublicOrderInput(input: Record<string, unknown>) {
+  const email = String(input.contactEmail || "").trim();
+  const productUrl = String(input.productUrl || "").trim();
+
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    throw new Error("Please enter a valid email.");
+  }
+
+  if (productUrl && !/^https?:\/\//i.test(productUrl)) {
+    throw new Error("Product link must start with http:// or https://");
   }
 }
 
