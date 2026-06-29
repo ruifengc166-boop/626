@@ -128,9 +128,9 @@ export function StartForm({ templates }: { templates: Template[] }) {
 
 function mapRecommendedServiceToOrderPlan(service: string): OrderPlan {
   switch (service) {
-    case "Polished Ad":
+    case "Polished Visual":
       return "fast_human_fixed";
-    case "Testing Pack":
+    case "Visual Sprint":
       return "multi_version";
     case "Launch-Grade":
       return "premium_creator";
