@@ -3,249 +3,211 @@ import Link from "next/link";
 export const dynamic = "force-dynamic";
 
 const asset = (path: string) => `https://raw.githubusercontent.com/ruifengc166-boop/vacavaca/master/${path}`;
-const logo = asset("assets/logo/nav-logo.png");
-const heroBadge = asset("assets/logo/hero-badge-logo.png");
 const carousel = asset("assets/carousel/carousel-01.jpg");
 
-const stats = [
-  ["4,646", "第二届投稿作品"],
-  ["76", "获奖作品"],
-  ["92", "参赛高校"],
-];
-
-const heroWorks = [
-  { title: "山海经", creator: "首届金奖作品", mark: "山" },
-  { title: "ANIMA (上)", creator: "AI真实叙事影片", mark: "A" },
-  { title: "龙门客栈 2067", creator: "经典IP改编", mark: "龙" },
+const metrics = [
+  ["4,646", "Second-edition submissions"],
+  ["76", "Awarded / finalist works"],
+  ["92", "Participating universities"],
+  ["272", "Cooperation leads and orders"],
 ];
 
 const works = [
-  { title: "山海经", creator: "首届金奖作品", award: "金奖", track: "AI神话视觉叙事", mark: "山" },
-  { title: "ANIMA (上)", creator: "VACAT创作者", award: "获奖", track: "AI真实叙事影片", mark: "A" },
-  { title: "Green Screen 绿幕", creator: "VACAT创作者", award: "获奖", track: "AI真实叙事影片", mark: "绿" },
-  { title: "龙门客栈 2067", creator: "VACAT创作者", award: "获奖", track: "经典IP改编", mark: "龙" },
-  { title: "带上她的眼睛", creator: "VACAT创作者", award: "获奖", track: "AI动画叙事影片", mark: "眼" },
-  { title: "敦煌行 第二季", creator: "VACAT创作者", award: "获奖", track: "AI动画叙事影片", mark: "敦" },
-  { title: "水墨国风", creator: "VACAT创作者", award: "获奖", track: "AI动画叙事影片", mark: "墨" },
-  { title: "AI 上文博", creator: "VACAT创作者", award: "获奖", track: "AI商业创意影片", mark: "博" },
-  { title: "智绘大芬创艺无限", creator: "VACAT创作者", award: "获奖", track: "AI商业创意影片", mark: "芬" },
-  { title: "ECHO", creator: "VACAT创作者", award: "获奖", track: "AI视觉艺术影片", mark: "E" },
-  { title: "记忆在逃", creator: "VACAT创作者", award: "获奖", track: "AI视觉艺术影片", mark: "忆" },
-  { title: "国瓷幻境", creator: "VACAT创作者", award: "获奖", track: "AI艺术海报", mark: "瓷" },
+  { slug: "shanhaijing", title: "Shanhaijing", creator: "VACAT Gold Award Creator", award: "Gold Award", track: "AI mythic visual storytelling", mark: "S", demo: "#demo-shanhaijing" },
+  { slug: "anima", title: "ANIMA (Part I)", creator: "VACAT Narrative Creator", award: "Selected Work", track: "AI realistic narrative film", mark: "A", demo: "#demo-anima" },
+  { slug: "green-screen", title: "Green Screen", creator: "VACAT Experimental Film Creator", award: "Selected Work", track: "AI realistic narrative film", mark: "G", demo: "#demo-green-screen" },
+  { slug: "longmen-inn-2067", title: "Longmen Inn 2067", creator: "VACAT IP Remix Creator", award: "Selected Work", track: "Classic IP reinterpretation", mark: "L", demo: "#demo-longmen" },
+  { slug: "bring-her-eyes", title: "Bring Her Eyes", creator: "VACAT Animation Creator", award: "Selected Work", track: "AI animated narrative film", mark: "E", demo: "#demo-eyes" },
+  { slug: "dunhuang-journey", title: "Dunhuang Journey Season 2", creator: "VACAT Culture Visual Creator", award: "Selected Work", track: "AI animated narrative film", mark: "D", demo: "#demo-dunhuang" },
+  { slug: "ink-style", title: "Ink Chinese Style", creator: "VACAT Art Direction Creator", award: "Selected Work", track: "AI animated narrative film", mark: "I", demo: "#demo-ink" },
+  { slug: "ai-museum", title: "AI on Cultural Museum", creator: "VACAT Commercial Creative Creator", award: "Selected Work", track: "AI commercial creative film", mark: "M", demo: "#demo-museum" },
+  { slug: "dafen", title: "Smart Dafen Creative Infinity", creator: "VACAT City Promotion Creator", award: "Selected Work", track: "AI commercial creative film", mark: "D", demo: "#demo-dafen" },
+  { slug: "echo", title: "ECHO", creator: "VACAT Visual Art Creator", award: "Selected Work", track: "AI visual art film", mark: "E", demo: "#demo-echo" },
+  { slug: "memory-on-the-run", title: "Memory on the Run", creator: "VACAT Poetic Film Creator", award: "Selected Work", track: "AI visual art film", mark: "M", demo: "#demo-memory" },
+  { slug: "porcelain-realm", title: "Porcelain Realm", creator: "VACAT Poster Creator", award: "Selected Work", track: "AI art poster", mark: "P", demo: "#demo-porcelain" },
 ];
 
 const creators = [
-  { name: "AI真实叙事创作者", lv: "creator", tag: "电影感 / 真实叙事", count: 15, likes: "2.1k", av: "真" },
-  { name: "AI动画叙事创作者", lv: "creator", tag: "动画短片 / 文学改编", count: 15, likes: "1.8k", av: "动" },
-  { name: "AI商业创意创作者", lv: "dreamer", tag: "品牌片 / 文旅宣传", count: 15, likes: "1.5k", av: "商" },
-  { name: "AI视觉艺术创作者", lv: "dreamer", tag: "实验影像 / 音乐视觉", count: 11, likes: "1.2k", av: "艺" },
-  { name: "AI海报视觉创作者", lv: "explorer", tag: "图像 / 海报 / 虚拟IP", count: 14, likes: "980", av: "图" },
-  { name: "Battle Day 竞技创作者", lv: "creator", tag: "限时创作 / Prompt Battle", count: 8, likes: "860", av: "B" },
+  { name: "WildPusa Studio", level: "Creator", focus: "AI product videos, short-form brand films, cinematic remix workflows", works: 28, likes: "3.6k", initials: "WP" },
+  { name: "VACAT Narrative Unit", level: "Creator", focus: "Realistic AI narrative, character scenes, cinematic short films", works: 15, likes: "2.1k", initials: "VN" },
+  { name: "VACAT Animation Unit", level: "Creator", focus: "AI animation, literary adaptation, culture-led visual storytelling", works: 15, likes: "1.8k", initials: "VA" },
+  { name: "VACAT Commercial Creative Unit", level: "Dreamer", focus: "Cultural institutions, city promotion, product launch visuals", works: 15, likes: "1.5k", initials: "VC" },
+  { name: "VACAT Visual Art Unit", level: "Dreamer", focus: "Experimental film, music visuals, installation-style moving image", works: 11, likes: "1.2k", initials: "VV" },
+  { name: "VACAT Poster Unit", level: "Explorer", focus: "AI poster, virtual character identity, premium visual mood boards", works: 14, likes: "980", initials: "VP" },
+  { name: "Battle Day Creator Pool", level: "Creator", focus: "Prompt battle, fast ideation, real-time AI visual production", works: 8, likes: "860", initials: "BD" },
+  { name: "AI Remix Studio Desk", level: "Creator", focus: "Studio-managed adaptation from VacaVaca references to product ads", works: 20, likes: "1.9k", initials: "AR" },
 ];
 
-const achievements = [
-  ["🏆", "行业标杆地位", "被新华社、人民网等权威媒体誉为中国 AI 创意第一赛，定位为 AI 视觉创意界的奥斯卡，成为行业风向标。"],
-  ["🎬", "作品影响力", "首届金奖作品《山海经》全网播放量突破 5000 万，登上微博热搜第四位；第二届作品技术精度与艺术表现力继续提升。"],
-  ["🤝", "产业转化成效", "首届达成意向合作项目及订单共 272 个，初步构建龙岗 AI 视觉创意生态圈。"],
-  ["📚", "学术贡献", "2025 年发布全国首部《AI 视觉创意应用蓝皮书 2025》，形成系统性研究资产。"],
-  ["🌍", "国际影响力", "第二届收到北京电影学院 49 份特邀投稿、国际学生媒体艺术节 20 份特邀投稿。"],
+const awardResults = [
+  ["Industry benchmark", "VACAT is positioned as a flagship AI visual creativity award and a high-recognition industry platform."],
+  ["Breakout work influence", "The first-edition gold-award work Shanhaijing reached mass public attention and proved that AI visual works can travel outside the creator circle."],
+  ["Industry conversion", "The award has generated cooperation intentions and production demand, which supports the AI REMIX service direction."],
+  ["Research authority", "The 2025 AI Visual Creativity Application Blue Book gives the platform a knowledge layer beyond simple prompt services."],
+  ["International reach", "Submissions and collaborators across universities and media-art communities make VacaVaca useful for overseas credibility."],
 ];
 
 const judges = [
-  ["李", "李舸", "中国文联第十一届副主席、中国摄影家协会主席"],
-  ["朱", "朱军", "清华大学人工智能研究院副院长、生数科技首席科学家"],
-  ["陆", "陆蓉之", "著名策展人、艺评家、台北实践创意产业博士班导师"],
-  ["曹", "曹颋", "北京电影学院影像传媒学院院长、青年电影制片厂董事长"],
-  ["石", "石川武志", "京都国际独立游戏节发起人、UNKNOWN ASIA 联合发起人"],
-  ["F", "Felipe Franco", "FF&CO. 创始人及创意总监，多次获国际设计奖项"],
-  ["I", "Ingo Offermanns", "德国汉堡美术学院副院长、国际平面设计联盟 AGI 会员"],
-];
-
-const tracks = [
-  ["AI真实叙事影片", "《ANIMA (上)》《Green Screen 绿幕》《龙门客栈 2067》等 15 件"],
-  ["AI动画叙事影片", "《带上她的眼睛》《敦煌行 第二季》《水墨国风》等 15 件"],
-  ["AI商业创意影片", "《AI 上文博》《法拉利 Purosangue》《智绘大芬创艺无限》等 15 件"],
-  ["AI视觉艺术影片", "《ECHO》《记忆在逃》《长江缝隙》等 11 件以上"],
-  ["AI艺术海报", "《EVE NO.1》《Human Machine》《百合》《国瓷幻境》等 14 件"],
+  ["Li Ge", "Vice Chairman of the China Federation of Literary and Art Circles; Chairman of the China Photographers Association"],
+  ["Zhu Jun", "Vice Dean of Tsinghua Institute for AI Industry Research; Chief Scientist of Shengshu Technology"],
+  ["Victoria Lu", "Curator, art critic and creative-industry doctoral supervisor"],
+  ["Cao Ting", "Dean of the Image Media School, Beijing Film Academy; Chairman of Youth Film Studio"],
+  ["Takeshi Ishikawa", "Founder of BitSummit Kyoto International Indie Game Festival; co-founder of UNKNOWN ASIA"],
+  ["Felipe Franco", "Founder and creative director of FF&CO.; international design-award winner"],
+  ["Ingo Offermanns", "Vice Dean of the University of Fine Arts Hamburg; AGI member"],
 ];
 
 const events = [
-  { date: "10.17", title: "颁奖典礼及项目签约", text: "第二届瓦卡奖集中展示获奖作品、行业合作和项目签约，是奖项影响力与产业转化的核心场景。", image: asset("assets/events/day1-schedule.png") },
-  { date: "10.18", title: "AI视觉技术工作坊", text: "围绕 AI 视频、图像、短剧、商业视觉工作流展开技术分享，为创作者提供学习和交流入口。", image: asset("assets/events/day2-workshop.png") },
-  { date: "10.19", title: "AI竞技日 BATTLE DAY", text: "以限时创作、Prompt Battle 和现场竞技激活社区，让创作者能力被看见、被传播、被连接。", image: asset("assets/events/day3-competition.png") },
-  { date: "10.17-11.16", title: "AI视觉创意汇", text: "通过线下展览集中呈现 AI 视觉作品、工具、创作者和行业合作可能性。", image: asset("assets/events/exhibition.png") },
+  { date: "Oct 17", title: "Award Ceremony and Project Signing", text: "A public recognition and industry-connection moment for awarded works, creators and commercial partners.", image: asset("assets/events/day1-schedule.png") },
+  { date: "Oct 18", title: "AI Visual Technology Workshop", text: "A learning and exchange format around AI video, AI image, short drama production and commercial creative workflows.", image: asset("assets/events/day2-workshop.png") },
+  { date: "Oct 19", title: "AI Battle Day", text: "A live creation format built around prompt battles, time-limited production and creator visibility.", image: asset("assets/events/day3-competition.png") },
+  { date: "Oct 17 - Nov 16", title: "AI Visual Creativity Exhibition", text: "An offline exhibition layer for works, tools, creators and industry communication.", image: asset("assets/events/exhibition.png") },
 ];
 
 const referralSteps = [
-  ["1", "填写需求", "描述项目方向、预算、周期、内容类型和想参考的创作者/作品。"],
-  ["2", "提交信息", "管理员 24 小时内联系确认，避免创作者和客户直接错配。"],
-  ["3", "精准匹配", "根据需求推荐 1-5 位候选创作者或转入 AI REMIX Studio 履约。"],
-  ["4", "对接签约", "确认意向后进入项目报价、制作、交付和案例回流流程。"],
+  ["01", "Submit requirement", "Describe project direction, budget range, timeline, target platform and preferred VacaVaca reference."],
+  ["02", "Admin confirmation", "The team confirms scope and avoids mismatching creator capability with commercial expectations."],
+  ["03", "Creator / style mapping", "The brief is mapped to creator directions, work references or AI REMIX production lanes."],
+  ["04", "Studio-managed delivery", "The project moves into quote, production, review and approved case return."],
 ];
 
 export default function VacaVacaPage() {
   return (
-    <main id="discover">
-      <section className="vv-hero">
-        <div className="vv-hero-bg" />
+    <main className="vv-content-page">
+      <section className="vv-content-hero" id="overview">
         <div className="vv-container">
-          <div className="vv-hero-header">
-            <div className="badge"><img src={heroBadge} alt="VACAT" /></div>
-            <h1>AI视觉创作者<span style={{ color: "var(--gold)" }}>部落</span></h1>
-            <p>瓦卡奖VACAT官方社区 · 第二届大赛4,646件投稿 · 76组入围 · 92所高校参与</p>
-          </div>
-          <div className="vv-stats">
-            {stats.map(([value, label]) => <div key={label} style={{ textAlign: "center" }}><strong>{value}</strong><span>{label}</span></div>)}
-          </div>
-          <div className="vv-hero-grid">
-            {heroWorks.map((work, index) => (
-              <div key={work.title} className={index === 1 ? "vv-hero-feat" : "vv-hero-item"}>
-                <div className="vv-thumb-art">{work.mark}</div>
-                <div className="vv-hero-card-info"><h3>{work.title}</h3><span>{work.creator}</span></div>
-              </div>
-            ))}
+          <p className="vacat-eyebrow">VACAT / VacaVaca Content Layer</p>
+          <h1>VacaVaca is the creator and work library behind AI REMIX.</h1>
+          <p>
+            This page keeps the VacaVaca content structure—creators, works, award background, events and referral model—while serving AI REMIX's product-ad order flow.
+          </p>
+          <div className="vv-metric-row">
+            {metrics.map(([value, label]) => <div key={label} className="vv-data-card"><strong>{value}</strong><span>{label}</span></div>)}
           </div>
         </div>
       </section>
 
-      <div className="vv-container">
-        <section id="works" className="vv-section" style={{ marginTop: 40 }}>
-          <div className="vv-section-header"><h2>获奖作品</h2><a href="#all-works" className="more">浏览全部 →</a></div>
-          <div className="vv-video-grid">
-            {works.slice(0, 8).map((work) => <WorkCard key={work.title} work={work} />)}
+      <section className="vv-container vv-section" id="award">
+        <SectionHeader title="What is the VACAT Award?" more="Award background" />
+        <div className="vv-award-intro">
+          <div>
+            <h2>Vision Arts Created by AI Technology.</h2>
+            <p>
+              VACAT is an AI visual creativity award and creator-community platform. It organizes AI video, AI image, commercial creative, visual-art and poster works into an industry-facing reference system. For AI REMIX, this award layer is not decoration: it supplies credibility, taste, creator capability and concrete visual references for product-ad production.
+            </p>
+            <p>
+              The award connects open submissions, expert judging, public exhibitions, creator education, technology workshops, project signing and commercial referral. AI REMIX adapts that structure into a simpler business path: browse the content, choose a reference direction, submit a product brief, and let the studio scope delivery.
+            </p>
           </div>
-        </section>
+          <img src={carousel} alt="VACAT award scene" />
+        </div>
+        <div className="vv-achievements">
+          {awardResults.map(([title, body]) => <div key={title} className="vv-achievement-card"><h3>{title}</h3><p>{body}</p></div>)}
+        </div>
+      </section>
 
-        <section id="creators" className="vv-section" style={{ marginTop: 160 }}>
-          <div className="vv-section-header"><h2>推荐创作人</h2><a href="#creator-list" className="more">浏览全部 →</a></div>
-          <div className="vv-creator-row">
-            {creators.map((creator) => (
-              <div key={creator.name} className="vv-creator-item">
-                <div className="av">{creator.av}</div>
-                <h4>{creator.name}</h4>
-                <span className={`badge-sm badge-${creator.lv}`}>{creator.lv[0].toUpperCase() + creator.lv.slice(1)}</span>
-              </div>
-            ))}
-          </div>
-        </section>
+      <section className="vv-container vv-section" id="works">
+        <SectionHeader title="Representative Works" more="Works, demos and reference links" />
+        <div className="vv-video-grid">
+          {works.map((work) => <WorkCard key={work.slug} work={work} />)}
+        </div>
+      </section>
 
-        <section id="creator-list" className="vv-section">
-          <div className="vv-section-header"><h2>创作人能力档案</h2><span className="more">赛事验证 · 社区沉淀 · 项目引荐</span></div>
-          <div className="vv-creators-grid">
-            {creators.map((creator) => (
-              <div key={`${creator.name}-card`} className="vv-creator-card">
-                <div className="av" style={{ width: 56, height: 56, borderRadius: "50%", background: "var(--gold)", color: "#111", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700 }}>{creator.av}</div>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}><h4 style={{ fontSize: 15, fontWeight: 600 }}>{creator.name}</h4><span style={{ fontSize: 11, color: "#34D399" }}>● 接单中</span></div>
-                  <div style={{ fontSize: 12, color: "var(--text3)", margin: "6px 0" }}><span className={`badge-sm badge-${creator.lv}`}>{creator.lv}</span><span style={{ marginLeft: 8 }}>📄 {creator.count}作品</span><span style={{ marginLeft: 6 }}>👍 {creator.likes}</span></div>
-                  <div style={{ fontSize: 11, color: "var(--text3)", lineHeight: 1.4 }}>{creator.tag}</div>
+      <section className="vv-container vv-section" id="demos">
+        <SectionHeader title="Demo References" more="Use these as visual brief anchors" />
+        <div className="vv-demo-grid">
+          {works.slice(0, 6).map((work) => (
+            <article key={`demo-${work.slug}`} id={work.demo.replace("#", "")} className="vv-demo-card">
+              <div className="vv-thumb-art">{work.mark}</div>
+              <div>
+                <p className="vacat-eyebrow">Demo frame</p>
+                <h3>{work.title}</h3>
+                <p>{work.track}. Use this reference to explain pacing, atmosphere, art direction and creator-lane fit.</p>
+                <div className="vv-card-actions">
+                  <Link href={`/start?vacaVacaReference=${work.slug}`} className="vv-btn-reg">Use as reference</Link>
+                  <a href="#works" className="vv-btn-nav">Back to works</a>
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
-      </div>
-
-      <section id="award" className="vv-page-header">
-        <div className="vv-container" style={{ maxWidth: 960 }}>
-          <h1>瓦卡奖 VACAT</h1>
-          <p>全球AI视觉创意大赛 · Vision Arts Created by AI Technology</p>
-          <p style={{ fontSize: 13, color: "var(--text3)", marginTop: 6 }}>AI视觉创意界的「奥斯卡」平台</p>
-        </div>
-        <div className="vv-carousel"><img src={carousel} alt="瓦卡奖" /></div>
-      </section>
-
-      <section className="vv-container vv-rich">
-        <div className="vv-big-space">
-          <h3>关于瓦卡奖</h3>
-          <p>AI视觉创意大赛（瓦卡奖VACAT）作为全球首个在 AI 视觉领域具有重大影响力的活动，连接创作者、作品、评审、活动、企业需求和产业转化，是 VacaVaca 创作者部落的核心内容资产。</p>
-          <div style={{ marginTop: 24 }}><img src={asset("assets/about/vacat-about.png")} alt="关于瓦卡奖" style={{ borderRadius: 12, border: "1px solid var(--border)" }} /></div>
-        </div>
-
-        <div className="vv-big-space">
-          <h3>核心成果</h3>
-          <div className="vv-achievements">
-            {achievements.map(([icon, title, desc]) => <div key={title} className="vv-achievement-card"><div style={{ fontSize: 40, lineHeight: 1, marginBottom: 8 }}>{icon}</div><div style={{ fontSize: 15, fontWeight: 600, marginBottom: 6 }}>{title}</div><p style={{ fontSize: 14 }}>{desc}</p></div>)}
-          </div>
-        </div>
-
-        <div className="vv-big-space">
-          <h3>第二届大赛数据</h3>
-          <div className="vv-data-grid">
-            <div className="vv-data-card"><strong>4,646</strong><span>投稿作品</span></div>
-            <div className="vv-data-card"><strong>76</strong><span>获奖作品</span></div>
-            <div className="vv-data-card"><strong>92</strong><span>参赛高校</span></div>
-          </div>
-        </div>
-
-        <div className="vv-big-space" id="all-works">
-          <h3>赛道与代表作品</h3>
-          <div className="vv-video-grid" style={{ marginTop: 16 }}>
-            {works.map((work) => <WorkCard key={`${work.title}-all`} work={work} />)}
-          </div>
-        </div>
-
-        <div className="vv-big-space">
-          <h3>赛道设置</h3>
-          <div style={{ display: "grid", gap: 12 }}>
-            {tracks.map(([title, desc]) => <div key={title} className="vv-achievement-card"><div style={{ color: "var(--gold)", fontWeight: 700 }}>{title}</div><p style={{ marginTop: 8 }}>{desc}</p></div>)}
-          </div>
-        </div>
-
-        <div className="vv-big-space">
-          <h3>专业评审团</h3>
-          <div className="vv-judges">
-            {judges.map(([initial, name, title]) => <div key={name} className="vv-judge"><div className="avatar">{initial}</div><div><div style={{ fontWeight: 700 }}>{name}</div><p style={{ fontSize: 13, lineHeight: 1.7 }}>{title}</p></div></div>)}
-          </div>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section id="events" className="vv-container" style={{ paddingBottom: 60 }}>
-        <div className="vv-section-header"><h2>活动资讯</h2><span className="more">第三届瓦卡奖VACAT即将启动 · 敬请关注</span></div>
-        <div style={{ borderTop: "2px solid #fff" }}>
+      <section className="vv-container vv-section" id="creators">
+        <SectionHeader title="Creator Roster" more="Creator names and capability lanes" />
+        <div className="vv-creators-grid">
+          {creators.map((creator) => <CreatorCard key={creator.name} creator={creator} />)}
+        </div>
+      </section>
+
+      <section className="vv-container vv-section" id="tracks">
+        <SectionHeader title="Award Tracks" more="How VacaVaca content maps into AI REMIX" />
+        <div className="vv-referral">
+          <div className="vv-referral-step"><strong>AI Video</strong><h3>Realistic narrative</h3><p>Character scenes, cinematic shorts and product stories with live-action mood.</p></div>
+          <div className="vv-referral-step"><strong>AI Video</strong><h3>Animated narrative</h3><p>Stylized animation, literary adaptation, culture and tourism storytelling.</p></div>
+          <div className="vv-referral-step"><strong>Commercial</strong><h3>Brand creative</h3><p>Product launch, city promotion, exhibition and institutional communication.</p></div>
+          <div className="vv-referral-step"><strong>Visual Art</strong><h3>Experimental film</h3><p>Music visuals, abstract image systems and installation-style visual language.</p></div>
+        </div>
+      </section>
+
+      <section className="vv-container vv-section" id="judges">
+        <SectionHeader title="Jury and Expert Layer" more="Authority behind the award" />
+        <div className="vv-judges">
+          {judges.map(([name, title]) => <div key={name} className="vv-judge"><div className="avatar">{name.slice(0, 1)}</div><div><div style={{ fontWeight: 700 }}>{name}</div><p>{title}</p></div></div>)}
+        </div>
+      </section>
+
+      <section className="vv-container vv-section" id="events">
+        <SectionHeader title="Events and Community Activation" more="Award ceremony, workshop, battle and exhibition" />
+        <div>
           {events.map((event) => <div key={event.title} className="vv-event-item"><div className="vv-event-row"><div className="vv-event-copy"><div className="vv-event-date">{event.date}</div><div className="vv-event-title">{event.title}</div><p>{event.text}</p></div><img src={event.image} alt={event.title} /></div></div>)}
         </div>
       </section>
 
-      <section id="referral" className="vv-container vv-section">
-        <div className="vv-section-header"><h2>发起引荐 / 提交商业需求</h2><Link href="/start" className="more">进入 AI REMIX 委托入口 →</Link></div>
+      <section className="vv-container vv-section" id="referral">
+        <SectionHeader title="Referral and Commercial Intake" more="Keep the business flow managed" />
         <div className="vv-referral">
-          {referralSteps.map(([step, title, desc]) => <div key={step} className="vv-referral-step"><strong>{step}</strong><h3 style={{ marginTop: 12, fontSize: 18, fontWeight: 700 }}>{title}</h3><p style={{ marginTop: 8, color: "var(--text3)", fontSize: 14 }}>{desc}</p></div>)}
+          {referralSteps.map(([step, title, body]) => <div key={step} className="vv-referral-step"><strong>{step}</strong><h3>{title}</h3><p>{body}</p></div>)}
         </div>
-        <div style={{ textAlign: "center", padding: "60px 0", borderTop: "1px solid var(--border)", marginTop: 60 }}>
-          <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 8 }}>你是AI视觉创作者？</h2>
-          <p style={{ color: "var(--text3)", marginBottom: 20 }}>加入部落，让你的作品被企业发现</p>
-          <Link href="/start" className="btn btn-primary btn-lg">提交项目需求</Link>
+        <div className="vv-final-panel">
+          <h2>Bring a VacaVaca reference into an AI REMIX brief.</h2>
+          <p>Use the works, creator lanes and event proof above as context, then submit one structured product-ad brief for studio review.</p>
+          <Link href="/start" className="vacat-button-primary px-6 py-3 text-sm">Submit Product Brief</Link>
         </div>
       </section>
-
-      <Footer />
-      <div className="float-recruit"><div className="float-recruit-inner"><span>🎬</span><span>AI精品短剧创作营招募🔥</span></div></div>
     </main>
   );
 }
 
-function WorkCard({ work }: { work: { title: string; creator: string; award: string; track: string; mark: string } }) {
+function SectionHeader({ title, more }: { title: string; more: string }) {
+  return <div className="vv-section-header"><h2>{title}</h2><span className="more">{more}</span></div>;
+}
+
+function WorkCard({ work }: { work: { slug: string; title: string; creator: string; award: string; track: string; mark: string; demo: string } }) {
   return (
-    <div className="vv-video-card">
-      <div className="thumb"><div className="vv-thumb-art" style={{ fontSize: 38 }}>{work.mark}</div></div>
-      <div className="body"><h4>{work.title}<span className="vv-tag">{work.award}</span></h4><div className="meta"><span className="creator">{work.creator}</span><span>{work.track}</span></div></div>
-    </div>
+    <article className="vv-video-card">
+      <div className="thumb"><div className="vv-thumb-art">{work.mark}</div></div>
+      <div className="body">
+        <h4>{work.title}<span className="vv-tag">{work.award}</span></h4>
+        <div className="meta"><span>{work.creator}</span><span>{work.track}</span></div>
+        <div className="vv-card-actions">
+          <a href={work.demo} className="vv-btn-nav">View demo</a>
+          <Link href={`/start?vacaVacaReference=${work.slug}`} className="vv-btn-reg">Use reference</Link>
+        </div>
+      </div>
+    </article>
   );
 }
 
-function Footer() {
+function CreatorCard({ creator }: { creator: { name: string; level: string; focus: string; works: number; likes: string; initials: string } }) {
+  const levelClass = creator.level === "Creator" ? "badge-creator" : creator.level === "Dreamer" ? "badge-dreamer" : "badge-explorer";
   return (
-    <footer className="vv-footer">
-      <div className="vv-container">
-        <div className="vv-footer-grid">
-          <div className="vv-footer-brand"><img src={logo} alt="VACAT" style={{ height: 36, width: "auto", marginBottom: 8 }} /><p>AI视觉创作者部落 · 瓦卡奖组委会支持的社区平台</p></div>
-          <div className="vv-footer-col"><h4>发现</h4><a href="#creators">创作人</a><a href="#works">作品</a><a href="#events">活动</a></div>
-          <div className="vv-footer-col"><h4>关于</h4><a href="#award">瓦卡奖</a><a href="#referral">引荐</a><Link href="/templates">风格库</Link></div>
-          <div className="vv-footer-col"><h4>支持</h4><Link href="/start">提交需求</Link><Link href="/free-ad-review">免费诊断</Link><Link href="/admin/orders">后台</Link></div>
-        </div>
-        <div className="vv-footer-bottom"><span>© 2026 AI视觉创作者部落 · 瓦卡奖VACAT</span><span>AI REMIX Studio</span></div>
+    <article className="vv-creator-card">
+      <div className="av">{creator.initials}</div>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}><h4>{creator.name}</h4><span style={{ fontSize: 11, color: "#34D399" }}>● Available</span></div>
+        <div style={{ fontSize: 12, color: "var(--text3)", margin: "6px 0" }}><span className={`badge-sm ${levelClass}`}>{creator.level}</span><span style={{ marginLeft: 8 }}>{creator.works} works</span><span style={{ marginLeft: 6 }}>{creator.likes} likes</span></div>
+        <p>{creator.focus}</p>
       </div>
-    </footer>
+    </article>
   );
 }
