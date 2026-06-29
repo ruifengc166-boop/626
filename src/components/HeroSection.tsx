@@ -3,7 +3,7 @@ import type { Template } from "@/data/templates";
 import { studioMetrics } from "@/data/vacavaca-studio";
 import { VideoFrame } from "@/components/VideoFrame";
 
-const trustLabels = ["VACAT award authority", "Creator-led visual direction", "Studio-managed commissioning"];
+const trustLabels = ["VACAT award authority", "Representative works as references", "Free review → brief → studio delivery"];
 const heroMetrics = studioMetrics.slice(0, 3);
 
 export function HeroSection({ template }: { template: Template }) {
@@ -16,10 +16,10 @@ export function HeroSection({ template }: { template: Template }) {
             VacaVaca Studio
           </div>
           <h1 className="vacat-title max-w-5xl text-[3.2rem] font-semibold md:text-7xl lg:text-[5.4rem]">
-            Commission AI visual creative works backed by VACAT.
+            Custom AI visual creative works, powered by VACAT references.
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-[var(--text3)] md:text-lg">
-            VacaVaca Studio turns representative VACAT works, creator lanes and award authority into custom visual films, key visuals, event visuals and campaign image systems.
+            VacaVaca Studio is the commercial front desk of the VACAT creator ecosystem: review an existing ad or visual, choose a representative VacaVaca direction, submit a brief, and let the studio scope delivery.
           </p>
 
           <div className="mt-8 grid max-w-3xl gap-3 sm:grid-cols-3">
@@ -29,15 +29,15 @@ export function HeroSection({ template }: { template: Template }) {
           </div>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <Link href="/vacavaca" className="vacat-button-secondary px-7 py-4 text-sm">
-              Explore VACAT Authority
+            <Link href="/free-ad-review" className="vacat-button-primary px-7 py-4 text-sm">
+              Get Free Ad Review
             </Link>
-            <Link href="/start" className="vacat-button-primary px-7 py-4 text-sm">
-              Commission a Visual Work
+            <Link href="/start" className="vacat-button-secondary px-7 py-4 text-sm">
+              Submit Commission Brief
             </Link>
           </div>
           <p className="mt-5 text-sm text-[var(--text3)]">
-            Have a rough idea or existing video? <Link href="/free-ad-review" className="text-[var(--gold)] underline decoration-[rgba(202,254,97,0.35)] underline-offset-4">Get a free creative review</Link> before commissioning a full visual piece.
+            Prefer to browse first? <Link href="/templates" className="text-[var(--gold)] underline decoration-[rgba(202,254,97,0.35)] underline-offset-4">Choose a VACAT-inspired creative direction</Link> before sending a brief.
           </p>
           <div className="mt-7 flex max-w-2xl flex-wrap gap-2">
             {trustLabels.map((label) => (
@@ -52,7 +52,7 @@ export function HeroSection({ template }: { template: Template }) {
             <VideoFrame template={template} />
           </div>
           <div className="mt-4 rounded-2xl border border-[rgba(202,254,97,0.16)] bg-[rgba(202,254,97,0.08)] p-4 text-sm leading-6 text-[var(--text3)]">
-            Featured VACAT-inspired creative menu item selected to show the level of visual ambition VacaVaca Studio can adapt into commissioned work.
+            Featured VacaVaca-inspired reference direction. The commercial flow stays clear: reference selection, brief submission, studio scoping, production and approved case return.
           </div>
         </div>
       </div>
