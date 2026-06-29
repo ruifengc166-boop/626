@@ -20,15 +20,15 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <img src={logo} alt="VacaVaca Studio" />
             </Link>
             <nav className="vv-nav-links">
-              <Link href="/vacavaca">Overview</Link>
+              <Link href="/vacavaca">VACAT Proof</Link>
               <Link href="/vacavaca/works">Works</Link>
               <Link href="/vacavaca/creators">Creators</Link>
-              <Link href="/vacavaca#award">VACAT Award</Link>
               <Link href="/vacavaca/events">Events</Link>
-              <Link href="/vacavaca#authority">Authority</Link>
+              <Link href="/templates">Creative Menu</Link>
+              <Link href="/free-ad-review">Free Review</Link>
             </nav>
             <div className="vv-nav-actions">
-              <Link href="/templates" className="vv-btn-nav">Creative Menu</Link>
+              <Link href="/free-ad-review" className="vv-btn-nav">Review</Link>
               <Link href="/start" className="vv-btn-reg">Commission Work</Link>
             </div>
           </div>
