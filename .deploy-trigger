@@ -1,4 +1,4 @@
 Tencent Cloud deployment trigger
-Triggered at: 2026-06-28T15:08:00Z
+Triggered at: 2026-06-29T01:36:00Z
 Branch: main
-Reason: redeploy latest MVP mainline alignment build
+Reason: redeploy public beta safety guards
