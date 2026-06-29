@@ -1,6 +1,6 @@
 export type AdReviewPlatform = "TikTok" | "Instagram Reels" | "YouTube Shorts" | "Meta Ads" | "Other";
 
-export type RecommendedService = "Founder Pilot" | "Direction Draft" | "Polished Ad" | "Testing Pack" | "Launch-Grade";
+export type RecommendedService = "Founder Pilot" | "Direction Draft" | "Polished Visual" | "Visual Sprint" | "Launch-Grade";
 
 export type AdCreativeReviewInput = {
   adUrl: string;
