@@ -16,29 +16,13 @@ export async function generateAdCreativeReview(input: AdCreativeReviewInput): Pr
       body: JSON.stringify({
         model: process.env.OPENAI_MODEL || "gpt-4.1-mini",
         input: [
-          {
-            role: "system",
-            content: [
-              {
-                type: "input_text",
-                text: AD_REVIEW_SYSTEM_PROMPT,
-              },
-            ],
-          },
-          {
-            role: "user",
-            content: [
-              {
-                type: "input_text",
-                text: buildAdReviewPrompt(input, linkContext),
-              },
-            ],
-          },
+          { role: "system", content: [{ type: "input_text", text: AD_REVIEW_SYSTEM_PROMPT }] },
+          { role: "user", content: [{ type: "input_text", text: buildAdReviewPrompt(input, linkContext) }] },
         ],
         text: {
           format: {
             type: "json_schema",
-            name: "ad_creative_review_report",
+            name: "creative_review_report",
             schema: reviewSchema,
             strict: true,
           },
@@ -62,10 +46,7 @@ async function fetchLinkContext(url: string) {
   try {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 4500);
-    const response = await fetch(url, {
-      signal: controller.signal,
-      headers: { "User-Agent": "Mozilla/5.0 AdCreativeReviewBot" },
-    });
+    const response = await fetch(url, { signal: controller.signal, headers: { "User-Agent": "Mozilla/5.0 VacaVacaCreativeReviewBot" } });
     clearTimeout(timeout);
     if (!response.ok) return "";
     const html = await response.text();
@@ -73,13 +54,7 @@ async function fetchLinkContext(url: string) {
     const description = html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i)?.[1] ||
       html.match(/<meta[^>]+property=["']og:description["'][^>]+content=["']([^"']+)["']/i)?.[1] ||
       "";
-    const text = html
-      .replace(/<script[\s\S]*?<\/script>/gi, " ")
-      .replace(/<style[\s\S]*?<\/style>/gi, " ")
-      .replace(/<[^>]+>/g, " ")
-      .replace(/\s+/g, " ")
-      .trim()
-      .slice(0, 3000);
+    const text = html.replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<style[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 3000);
     return [`Title: ${title}`, `Description: ${description}`, `Visible text: ${text}`].join("\n").slice(0, 3600);
   } catch {
     return "";
@@ -110,7 +85,7 @@ function normalizeReport(report: AdCreativeReviewReport, input: AdCreativeReview
 
 function normalizeService(service: string): RecommendedService {
   const allowed: RecommendedService[] = ["Founder Pilot", "Direction Draft", "Polished Ad", "Testing Pack", "Launch-Grade"];
-  return allowed.includes(service as RecommendedService) ? (service as RecommendedService) : "Polished Ad";
+  return allowed.includes(service as RecommendedService) ? (service as RecommendedService) : "Direction Draft";
 }
 
 function clampScore(value: number) {
@@ -129,42 +104,42 @@ export function generateFallbackAdCreativeReview(input: AdCreativeReviewInput): 
   return {
     creativeReadinessScore: score,
     scoreSummary: hasTranscript
-      ? "The ad has enough submitted creative context to review the message, hook and platform fit, but it still needs a sharper short-form structure."
-      : "The ad can be reviewed at a high level from the link and campaign goal, but adding captions or transcript would make the review more precise.",
-    mainIssue: "The first improvement area is likely the opening hook: the product benefit should be clearer before the viewer scrolls away.",
+      ? "The visual work has enough submitted context to review message, opening, pacing and format fit, but it still needs a sharper creative structure."
+      : "The visual work can be reviewed at a high level from the link and project goal, but adding a script or outline would make the review more precise.",
+    mainIssue: "The first improvement area is likely the opening moment: the core subject and visual promise should become clear faster.",
     whatWorks: [
-      "The campaign goal gives a clear starting point for creative feedback.",
-      "The ad has a defined target platform, which helps judge pacing and format.",
-      "The product can be reviewed for short-form ad clarity before committing to production.",
+      "The project goal gives a clear starting point for creative feedback.",
+      "The target format helps judge pacing and visual hierarchy.",
+      "The submitted material can be reviewed before committing to full production.",
     ],
     whatToFix: [
-      "Show the product or outcome earlier in the first 1-3 seconds.",
-      "Make the main benefit readable as a short caption, not only implied by visuals.",
-      "End with a clearer CTA tied to the campaign goal.",
-      "Cut any setup shots that do not explain the product or benefit.",
+      "Show the core subject, world or visual promise earlier.",
+      "Make the main idea readable through image structure, not only through text.",
+      "End with a clearer action, emotional beat or project conclusion.",
+      "Cut setup shots that do not support the visual concept.",
     ],
-    firstThreeSecondsReview: "The opening should state or show the core product benefit immediately. Avoid starting with mood, abstract visuals or slow setup unless the brand is already known.",
-    productClarityReview: "The product should be visually identifiable early, with a simple caption explaining what it does or why it matters.",
-    pacingReview: "For short-form social, the ad should move quickly from hook to product proof to CTA. Any scene that does not clarify the offer should be shortened.",
-    captionCtaReview: "Use short captions that carry the selling point even when sound is off. The CTA should be direct and platform-appropriate.",
-    platformFit: `${input.targetPlatform} usually rewards fast hooks, clear visuals and simple captions. This instant review is based on the submitted link, caption and campaign context rather than a full frame-by-frame video inspection.`,
-    suggestedHook: `Still looking for a better way to ${input.campaignGoal.toLowerCase()}? Try ${input.productName}.`,
-    fixPriority: "Fix the first three seconds first: product, benefit and viewer reason to keep watching.",
+    firstThreeSecondsReview: "The opening should establish subject, atmosphere and reason to keep watching immediately. Avoid starting with slow setup unless the visual language is already compelling.",
+    productClarityReview: "The project subject should be identifiable early, with a simple visual or text cue explaining what it is and why it matters.",
+    pacingReview: "The piece should move from visual hook to concept proof to ending beat. Any scene that does not clarify the idea should be shortened.",
+    captionCtaReview: "Use short captions only where they strengthen the idea. The ending should match the intended use case, such as event entry, website visit, application or full-film viewing.",
+    platformFit: `${input.targetPlatform} usually rewards strong openings, clear visual hierarchy and memorable endings. This instant review is based on the submitted link, caption and project context rather than a full frame-by-frame inspection.`,
+    suggestedHook: `Open with the clearest visual promise behind ${input.productName}, then build toward ${input.campaignGoal.toLowerCase()}.`,
+    fixPriority: "Fix the opening sequence first: subject, atmosphere and viewer reason to continue.",
     recommendedService,
     nextStepReason: recommendedService === "Direction Draft"
-      ? "A Direction Draft is enough if you only need a clearer creative route before production."
-      : "A Polished Ad is the right next step if you want the current material reworked into a cleaner social ad.",
+      ? "A Direction Draft is enough if you need a clearer creative route before production."
+      : "A studio-scoped production route is the right next step if you want the current material developed into a finished visual work.",
     leadScore,
     internalSignals: [
-      hasTranscript ? "User provided ad copy/transcript" : "User did not provide transcript",
+      hasTranscript ? "User provided script or transcript" : "User did not provide script or transcript",
       hasConcern ? "User has a stated creative concern" : "No stated creative concern",
-      hasCategory ? `Product category: ${input.productCategory}` : "No product category provided",
-      `Target platform: ${input.targetPlatform}`,
+      hasCategory ? `Project category: ${input.productCategory}` : "No project category provided",
+      `Target format: ${input.targetPlatform}`,
     ],
     disclaimer: defaultDisclaimer(input.targetPlatform),
   };
 }
 
 function defaultDisclaimer(platform: string) {
-  return `This is a creative review for ${platform}. It does not predict ROAS, conversion rate or campaign performance.`;
+  return `This is a creative review for ${platform}. It does not predict conversion rate, distribution performance or media results.`;
 }
