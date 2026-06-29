@@ -10,18 +10,18 @@ export default async function TemplatesPage() {
   const activeTemplates = templates.filter((template) => template.status === "active");
 
   return (
-    <main className="px-5 py-16 md:py-20">
-      <div className="mx-auto max-w-[1200px]">
+    <main className="vacat-shell px-5 py-16 md:py-20">
+      <div className="vacat-container relative z-10">
         <SectionHeader
-          eyebrow="Template Library"
-          title="Choose an AI Ad Style"
-          description="Select a ready-made video ad style and we will adapt it to your product. VacaVaca references can guide taste and creator-lane fit, but the order still enters one studio-reviewed production flow."
+          eyebrow="VacaVaca Style Library"
+          title="Choose an AI visual remix direction"
+          description="Select a product-ad style backed by VacaVaca works, creator lanes and award-grade visual references. Every style still flows into one studio-reviewed production process."
         />
 
         <div className="mt-10 grid gap-3 md:grid-cols-4">
           {vacaVacaSupport.caseReferences.map((reference) => (
-            <div key={reference.id} className="rounded-2xl border border-white/[0.08] bg-white/[0.035] p-4">
-              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-white/34">{reference.lane}</p>
+            <div key={reference.id} className="vacat-card vacat-card-glow rounded-2xl p-4">
+              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-lime-200">{reference.lane}</p>
               <h2 className="mt-3 text-base font-semibold tracking-[-0.03em] text-white">{reference.title}</h2>
               <p className="mt-3 text-xs leading-5 text-white/44">{reference.signal}</p>
             </div>
