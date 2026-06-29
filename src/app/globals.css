@@ -5,6 +5,11 @@
 :root {
   --background: #050505;
   --foreground: #ffffff;
+  --vacavaca-bg: #0a0a0a;
+  --vacavaca-card: #111111;
+  --vacavaca-gold: #cafe61;
+  --vacavaca-border: rgba(255,255,255,0.08);
+  --vacavaca-muted: rgba(255,255,255,0.52);
 }
 
 html {
@@ -12,19 +17,35 @@ html {
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(circle at 50% 100%, rgba(202,254,97,0.08), transparent 36%),
+    radial-gradient(circle at 85% 12%, rgba(202,254,97,0.055), transparent 28%),
+    var(--vacavaca-bg);
   color: var(--foreground);
 }
 
 ::selection {
-  background: #ededed;
+  background: var(--vacavaca-gold);
   color: #050505;
 }
 
 .video-shell {
   background:
-    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.16), rgba(255,255,255,0.04) 36%, rgba(0,0,0,0.2) 100%),
+    radial-gradient(circle at 50% 0%, rgba(202,254,97,0.12), rgba(255,255,255,0.04) 36%, rgba(0,0,0,0.2) 100%),
     #0d0d0d;
+}
+
+.vacavaca-card {
+  border: 1px solid var(--vacavaca-border);
+  background:
+    radial-gradient(circle at 100% 100%, rgba(202,254,97,0.12), transparent 32%),
+    rgba(17,17,17,0.92);
+}
+
+.vacavaca-gold { color: var(--vacavaca-gold); }
+
+.vacavaca-ring {
+  box-shadow: 0 0 0 1px rgba(202,254,97,0.16), 0 24px 90px rgba(202,254,97,0.08);
 }
 
 .input {
@@ -43,6 +64,6 @@ body {
 }
 
 .input:focus {
-  border-color: rgba(255,255,255,0.38);
+  border-color: rgba(202,254,97,0.48);
   background: #111;
 }
