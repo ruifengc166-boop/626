@@ -8,6 +8,7 @@ import { NewAdCTA } from "@/components/NewAdCTA";
 import { OrderConfidence } from "@/components/OrderConfidence";
 import { PricingCard } from "@/components/PricingCard";
 import { StudioIdentity } from "@/components/StudioIdentity";
+import { VacaVacaSupport } from "@/components/VacaVacaSupport";
 import { listEffectiveTemplates } from "@/lib/template-admin";
 
 export const dynamic = "force-dynamic";
@@ -21,6 +22,7 @@ export default async function HomePage() {
       <HeroSection template={heroTemplate} />
       <NewAdCTA />
       <StudioIdentity />
+      <VacaVacaSupport />
       <CasePreview />
       <OrderConfidence />
       <HowItWorks />
@@ -72,9 +74,9 @@ export default async function HomePage() {
           <FAQItem question="Do you only fix existing ads?" answer="No. We support both paths: free creative review for current ads, and new product ad production for brands that want a fresh short-form ad." />
           <FAQItem question="When do I get the free review?" answer="Immediately after submission. The review opens on a result page; it is not delayed for email delivery. Email is used to save the review record and follow up if you request production." />
           <FAQItem question="What does the free ad review check?" answer="It reviews the ad creative itself: hook strength, product clarity, pacing, captions, CTA and platform fit. It does not predict ROAS or conversion rate." />
-          <FAQItem question="Who works on my ad?" answer="Your brief is reviewed by a creator-led studio. For selected projects, we match the style with AI video creators from active communities, including VACAT, then review delivery before handoff." />
+          <FAQItem question="Who works on my ad?" answer="Your brief is reviewed by a creator-led studio. VacaVaca / VACAT supports the studio with creator ecosystem proof, award-style references and capability lanes, but every request stays inside the same studio-managed workflow." />
           <FAQItem question="Do I need to pay before review?" answer="No. Submit your brief first. We confirm the scope before payment." />
-          <FAQItem question="Are these real client cases?" answer="Current examples are concept samples. Client work will be added with permission." />
+          <FAQItem question="Are these real client cases?" answer="Current examples are concept samples and ecosystem references. Client work will be added with permission after delivery." />
           <FAQItem question="What is included in a polished ad?" answer="A short-form video ad, product adaptation, logo and caption check, CTA check, MP4 delivery and one review round." />
         </div>
       </section>
