@@ -1,21 +1,23 @@
-# Ad Remix Studio MVP
+# AI REMIX Studio MVP
 
-A lightweight MVP for a creator-led product ad studio with free ad creative review and order intake workflow.
+A lightweight MVP for a creator-led product ad studio with free ad creative review and order intake workflow, backed by VacaVaca / VACAT content and creator credibility.
 
 ## Current product principle
 
 AI REMIX should stay on one commercial service flow:
 
 ```txt
-Trust backing -> Template / style selection -> Submit brief -> Backstage fulfillment -> Approved case return
+VacaVaca content discovery -> Template / reference selection -> Submit brief -> Backstage fulfillment -> Approved case return
 ```
 
-VacaVaca / VACAT is integrated as a support layer for trust, references and creator capability signals. It is not integrated as a full public marketplace, open creator bidding system, community feed, user dashboard or transaction platform.
+VacaVaca / VACAT is not just a small endorsement badge. It is the major content and trust layer of the platform: award history, representative works, creator capability, judging authority, events, referral logic and industry proof. The boundary is that AI REMIX still does not become a full public marketplace, creator dashboard, open matching platform, community feed, user dashboard or transaction platform in this MVP.
 
 ## What this includes
 
 - Premium dark landing page
-- VacaVaca / VACAT ecosystem support block
+- VacaVaca / VACAT homepage content section
+- Dedicated `/vacavaca` content hub
+- VacaVaca metrics, achievements, representative works, tracks, judges, events and referral model
 - VacaVaca-backed template reference lanes
 - Free Ad Creative Review funnel
 - Prompt-system based AI ad diagnosis
@@ -54,8 +56,8 @@ VacaVaca / VACAT is integrated as a support layer for trust, references and crea
 - Full template CMS
 - Case study CMS
 - Public VacaVaca creator marketplace
-- Public creator bidding / matching flow
-- Community feed import from VacaVaca
+- Public creator matching / transaction flow
+- Live community feed import from VacaVaca
 
 ## VacaVaca integration boundary
 
@@ -64,14 +66,22 @@ The integration uses:
 ```txt
 src/data/vacavaca-support.ts
 src/components/VacaVacaSupport.tsx
+src/app/vacavaca/page.tsx
 ```
 
-The support layer carries the VacaVaca / VACAT proof points:
+The VacaVaca layer carries:
 
 - 4,646 second-edition submissions
 - 76 finalist / awarded works
 - 92 participating universities
-- creator capability lanes for premium visual, game / character, music visual and product demo directions
+- 272 cooperation leads / orders from award activity
+- breakout public-attention proof from Shanhaijing
+- AI Visual Creativity Application Blue Book 2025 positioning
+- representative works such as Shanhaijing, ANIMA, Green Screen, Longmen Inn 2067, Dunhuang Journey, ECHO, EVE NO.1 and others
+- judging authority from photography, AI research, film, media art, game festival and international design fields
+- competition tracks for AI realistic narrative, AI animated narrative, AI commercial creative, AI visual art and AI art poster
+- event formats such as award ceremony, project signing, workshop, AI Battle Day and exhibition
+- referral model adapted into AI REMIX's managed order flow
 
 These signals help overseas brands trust the studio and help the admin team scope production. They do not change the order flow, pricing flow, admin review flow or case-permission rule.
 
@@ -133,23 +143,25 @@ Before inviting external users:
 1. Confirm npm run build succeeds on the deployment server.
 2. Set a strong production ADMIN_PASSWORD.
 3. Use HTTPS so the secure admin cookie can be saved.
-4. Submit a test order through /start.
-5. Confirm the order appears in /admin/orders.
-6. Confirm the order stores optional VacaVaca reference fields if submitted.
-7. Submit one /free-ad-review request and confirm it appears in /admin/ad-reviews.
-8. Back up data/orders.json and data/ad-reviews.json before each public-beta push.
+4. Review the VacaVaca hub at /vacavaca.
+5. Submit a test order through /start.
+6. Confirm the order appears in /admin/orders.
+7. Confirm the order stores optional VacaVaca reference fields if submitted.
+8. Submit one /free-ad-review request and confirm it appears in /admin/ad-reviews.
+9. Back up data/orders.json and data/ad-reviews.json before each public-beta push.
 ```
 
 Recommended public-beta positioning:
 
 ```txt
-Limited pilot slots for selected product brands. Submit a product ad brief; we review fit, scope and pricing before production starts.
+AI REMIX is a managed product-ad studio backed by the VacaVaca / VACAT AI visual creator ecosystem. Explore award-grade AI visual references, then submit a structured product brief for studio-scoped delivery.
 ```
 
 ## Routes
 
 ```txt
 /                              Home
+/vacavaca                      VacaVaca / VACAT content hub
 /free-ad-review                Free Ad Creative Review form
 /ad-review/[reviewId]          Free Ad Creative Review result
 /templates                     Style library with VacaVaca reference lanes
@@ -200,17 +212,18 @@ The prompt system defines:
 
 ## Order flow
 
-1. Customer submits `/start` form.
-2. `/api/orders` validates the public request and applies 24-hour email/IP submission limits.
-3. If the order came from a free review, `sourceReviewId` and `sourceChannel=free_ad_review` are stored on the order.
-4. Optional `vacaVacaReference`, `creativeReferenceLinks` and `creatorFitNotes` are stored as brief context only.
-5. The app creates an order in `data/orders.json`.
-6. Customer lands on `/thank-you?order=ORDER_ID`.
-7. Admin logs in at `/admin/login`.
-8. Admin reviews orders at `/admin/orders`.
-9. Admin updates quote, status, notes, cost, delivery link and checklist.
-10. Admin can open the source free review from an order detail page.
-11. Finished work becomes a public case only when `canBePublicCase` is explicitly checked.
+1. Customer browses `/vacavaca`, homepage proof sections or `/templates`.
+2. Customer submits `/start` form.
+3. `/api/orders` validates the public request and applies 24-hour email/IP submission limits.
+4. If the order came from a free review, `sourceReviewId` and `sourceChannel=free_ad_review` are stored on the order.
+5. Optional `vacaVacaReference`, `creativeReferenceLinks` and `creatorFitNotes` are stored as brief context only.
+6. The app creates an order in `data/orders.json`.
+7. Customer lands on `/thank-you?order=ORDER_ID`.
+8. Admin logs in at `/admin/login`.
+9. Admin reviews orders at `/admin/orders`.
+10. Admin updates quote, status, notes, cost, delivery link and checklist.
+11. Admin can open the source free review from an order detail page.
+12. Finished work becomes a public case only when `canBePublicCase` is explicitly checked.
 
 ## Add a new template
 
