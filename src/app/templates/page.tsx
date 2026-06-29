@@ -12,9 +12,9 @@ export default async function TemplatesPage() {
     <main className="px-5 py-16 md:py-20">
       <div className="mx-auto max-w-[1200px]">
         <SectionHeader
-          eyebrow="Template Library"
-          title="Choose an AI Ad Style"
-          description="Select a ready-made video ad style and we will adapt it to your product."
+          eyebrow="VACAVACA Style Library"
+          title="Choose an Ad Remix Style"
+          description="Select a reusable visual direction inspired by creator-network output. Ad Remix Studio will adapt it to your product assets, platform and market."
         />
         <div className="mt-12">
           <TemplateGrid templates={activeTemplates} />
