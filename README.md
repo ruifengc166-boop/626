@@ -16,8 +16,9 @@ A lightweight MVP for a creator-led product ad studio with free ad creative revi
 - Production request form
 - Persistent order creation
 - Persistent ad review creation
+- Public order request rate limits
 - Thank-you page with request ID
-- Simple admin password gate
+- Production-safe admin password guard
 - Admin dashboard
 - Admin free reviews list/detail pages
 - Admin orders list
@@ -69,11 +70,17 @@ OPENAI_API_KEY=your-openai-api-key
 OPENAI_MODEL=gpt-4.1-mini
 FREE_REVIEW_AI_ENABLED=true
 FREE_REVIEW_DAILY_AI_LIMIT=100
+ORDER_DAILY_EMAIL_LIMIT=5
+ORDER_DAILY_IP_LIMIT=20
 ```
+
+For production, `ADMIN_PASSWORD` must be set to a strong non-default password. If production runs with no `ADMIN_PASSWORD` or with `ADMIN_PASSWORD=change-me`, admin login is disabled.
 
 `OPENAI_API_KEY` is used by `/api/ad-review` to generate the free ad creative review. If it is missing, `FREE_REVIEW_AI_ENABLED=false`, the daily AI limit is reached, or the API call fails, the app returns a rule-based fallback report so the funnel still works.
 
 `FREE_REVIEW_DAILY_AI_LIMIT` caps daily AI-generated free reviews. Repeated matching submissions within 24 hours reuse the previous review instead of calling OpenAI again.
+
+`ORDER_DAILY_EMAIL_LIMIT` and `ORDER_DAILY_IP_LIMIT` cap public order request submissions over the last 24 hours. Defaults are 5 per email and 20 per IP.
 
 `DATABASE_URL` is not used yet. Orders and ad reviews are stored locally in:
 
@@ -83,6 +90,26 @@ data/ad-reviews.json
 ```
 
 This is intended for the current local-server MVP stage. Do not use this file store for a high-traffic public SaaS deployment.
+
+## Public beta checklist
+
+Before inviting external users:
+
+```txt
+1. Confirm npm run build succeeds on the deployment server.
+2. Set a strong production ADMIN_PASSWORD.
+3. Use HTTPS so the secure admin cookie can be saved.
+4. Submit a test order through /start.
+5. Confirm the order appears in /admin/orders.
+6. Submit one /free-ad-review request and confirm it appears in /admin/ad-reviews.
+7. Back up data/orders.json and data/ad-reviews.json before each public-beta push.
+```
+
+Recommended public-beta positioning:
+
+```txt
+Limited pilot slots for selected product brands. Submit a product ad brief; we review fit, scope and pricing before production starts.
+```
 
 ## Routes
 
@@ -139,13 +166,14 @@ The prompt system defines:
 ## Order flow
 
 1. Customer submits `/start` form.
-2. If the order came from a free review, `sourceReviewId` and `sourceChannel=free_ad_review` are stored on the order.
-3. The app creates an order in `data/orders.json`.
-4. Customer lands on `/thank-you?order=ORDER_ID`.
-5. Admin logs in at `/admin/login`.
-6. Admin reviews orders at `/admin/orders`.
-7. Admin updates quote, status, notes, cost, delivery link and checklist.
-8. Admin can open the source free review from an order detail page.
+2. `/api/orders` validates the public request and applies 24-hour email/IP submission limits.
+3. If the order came from a free review, `sourceReviewId` and `sourceChannel=free_ad_review` are stored on the order.
+4. The app creates an order in `data/orders.json`.
+5. Customer lands on `/thank-you?order=ORDER_ID`.
+6. Admin logs in at `/admin/login`.
+7. Admin reviews orders at `/admin/orders`.
+8. Admin updates quote, status, notes, cost, delivery link and checklist.
+9. Admin can open the source free review from an order detail page.
 
 ## Add a new template
 
