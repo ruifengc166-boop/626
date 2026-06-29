@@ -32,21 +32,21 @@ export async function POST(request: Request) {
     return NextResponse.json({ reviewId: saved.id, aiGenerated: !shouldUseFallback }, { status: 201 });
   } catch (error) {
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : "Failed to generate ad review" },
+      { error: error instanceof Error ? error.message : "Failed to generate creative review" },
       { status: 400 }
     );
   }
 }
 
 function normalizeInput(raw: Record<string, unknown>): AdCreativeReviewInput {
-  const adUrl = requiredString(raw.adUrl, "Ad or video link");
-  const productName = requiredString(raw.productName, "Product name");
-  const campaignGoal = requiredString(raw.campaignGoal, "Campaign goal");
+  const adUrl = requiredString(raw.adUrl, "Video, draft or reference link");
+  const productName = requiredString(raw.productName, "Project name");
+  const campaignGoal = requiredString(raw.campaignGoal, "Creative goal");
   const contactEmail = requiredString(raw.contactEmail, "Contact email").toLowerCase();
-  const platformText = requiredString(raw.targetPlatform, "Target platform");
+  const platformText = requiredString(raw.targetPlatform, "Target format");
   const targetPlatform = platforms.includes(platformText as AdReviewPlatform) ? (platformText as AdReviewPlatform) : "Other";
 
-  if (!/^https?:\/\//i.test(adUrl)) throw new Error("Ad or video link must start with http:// or https://");
+  if (!/^https?:\/\//i.test(adUrl)) throw new Error("Video, draft or reference link must start with http:// or https://");
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail)) throw new Error("Please enter a valid email.");
 
   return {
