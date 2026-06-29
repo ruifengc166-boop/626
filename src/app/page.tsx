@@ -1,10 +1,7 @@
-import { CasePreview } from "@/components/CasePreview";
 import { FAQItem } from "@/components/FAQItem";
 import { FinalCTA } from "@/components/FinalCTA";
-import { FreeAdReviewCTA } from "@/components/FreeAdReviewCTA";
 import { HeroSection } from "@/components/HeroSection";
 import { HowItWorks } from "@/components/HowItWorks";
-import { NewAdCTA } from "@/components/NewAdCTA";
 import { OrderConfidence } from "@/components/OrderConfidence";
 import { PricingCard } from "@/components/PricingCard";
 import { StudioIdentity } from "@/components/StudioIdentity";
@@ -15,69 +12,64 @@ export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const templates = await listEffectiveTemplates();
-  const heroTemplate = templates.find((template) => template.id === "T015") ?? templates[0];
+  const heroTemplate = templates.find((template) => template.id === "V001") ?? templates[0];
 
   return (
     <main>
       <HeroSection template={heroTemplate} />
-      <NewAdCTA />
       <StudioIdentity />
       <VacaVacaSupport />
-      <CasePreview />
       <OrderConfidence />
       <HowItWorks />
 
-      <section className="border-y border-white/[0.08] bg-[#080808] px-6 py-24">
-        <div className="mx-auto max-w-[1200px]">
+      <section className="px-6 py-24">
+        <div className="vacat-container">
           <div className="max-w-2xl">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/38">Packages</p>
-            <h2 className="text-3xl font-medium tracking-[-0.035em] text-white md:text-5xl">Choose the path that fits your ad.</h2>
+            <p className="vacat-eyebrow mb-3">Commission Menu</p>
+            <h2 className="vacat-title text-3xl font-medium md:text-5xl">Choose the visual creative path.</h2>
           </div>
 
           <div className="mt-10 grid gap-8 lg:grid-cols-2">
-            <div>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-white/38">Improve existing ad</p>
+            <div className="vacat-card rounded-[24px] p-5">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold)]">Direction and concept</p>
               <div className="grid gap-5 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                <PricingCard title="Direction Draft" price="From $99" lines={["Hook diagnosis", "Fix priority"]} />
-                <PricingCard title="Polished Ad" price="From $399" lines={["Remake current ad", "1 review round"]} featured />
-                <PricingCard title="Testing Pack" price="From $1,499" lines={["3-5 variations", "Hooks + captions"]} />
+                <PricingCard title="Concept Direction" price="From $300" lines={["Reference mapping", "Mood and structure"]} />
+                <PricingCard title="Key Visual" price="From $900" lines={["Poster or campaign visual", "Studio art direction"]} featured />
+                <PricingCard title="Visual Sprint" price="From $1,800" lines={["3-5 visual routes", "Creator-lane review"]} />
               </div>
             </div>
 
-            <div>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-white/38">Create new product ad</p>
+            <div className="vacat-card rounded-[24px] p-5">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold)]">Film and event visuals</p>
               <div className="grid gap-5 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                <PricingCard title="Direction Draft" price="From $99" lines={["Starter direction", "Ad structure"]} />
-                <PricingCard title="Polished Ad" price="From $399" lines={["Short-form ad", "Studio review"]} featured />
-                <PricingCard title="Launch-Grade" price="From $3,500" lines={["Premium adaptation", "Creator-level polish"]} />
+                <PricingCard title="Short Visual Film" price="From $2,500" lines={["VACAT-style film", "One review round"]} />
+                <PricingCard title="Premium Visual Work" price="From $3,500" lines={["Cinematic direction", "Creator-level polish"]} featured />
+                <PricingCard title="Event Visual System" price="Custom" lines={["Screens and trailers", "Exhibition-ready assets"]} />
               </div>
             </div>
           </div>
 
-          <div className="mt-8 rounded-[24px] border border-white/[0.08] bg-white/[0.035] p-5 md:flex md:items-center md:justify-between">
+          <div className="vacat-card mt-8 rounded-[24px] p-5 md:flex md:items-center md:justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/38">For teams</p>
-              <h3 className="mt-2 text-2xl font-medium tracking-[-0.035em] text-white">Monthly Creative Desk</h3>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold)]">For teams</p>
+              <h3 className="mt-2 text-2xl font-medium tracking-[-0.035em] text-[var(--text)]">Monthly VacaVaca Creative Desk</h3>
             </div>
-            <p className="mt-3 max-w-xl text-sm leading-6 text-white/50 md:mt-0">For teams that need new ad creatives, remakes and testing variants every month. From $2,500 / month.</p>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-[var(--text3)] md:mt-0">For teams that need visual concepts, key visuals, short films and campaign image systems every month. From $2,500 / month.</p>
           </div>
         </div>
       </section>
 
-      <FreeAdReviewCTA />
-
-      <section className="mx-auto max-w-[1200px] px-6 py-24">
+      <section className="vacat-container px-0 py-24">
         <div className="max-w-2xl">
-          <h2 className="text-3xl font-medium tracking-[-0.035em] text-white md:text-5xl">FAQ</h2>
+          <p className="vacat-eyebrow mb-3">FAQ</p>
+          <h2 className="vacat-title text-3xl font-medium md:text-5xl">How VacaVaca Studio works.</h2>
         </div>
-        <div className="mt-10 overflow-hidden rounded-[24px] border border-white/[0.08] bg-[#0d0d0d]">
-          <FAQItem question="Do you only fix existing ads?" answer="No. We support both paths: free creative review for current ads, and new product ad production for brands that want a fresh short-form ad." />
-          <FAQItem question="When do I get the free review?" answer="Immediately after submission. The review opens on a result page; it is not delayed for email delivery. Email is used to save the review record and follow up if you request production." />
-          <FAQItem question="What does the free ad review check?" answer="It reviews the ad creative itself: hook strength, product clarity, pacing, captions, CTA and platform fit. It does not predict ROAS or conversion rate." />
-          <FAQItem question="Who works on my ad?" answer="Your brief is reviewed by a creator-led studio. VacaVaca / VACAT supports the studio with creator ecosystem proof, award-style references and capability lanes, but every request stays inside the same studio-managed workflow." />
-          <FAQItem question="Do I need to pay before review?" answer="No. Submit your brief first. We confirm the scope before payment." />
-          <FAQItem question="Are these real client cases?" answer="Current examples are concept samples and ecosystem references. Client work will be added with permission after delivery." />
-          <FAQItem question="What is included in a polished ad?" answer="A short-form video ad, product adaptation, logo and caption check, CTA check, MP4 delivery and one review round." />
+        <div className="vacat-card mt-10 overflow-hidden rounded-[24px]">
+          <FAQItem question="Is this only for advertising?" answer="No. VacaVaca Studio is for visual creative works: AI films, key visuals, campaign image systems, event visuals, culture and city promotion, music visuals and IP concept films." />
+          <FAQItem question="How do VACAT works support my project?" answer="They provide reference directions, creator capability lanes and authority signals. Your project is still scoped and produced through a managed studio process." />
+          <FAQItem question="Can I choose a specific VACAT reference?" answer="Yes. You can choose a creative direction from the menu or mention a representative work in the brief." />
+          <FAQItem question="Who works on the project?" answer="Your brief is reviewed by VacaVaca Studio. Creator lanes and production resources are assigned based on scope, visual ambition and delivery requirements." />
+          <FAQItem question="Do I need to pay before review?" answer="No. Submit the brief first. We confirm scope, route and price before production starts." />
         </div>
       </section>
 
