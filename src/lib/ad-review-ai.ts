@@ -84,7 +84,7 @@ function normalizeReport(report: AdCreativeReviewReport, input: AdCreativeReview
 }
 
 function normalizeService(service: string): RecommendedService {
-  const allowed: RecommendedService[] = ["Founder Pilot", "Direction Draft", "Polished Ad", "Testing Pack", "Launch-Grade"];
+  const allowed: RecommendedService[] = ["Founder Pilot", "Direction Draft", "Polished Visual", "Visual Sprint", "Launch-Grade"];
   return allowed.includes(service as RecommendedService) ? (service as RecommendedService) : "Direction Draft";
 }
 
@@ -98,7 +98,7 @@ export function generateFallbackAdCreativeReview(input: AdCreativeReviewInput): 
   const hasConcern = Boolean(input.currentConcern?.trim());
   const hasCategory = Boolean(input.productCategory?.trim());
   const score = hasTranscript ? 72 : 64;
-  const recommendedService: RecommendedService = hasTranscript || hasConcern ? "Polished Ad" : "Direction Draft";
+  const recommendedService: RecommendedService = hasTranscript || hasConcern ? "Polished Visual" : "Direction Draft";
   const leadScore = clampScore((hasTranscript ? 28 : 12) + (hasConcern ? 24 : 10) + (hasCategory ? 10 : 4) + 28);
 
   return {
