@@ -3,11 +3,11 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import type { Template } from "@/data/templates";
-import { vacaVacaSupport } from "@/data/vacavaca-support";
+import { studioWorks } from "@/data/vacavaca-studio";
 import { formatCurrency } from "@/lib/utils";
 import type { OrderPlan } from "@/lib/order-types";
 
-const platforms = ["TikTok", "Instagram Reels", "YouTube Shorts", "Meta Ads", "Other"];
+const platforms = ["TikTok", "Instagram Reels", "YouTube Shorts", "Website", "Exhibition Screen", "Event Screen", "Pitch Deck", "Other"];
 
 export function StartForm({ templates }: { templates: Template[] }) {
   const router = useRouter();
@@ -49,75 +49,79 @@ export function StartForm({ templates }: { templates: Template[] }) {
   }
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-16">
-      <div className="mb-10 max-w-3xl">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/40">New Product Ad Request</p>
-        <h1 className="text-4xl font-semibold tracking-[-0.04em] text-white md:text-6xl">Request a new product ad.</h1>
-        <p className="mt-5 text-lg leading-8 text-white/60">Send your product assets and campaign goal. A creator-led team will confirm fit, scope and price before payment.</p>
-      </div>
-
-      <form onSubmit={handleSubmit} className="rounded-[1.75rem] border border-white/[0.08] bg-[#0d0d0d] p-6 shadow-2xl shadow-black/20 md:p-8">
-        <input type="hidden" name="sourceReviewId" value={sourceReviewId} />
-        <input type="hidden" name="sourceChannel" value={sourceReviewId ? "free_ad_review" : templateId ? "template" : "direct"} />
-        <input type="hidden" name="plan" value={mappedOrderPlan} />
-        {recommendedPlan ? <div className="mb-6 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4 text-sm text-white/62">Recommended next step: <span className="text-white">{recommendedPlan}</span></div> : null}
-        {sourceReviewId ? <div className="mb-6 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4 text-sm text-white/62">Source review: <span className="text-white">{sourceReviewId}</span></div> : null}
-        {selectedTemplate ? <SelectedTemplateCard template={selectedTemplate} /> : null}
-        <div className="mb-8 rounded-[1.5rem] border border-white/[0.08] bg-white/[0.035] p-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/38">VacaVaca support layer</p>
-          <p className="mt-3 text-sm leading-6 text-white/58">
-            Optional references from VacaVaca help the studio understand visual ambition and creator-lane fit. They do not create open bidding or bypass the studio review workflow.
+    <main className="vacat-shell px-6 py-16 md:py-20">
+      <div className="vacat-container relative z-10 max-w-5xl">
+        <div className="mb-10 max-w-3xl">
+          <p className="vacat-eyebrow mb-3">VacaVaca Studio Commission</p>
+          <h1 className="vacat-title text-4xl font-semibold md:text-6xl">Commission a visual creative work.</h1>
+          <p className="mt-5 text-lg leading-8 text-[var(--text3)]">
+            Send the project background, target format, core subject and VACAT-style reference. The studio confirms creative scope, production route and price before payment.
           </p>
         </div>
-        <div className="grid gap-5 md:grid-cols-2">
-          <Field label="Preferred Style">
-            <select name="selectedTemplateId" value={templateId} onChange={(event) => setTemplateId(event.target.value)} className="input" required>
-              <option value="">Select a style</option>
-              {templates.map((template) => <option key={template.id} value={template.id}>{template.title}</option>)}
-            </select>
-          </Field>
-          <Input label="Brand Name" name="brandName" required />
-          <Input label="Product Name" name="productName" required />
-          <Input label="Product Link" name="productUrl" type="url" required />
-          <Input label="Product Asset Links" name="productAssetLinks" placeholder="Drive, Dropbox, website link" required />
-          <Input label="Logo Link" name="logoAssetLinks" placeholder="Transparent logo preferred" required />
-          <Input label="Main Selling Point" name="sellingPoint1" required />
-          <Input label="Second Selling Point" name="sellingPoint2" />
-          <Input label="Third Selling Point" name="sellingPoint3" />
-          <Field label="Target Platform">
-            <select name="targetPlatform" className="input" required>
-              {platforms.map((platform) => <option key={platform} value={platform}>{platform}</option>)}
-            </select>
-          </Field>
-          <Field label="VacaVaca Reference Lane">
-            <select name="vacaVacaReference" className="input" defaultValue="">
-              <option value="">Let the studio choose if useful</option>
-              {vacaVacaSupport.caseReferences.map((reference) => (
-                <option key={reference.id} value={reference.id}>{reference.title}</option>
-              ))}
-            </select>
-          </Field>
-          <Input label="Target Language" name="targetLanguage" defaultValue="English" required />
-          <Input label="CTA Text" name="ctaText" placeholder="Shop Now / Try Free / Join Waitlist" required />
-          <Input label="Contact Email" name="contactEmail" type="email" required />
-          <Input label="Contact Handle" name="contactHandle" placeholder="Optional" />
-          <Input label="Expected Budget" name="budgetRange" defaultValue={recommendedPlan} placeholder="$249 pilot / $399 polished ad / $1,499 test pack" />
-          <Input label="Anything to Avoid" name="thingsToAvoid" />
-        </div>
-        <div className="mt-5 grid gap-5 md:grid-cols-2">
-          <Textarea label="Creative Reference Links" name="creativeReferenceLinks" placeholder="Optional: VacaVaca work, competitor ad, mood reference, YouTube/TikTok/Bilibili link" />
-          <Textarea label="Creator / Style Fit Notes" name="creatorFitNotes" placeholder="Optional: the kind of creator lane, visual energy, or award-style reference you want us to consider" />
-        </div>
-        <div className="mt-6 grid gap-3 md:grid-cols-2">
-          <label className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4 text-sm text-white/70"><input type="checkbox" name="needHumanOptimization" />I want creator review</label>
-          <label className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4 text-sm text-white/70"><input type="checkbox" name="needMultipleVersions" />I want multiple versions</label>
-        </div>
-        <p className="mt-6 text-sm text-white/42">No payment is required now. We will confirm scope before production starts.</p>
-        {error ? <div className="mt-6 rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-100">{error}</div> : null}
-        <button type="submit" disabled={isSubmitting} className="mt-8 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-white/85 disabled:cursor-not-allowed disabled:opacity-60">
-          {isSubmitting ? "Submitting..." : "Submit Brief"}
-        </button>
-      </form>
+
+        <form onSubmit={handleSubmit} className="vacat-card vacat-card-glow rounded-[1.75rem] p-6 md:p-8">
+          <input type="hidden" name="sourceReviewId" value={sourceReviewId} />
+          <input type="hidden" name="sourceChannel" value={sourceReviewId ? "creative_review" : templateId ? "creative_menu" : "direct"} />
+          <input type="hidden" name="plan" value={mappedOrderPlan} />
+          {recommendedPlan ? <div className="mb-6 rounded-2xl border border-[rgba(202,254,97,0.18)] bg-[rgba(202,254,97,0.07)] p-4 text-sm text-[var(--text3)]">Recommended route: <span className="text-[var(--text)]">{recommendedPlan}</span></div> : null}
+          {sourceReviewId ? <div className="mb-6 rounded-2xl border border-[rgba(202,254,97,0.18)] bg-[rgba(202,254,97,0.07)] p-4 text-sm text-[var(--text3)]">Source review: <span className="text-[var(--text)]">{sourceReviewId}</span></div> : null}
+          {selectedTemplate ? <SelectedTemplateCard template={selectedTemplate} /> : null}
+          <div className="mb-8 rounded-[1.5rem] border border-[rgba(202,254,97,0.18)] bg-[rgba(202,254,97,0.07)] p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold)]">VACAT reference layer</p>
+            <p className="mt-3 text-sm leading-6 text-[var(--text3)]">
+              References from VACAT works help VacaVaca Studio understand visual ambition, creator-lane fit and production complexity. The project still stays inside one managed studio workflow.
+            </p>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2">
+            <Field label="Preferred Creative Direction">
+              <select name="selectedTemplateId" value={templateId} onChange={(event) => setTemplateId(event.target.value)} className="input" required>
+                <option value="">Select a direction</option>
+                {templates.map((template) => <option key={template.id} value={template.id}>{template.title}</option>)}
+              </select>
+            </Field>
+            <Input label="Organization / Brand / Project Name" name="brandName" required />
+            <Input label="Work Title or Campaign Name" name="productName" required />
+            <Input label="Project Link" name="productUrl" type="url" required />
+            <Input label="Asset Links" name="productAssetLinks" placeholder="Drive, Dropbox, website, deck, references" required />
+            <Input label="Identity Asset Link" name="logoAssetLinks" placeholder="Logo, event identity, city/IP mark, visual guideline" />
+            <Input label="Core Message" name="sellingPoint1" required />
+            <Input label="Visual Story / Scene Direction" name="sellingPoint2" />
+            <Input label="Audience or Use Scenario" name="sellingPoint3" />
+            <Field label="Target Format">
+              <select name="targetPlatform" className="input" required>
+                {platforms.map((platform) => <option key={platform} value={platform}>{platform}</option>)}
+              </select>
+            </Field>
+            <Field label="VACAT Work Reference">
+              <select name="vacaVacaReference" className="input" defaultValue="">
+                <option value="">Let the studio choose if useful</option>
+                {studioWorks.map((work) => (
+                  <option key={work.slug} value={work.slug}>{work.title}</option>
+                ))}
+              </select>
+            </Field>
+            <Input label="Target Language" name="targetLanguage" defaultValue="English" required />
+            <Input label="Desired Action / Ending" name="ctaText" placeholder="Visit site / Join event / Apply / Watch full film" />
+            <Input label="Contact Email" name="contactEmail" type="email" required />
+            <Input label="Contact Handle" name="contactHandle" placeholder="Optional" />
+            <Input label="Expected Budget" name="budgetRange" defaultValue={recommendedPlan} placeholder="$300 concept / $900 key visual / $3,500 premium visual film" />
+            <Input label="Anything to Avoid" name="thingsToAvoid" />
+          </div>
+          <div className="mt-5 grid gap-5 md:grid-cols-2">
+            <Textarea label="Creative Reference Links" name="creativeReferenceLinks" placeholder="VACAT work, competitor film, exhibition reference, mood board, YouTube/TikTok/Bilibili link" />
+            <Textarea label="Creator / Style Fit Notes" name="creatorFitNotes" placeholder="Creator lane, visual energy, art direction, story atmosphere or event context" />
+          </div>
+          <div className="mt-6 grid gap-3 md:grid-cols-2">
+            <label className="vacat-card flex items-center gap-3 rounded-2xl p-4 text-sm text-[var(--text3)]"><input type="checkbox" name="needHumanOptimization" />I need art-direction review</label>
+            <label className="vacat-card flex items-center gap-3 rounded-2xl p-4 text-sm text-[var(--text3)]"><input type="checkbox" name="needMultipleVersions" />I need multiple visual directions</label>
+          </div>
+          <p className="mt-6 text-sm text-[var(--text3)]">No payment is required now. VacaVaca Studio will confirm scope before production starts.</p>
+          {error ? <div className="mt-6 rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-100">{error}</div> : null}
+          <button type="submit" disabled={isSubmitting} className="vacat-button-primary mt-8 px-6 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-60">
+            {isSubmitting ? "Submitting..." : "Submit Creative Brief"}
+          </button>
+        </form>
+      </div>
     </main>
   );
 }
@@ -140,14 +144,14 @@ function mapRecommendedServiceToOrderPlan(service: string): OrderPlan {
 
 function SelectedTemplateCard({ template }: { template: Template }) {
   return (
-    <div className="mb-8 grid gap-5 rounded-[1.5rem] border border-white/[0.08] bg-white/[0.04] p-4 md:grid-cols-[160px_1fr]">
+    <div className="vacat-card mb-8 grid gap-5 rounded-[1.5rem] p-4 md:grid-cols-[160px_1fr]">
       <img src={template.thumbnailUrl} alt={template.title} className="aspect-[9/12] w-full rounded-[1rem] object-cover" />
       <div className="flex flex-col justify-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/42">Preferred style</p>
-        <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white">{template.title}</h2>
-        <div className="mt-4 flex flex-wrap gap-2 text-sm text-white/58">
-          <span className="rounded-full border border-white/10 px-3 py-1">Style preview</span>
-          <span className="rounded-full border border-white/10 px-3 py-1">From {formatCurrency(template.priceFrom)}</span>
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold)]">Selected creative direction</p>
+        <h2 className="mt-3 text-2xl font-semibold tracking-tight text-[var(--text)]">{template.title}</h2>
+        <div className="mt-4 flex flex-wrap gap-2 text-sm text-[var(--text3)]">
+          <span className="vacat-chip rounded-full px-3 py-1">VACAT-inspired</span>
+          <span className="vacat-chip rounded-full px-3 py-1">From {formatCurrency(template.priceFrom)}</span>
         </div>
       </div>
     </div>
@@ -155,7 +159,7 @@ function SelectedTemplateCard({ template }: { template: Template }) {
 }
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return <label className="block"><span className="mb-2 block text-sm font-medium text-white/74">{label}</span>{children}</label>;
+  return <label className="block"><span className="mb-2 block text-sm font-medium text-[var(--text2)]">{label}</span>{children}</label>;
 }
 
 function Input({ label, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label: string }) {
