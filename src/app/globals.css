@@ -73,6 +73,22 @@ a {
   color: #050505;
 }
 
+.brand-mark {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(202, 254, 97, 0.35);
+  background: rgba(202, 254, 97, 0.08);
+  color: var(--vacat-gold);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  box-shadow: 0 0 28px rgba(202, 254, 97, 0.11);
+}
+
 .video-shell {
   background:
     radial-gradient(circle at 50% 0%, rgba(202, 254, 97, 0.16), rgba(255,255,255,0.04) 36%, rgba(0,0,0,0.2) 100%),
