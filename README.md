@@ -2,9 +2,21 @@
 
 A lightweight MVP for a creator-led product ad studio with free ad creative review and order intake workflow.
 
+## Current product principle
+
+AI REMIX should stay on one commercial service flow:
+
+```txt
+Trust backing -> Template / style selection -> Submit brief -> Backstage fulfillment -> Approved case return
+```
+
+VacaVaca / VACAT is integrated as a support layer for trust, references and creator capability signals. It is not integrated as a full public marketplace, open creator bidding system, community feed, user dashboard or transaction platform.
+
 ## What this includes
 
 - Premium dark landing page
+- VacaVaca / VACAT ecosystem support block
+- VacaVaca-backed template reference lanes
 - Free Ad Creative Review funnel
 - Prompt-system based AI ad diagnosis
 - AI-assisted structured ad review report
@@ -14,6 +26,7 @@ A lightweight MVP for a creator-led product ad studio with free ad creative revi
 - Template/style library
 - Template detail pages
 - Production request form
+- Optional VacaVaca reference and creator-lane notes on order brief
 - Persistent order creation
 - Persistent ad review creation
 - Public order request rate limits
@@ -22,7 +35,7 @@ A lightweight MVP for a creator-led product ad studio with free ad creative revi
 - Admin dashboard
 - Admin free reviews list/detail pages
 - Admin orders list
-- Admin order detail/edit page
+- Admin order detail/edit page with VacaVaca reference visibility
 - Checklist tracking
 - 20 seed templates
 - Local JSON stores
@@ -40,6 +53,27 @@ A lightweight MVP for a creator-led product ad studio with free ad creative revi
 - Creator dashboard
 - Full template CMS
 - Case study CMS
+- Public VacaVaca creator marketplace
+- Public creator bidding / matching flow
+- Community feed import from VacaVaca
+
+## VacaVaca integration boundary
+
+The integration uses:
+
+```txt
+src/data/vacavaca-support.ts
+src/components/VacaVacaSupport.tsx
+```
+
+The support layer carries the VacaVaca / VACAT proof points:
+
+- 4,646 second-edition submissions
+- 76 finalist / awarded works
+- 92 participating universities
+- creator capability lanes for premium visual, game / character, music visual and product demo directions
+
+These signals help overseas brands trust the studio and help the admin team scope production. They do not change the order flow, pricing flow, admin review flow or case-permission rule.
 
 ## Install
 
@@ -101,8 +135,9 @@ Before inviting external users:
 3. Use HTTPS so the secure admin cookie can be saved.
 4. Submit a test order through /start.
 5. Confirm the order appears in /admin/orders.
-6. Submit one /free-ad-review request and confirm it appears in /admin/ad-reviews.
-7. Back up data/orders.json and data/ad-reviews.json before each public-beta push.
+6. Confirm the order stores optional VacaVaca reference fields if submitted.
+7. Submit one /free-ad-review request and confirm it appears in /admin/ad-reviews.
+8. Back up data/orders.json and data/ad-reviews.json before each public-beta push.
 ```
 
 Recommended public-beta positioning:
@@ -117,7 +152,7 @@ Limited pilot slots for selected product brands. Submit a product ad brief; we r
 /                              Home
 /free-ad-review                Free Ad Creative Review form
 /ad-review/[reviewId]          Free Ad Creative Review result
-/templates                     Style library
+/templates                     Style library with VacaVaca reference lanes
 /templates/[templateId]        Style detail
 /start                         Production request form
 /start?template=T001           Request form with selected style
@@ -168,12 +203,14 @@ The prompt system defines:
 1. Customer submits `/start` form.
 2. `/api/orders` validates the public request and applies 24-hour email/IP submission limits.
 3. If the order came from a free review, `sourceReviewId` and `sourceChannel=free_ad_review` are stored on the order.
-4. The app creates an order in `data/orders.json`.
-5. Customer lands on `/thank-you?order=ORDER_ID`.
-6. Admin logs in at `/admin/login`.
-7. Admin reviews orders at `/admin/orders`.
-8. Admin updates quote, status, notes, cost, delivery link and checklist.
-9. Admin can open the source free review from an order detail page.
+4. Optional `vacaVacaReference`, `creativeReferenceLinks` and `creatorFitNotes` are stored as brief context only.
+5. The app creates an order in `data/orders.json`.
+6. Customer lands on `/thank-you?order=ORDER_ID`.
+7. Admin logs in at `/admin/login`.
+8. Admin reviews orders at `/admin/orders`.
+9. Admin updates quote, status, notes, cost, delivery link and checklist.
+10. Admin can open the source free review from an order detail page.
+11. Finished work becomes a public case only when `canBePublicCase` is explicitly checked.
 
 ## Add a new template
 
