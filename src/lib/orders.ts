@@ -102,6 +102,7 @@ export async function createOrder(input: Record<string, unknown>, clientIp?: str
   const id = `ORD-${Date.now()}-${Math.random().toString(36).slice(2, 7).toUpperCase()}`;
   const sourceReviewId = optionalString(input.sourceReviewId, 120);
   const sourceChannel = normalizeSourceChannel(input.sourceChannel, sourceReviewId);
+  const creativeReferenceLinks = splitLinks(input.creativeReferenceLinks);
 
   const order: Order = {
     id,
@@ -130,6 +131,9 @@ export async function createOrder(input: Record<string, unknown>, clientIp?: str
     existingAdsOrReferences: optionalString(input.existingAdsOrReferences, 2000),
     thingsToAvoid: optionalString(input.thingsToAvoid, 1200),
     budgetRange: optionalString(input.budgetRange, 240),
+    vacaVacaReference: optionalString(input.vacaVacaReference, 120),
+    creativeReferenceLinks: creativeReferenceLinks.length ? creativeReferenceLinks : undefined,
+    creatorFitNotes: optionalString(input.creatorFitNotes, 1600),
     needHumanOptimization: toBool(input.needHumanOptimization),
     needMultipleVersions: toBool(input.needMultipleVersions),
     deliveryDeadline: optionalString(input.deliveryDeadline, 240),
