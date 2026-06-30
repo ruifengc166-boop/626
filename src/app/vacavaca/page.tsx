@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { awardAuthority, jury, studioMetrics, studioWorks } from "@/data/vacavaca-studio";
+import { awardAuthority, jury, studioEvents, studioMetrics, studioWorks } from "@/data/vacavaca-studio";
 
 export const dynamic = "force-dynamic";
 
-const featuredWorks = studioWorks.slice(0, 4);
+const featuredWorks = studioWorks.slice(0, 6);
 
 export default function VacaVacaOverviewPage() {
   return (
@@ -11,12 +11,30 @@ export default function VacaVacaOverviewPage() {
       <section className="vv-content-hero" id="overview">
         <div className="vv-container">
           <p className="vacat-eyebrow">Learn about VACAT</p>
-          <h1>VACAT is the award behind the VacaVaca Studio service.</h1>
+          <h1>VACAT is the AI visual creativity award behind VacaVaca Studio.</h1>
           <p>
-            VACAT is the AI visual creativity award. VacaVaca Studio is the creative service that uses VACAT's works, creators and professional credibility as references for commissioned visual projects.
+            VACAT stands for Vision Arts Created by AI Technology. It is the award and creator ecosystem that gives VacaVaca Studio its reference works, creator capability signals and professional credibility.
           </p>
           <div className="vv-metric-row">
             {studioMetrics.map((metric) => <div key={metric.label} className="vv-data-card"><strong>{metric.value}</strong><span>{metric.label}</span></div>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="vv-container vv-section" id="award">
+        <SectionHeader title="What VACAT Proves" more="Award authority and industry credibility" />
+        <div className="vv-award-intro">
+          <div>
+            <h2>An award system for AI visual creativity.</h2>
+            <p>
+              VACAT organizes AI film, AI image, commercial creative, visual art and poster works into a visible industry reference system. It is not the service itself; it is the award foundation that supports the VacaVaca Studio service.
+            </p>
+            <p>
+              VacaVaca Studio uses VACAT's awarded works, creators, events and jury credibility to help clients choose a stronger visual direction before commissioning a custom creative work.
+            </p>
+          </div>
+          <div className="vv-authority-panel">
+            {awardAuthority.map((item) => <p key={item}>{item}</p>)}
           </div>
         </div>
       </section>
@@ -28,26 +46,21 @@ export default function VacaVacaOverviewPage() {
         </div>
       </section>
 
-      <section className="vv-container vv-section" id="award">
-        <SectionHeader title="VACAT Influence and Authority" more="Why the award matters" />
-        <div className="vv-award-intro">
-          <div>
-            <h2>Vision Arts Created by AI Technology.</h2>
-            <p>
-              VACAT is an AI visual creativity award and creator-community platform. It organizes AI film, AI image, commercial creative, visual-art and poster works into an industry-facing reference system.
-            </p>
-            <p>
-              VacaVaca Studio uses that system as a creative foundation: works become visual references, creators become capability lanes, events become community proof, and expert judging strengthens client trust.
-            </p>
-          </div>
-          <div className="vv-authority-panel">
-            {awardAuthority.map((item) => <p key={item}>{item}</p>)}
-          </div>
+      <section className="vv-container vv-section" id="events">
+        <SectionHeader title="Award Events" more={<Link href="/vacavaca/events">View events →</Link>} />
+        <div className="vv-referral">
+          {studioEvents.map((event) => (
+            <Link key={event.title} href="/vacavaca/events" className="vv-referral-step">
+              <strong>{event.date}</strong>
+              <h3>{event.title}</h3>
+              <p>{event.text}</p>
+            </Link>
+          ))}
         </div>
       </section>
 
       <section className="vv-container vv-section" id="authority">
-        <SectionHeader title="Expert Layer" more="Jury and professional credibility" />
+        <SectionHeader title="Expert Jury" more="Professional credibility behind the award" />
         <div className="vv-judges">
           {jury.slice(0, 6).map((item) => {
             const [name, title] = item.split(" — ");
@@ -57,20 +70,13 @@ export default function VacaVacaOverviewPage() {
       </section>
 
       <section className="vv-container vv-section">
-        <SectionHeader title="Explore VACAT References" more="Works, creators and events live on focused pages" />
-        <div className="vv-referral">
-          <Link href="/vacavaca/works" className="vv-referral-step"><strong>Works</strong><h3>Representative work library</h3><p>Browse international-facing VACAT works with reference links and commission entry points.</p></Link>
-          <Link href="/vacavaca/creators" className="vv-referral-step"><strong>Creators</strong><h3>Creator capability lanes</h3><p>See the creator roster and the production directions each lane supports.</p></Link>
-          <Link href="/vacavaca/events" className="vv-referral-step"><strong>Events</strong><h3>Community and event proof</h3><p>Review award ceremony, workshop, Battle Day and exhibition formats.</p></Link>
-          <Link href="/templates" className="vv-referral-step"><strong>Studio</strong><h3>Creative commission menu</h3><p>Choose a VACAT-inspired direction and start a VacaVaca Studio brief.</p></Link>
-        </div>
-      </section>
-
-      <section className="vv-container vv-section">
         <div className="vv-final-panel">
-          <h2>Commission a visual creative work from VacaVaca Studio.</h2>
-          <p>Start from a representative VACAT work or creator lane, then submit a visual brief for a quote and production plan.</p>
-          <Link href="/start" className="vacat-button-primary px-6 py-3 text-sm">Commission Work</Link>
+          <h2>Use VACAT references in a VacaVaca Studio brief.</h2>
+          <p>Browse the award context here, then return to VacaVaca Studio to choose a direction or submit a commission brief.</p>
+          <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+            <Link href="/templates" className="vacat-button-secondary px-6 py-3 text-sm">Browse Creative Menu</Link>
+            <Link href="/start" className="vacat-button-primary px-6 py-3 text-sm">Submit Commission Brief</Link>
+          </div>
         </div>
       </section>
     </main>
