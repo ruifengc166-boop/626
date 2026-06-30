@@ -160,7 +160,7 @@ export async function updateOrder(id: string, input: Record<string, unknown>) {
     recommendedTemplateId: optionalString(input.recommendedTemplateId),
     recommendedPlan: (optionalString(input.recommendedPlan) as OrderPlan) || undefined,
     estimatedDeliveryTime: optionalString(input.estimatedDeliveryTime),
-    estimatedModelCostUsd: optionalNumber(input.estimatedDeliveryTime),
+    estimatedModelCostUsd: optionalNumber(input.estimatedModelCostUsd),
     estimatedHumanMinutes: optionalNumber(input.estimatedHumanMinutes),
     quoteUsd: optionalNumber(input.quoteUsd),
     internalNotes: optionalString(input.internalNotes, 4000),
