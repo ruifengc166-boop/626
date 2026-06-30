@@ -39,7 +39,7 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/40">{template.id}</p>
           <h1 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-white md:text-6xl">{template.title}</h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-white/60">
-            A {template.durationSec}s {template.aspectRatio} master style for {template.suitableProducts.slice(0, 4).join(", ")}.
+            A VACAT-inspired creative direction for {template.suitableProducts.slice(0, 4).join(", ")}. Use it to describe the desired visual ambition before VacaVaca Studio confirms scope and quote.
           </p>
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
             <Info label="Price From" value={`${formatCurrency(template.priceFrom)}+`} />
@@ -49,23 +49,23 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href={`/start?template=${template.id}`} className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-white/85">
-              Start With This Style
+              Use This Direction
             </Link>
             <Link href="/templates" className="rounded-full border border-white/10 bg-white/[0.06] px-6 py-3 text-sm font-medium text-white transition hover:border-white/25 hover:bg-white/[0.1]">
-              Back to Library
+              Back to Directions
             </Link>
           </div>
         </div>
       </div>
 
       <div className="mt-16 grid gap-6 lg:grid-cols-3">
-        <DetailBlock title="Suitable Products" items={template.suitableProducts} />
+        <DetailBlock title="Good For" items={template.suitableProducts} />
         <DetailBlock title="Not Suitable For" items={template.unsuitableProducts} />
-        <DetailBlock title="Required Assets" items={template.requiredAssets} />
+        <DetailBlock title="Needed Brief Materials" items={template.requiredAssets} />
       </div>
 
       <section className="mt-8 rounded-[1.75rem] border border-white/[0.08] bg-[#0d0d0d] p-7 shadow-2xl shadow-black/20">
-        <h2 className="text-2xl font-semibold tracking-tight text-white">Replaceable Content</h2>
+        <h2 className="text-2xl font-semibold tracking-tight text-white">Brief Elements</h2>
         <div className="mt-6 grid gap-3 md:grid-cols-2">
           {template.replaceableSlots.map((slot) => (
             <div key={slot.slotName} className="rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4">
