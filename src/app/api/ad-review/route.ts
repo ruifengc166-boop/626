@@ -3,7 +3,7 @@ import type { AdCreativeReviewInput, AdReviewPlatform } from "@/lib/ad-review-ty
 import { generateAdCreativeReview, generateFallbackAdCreativeReview } from "@/lib/ad-review-ai";
 import { countRecentReviews, createAdReview, findReusableAdReview } from "@/lib/ad-reviews";
 
-const platforms: AdReviewPlatform[] = ["TikTok", "Instagram Reels", "YouTube Shorts", "Meta Ads", "Website", "Event Screen", "Exhibition Screen", "Pitch Deck", "Other"];
+const platforms: AdReviewPlatform[] = ["TikTok", "Instagram Reels", "YouTube Shorts", "Meta Ads", "Website", "Event Screen", "Exhibition Screen", "Pitch Deck", "Brand Film", "Key Visual", "Other"];
 
 export async function POST(request: Request) {
   try {
