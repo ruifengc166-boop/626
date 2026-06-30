@@ -9,8 +9,8 @@ export default function VacaVacaWorksPage() {
       <section className="vv-content-hero">
         <div className="vv-container">
           <p className="vacat-eyebrow">VACAT Reference Works</p>
-          <h1>Watch the works before choosing a direction.</h1>
-          <p>These selected VACAT works are the proof layer behind VacaVaca Studio. Use them as references for AI films, key visuals, music visuals, event screens, city image films and IP concept projects.</p>
+          <h1>Browse selected VACAT reference works.</h1>
+          <p>These selected works are the proof layer behind VacaVaca Studio. Use them as visual references for AI films, key visuals, music visuals, event screens, city image films and IP concept projects.</p>
         </div>
       </section>
       <section className="vv-container vv-section">
@@ -29,7 +29,7 @@ export default function VacaVacaWorksPage() {
                 <div className="meta"><span>{work.creator}</span><span>{work.track}</span></div>
                 <p className="mt-3 text-xs leading-5 text-[var(--text3)]">{work.summary}</p>
                 <div className="vv-card-actions">
-                  <Link href={`/vacavaca/works/${work.slug}`} className="vv-btn-nav">View work</Link>
+                  <Link href={`/vacavaca/works/${work.slug}`} className="vv-btn-nav">View reference</Link>
                   <Link href={`/start?vacaVacaReference=${work.slug}`} className="vv-btn-reg">Use reference</Link>
                 </div>
               </div>
