@@ -31,8 +31,9 @@ export function TemplateCard({ template, showSuitableProducts = false }: { templ
         </div>
       </div>
       <div className="flex flex-1 flex-col p-5">
-        <Link href={`/templates/${template.id}`} className="transition hover:text-[var(--gold)]">
-          <h3 className="text-lg font-semibold tracking-tight text-[var(--text)]">{template.title}</h3>
+        <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[var(--gold)]">{template.referenceWork}</p>
+        <Link href={`/templates/${template.id}`} className="mt-2 transition hover:text-[var(--gold)]">
+          <h3 className="text-xl font-semibold tracking-[-0.035em] text-[var(--text)]">{template.title}</h3>
         </Link>
         <div className="mt-4 flex flex-wrap gap-2">
           {template.category.slice(0, 2).map((cat) => (
