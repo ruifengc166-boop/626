@@ -9,13 +9,13 @@ export default function VacaVacaWorksPage() {
       <section className="vv-content-hero">
         <div className="vv-container">
           <p className="vacat-eyebrow">VACAT Award Archive</p>
-          <h1>Browse selected VACAT award records.</h1>
-          <p>These selected works are displayed as non-commercial award records. They demonstrate VACAT's curatorial standard, creator ecology and industry influence; they are not offered for reuse, adaptation, licensing or commercial production by VacaVaca Studio.</p>
+          <h1>Selected records from the VACAT Award.</h1>
+          <p>These works are presented as award records. They show the range of AI visual creativity recognized by VACAT, but they are not offered for reuse, adaptation, licensing or commercial production by VacaVaca Studio.</p>
         </div>
       </section>
       <section className="vv-container vv-section">
         <div className="mb-8 rounded-2xl border border-[rgba(202,254,97,0.16)] bg-[rgba(202,254,97,0.06)] p-5 text-sm leading-7 text-[var(--text3)]">
-          Submitted VACAT works remain protected by their creators and are shown here only as award records. Any commercial project from VacaVaca Studio is produced separately through an original brief and authorized creators or client-owned/licensed assets.
+          Award submissions remain protected by their creators. VacaVaca Studio produces client work separately through original briefs, authorized contributors, and client-owned or licensed materials.
         </div>
         <div className="vv-video-grid">
           {studioWorks.map((work) => (
