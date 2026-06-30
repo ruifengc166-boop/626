@@ -10,10 +10,10 @@ export default function VacaVacaOverviewPage() {
     <main className="vv-content-page">
       <section className="vv-content-hero" id="overview">
         <div className="vv-container">
-          <p className="vacat-eyebrow">Learn about VACAT</p>
-          <h1>VACAT is the AI visual creativity award behind VacaVaca Studio.</h1>
+          <p className="vacat-eyebrow">Why VACAT matters</p>
+          <h1>VACAT is the proof layer behind VacaVaca Studio.</h1>
           <p>
-            VACAT stands for Vision Arts Created by AI Technology. It is the award and creator ecosystem that gives VacaVaca Studio its reference works, creator capability signals and professional credibility.
+            VACAT stands for Vision Arts Created by AI Technology. It gives VacaVaca Studio award-backed references, creator capability signals and professional credibility for commercial AI visual commissions.
           </p>
           <div className="vv-metric-row">
             {studioMetrics.map((metric) => <div key={metric.label} className="vv-data-card"><strong>{metric.value}</strong><span>{metric.label}</span></div>)}
@@ -25,12 +25,12 @@ export default function VacaVacaOverviewPage() {
         <SectionHeader title="What VACAT Proves" more="Award authority and industry credibility" />
         <div className="vv-award-intro">
           <div>
-            <h2>An award system for AI visual creativity.</h2>
+            <h2>An award system that turns visual works into client references.</h2>
             <p>
-              VACAT organizes AI film, AI image, commercial creative, visual art and poster works into a visible industry reference system. It is not the service itself; it is the award foundation that supports the VacaVaca Studio service.
+              VACAT organizes AI film, AI image, commercial creative, visual art and poster works into a visible reference system. It is not the commercial service itself; it is the foundation that supports the VacaVaca Studio service.
             </p>
             <p>
-              VacaVaca Studio uses VACAT's awarded works, creators, events and jury credibility to help clients choose a stronger visual direction before commissioning a custom creative work.
+              VacaVaca Studio uses VACAT's awarded works, creators, events and jury credibility to help clients choose a stronger visual direction before commissioning custom work.
             </p>
           </div>
           <div className="vv-authority-panel">
@@ -40,7 +40,7 @@ export default function VacaVacaOverviewPage() {
       </section>
 
       <section className="vv-container vv-section" id="works">
-        <SectionHeader title="Representative VACAT Works" more={<Link href="/vacavaca/works">View all works →</Link>} />
+        <SectionHeader title="Representative Reference Works" more={<Link href="/vacavaca/works">View all works →</Link>} />
         <div className="vv-video-grid">
           {featuredWorks.map((work) => <WorkCard key={work.slug} work={work} />)}
         </div>
@@ -74,8 +74,8 @@ export default function VacaVacaOverviewPage() {
           <h2>Use VACAT references in a VacaVaca Studio brief.</h2>
           <p>Browse the award context here, then return to VacaVaca Studio to choose a direction or submit a commission brief.</p>
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-            <Link href="/templates" className="vacat-button-secondary px-6 py-3 text-sm">Browse Creative Menu</Link>
-            <Link href="/start" className="vacat-button-primary px-6 py-3 text-sm">Submit Commission Brief</Link>
+            <Link href="/templates" className="vacat-button-secondary px-6 py-3 text-sm">Browse Creative Directions</Link>
+            <Link href="/start" className="vacat-button-primary px-6 py-3 text-sm">Submit Creative Brief</Link>
           </div>
         </div>
       </section>
@@ -90,13 +90,19 @@ function SectionHeader({ title, more }: { title: string; more: React.ReactNode }
 function WorkCard({ work }: { work: typeof studioWorks[number] }) {
   return (
     <article className="vv-video-card">
-      <div className="thumb"><div className="vv-thumb-art">{work.mark}</div></div>
+      <Link href={`/vacavaca/works/${work.slug}`} className="thumb">
+        {work.previewVideoUrl ? (
+          <video src={work.previewVideoUrl} poster={work.posterUrl} className="h-full w-full object-cover" muted loop playsInline preload="metadata" />
+        ) : (
+          <img src={work.posterUrl} alt={work.title} className="h-full w-full object-cover" />
+        )}
+      </Link>
       <div className="body">
         <h4>{work.title}<span className="vv-tag">{work.award}</span></h4>
         <div className="meta"><span>{work.creator}</span><span>{work.track}</span></div>
         <p className="mt-3 text-xs leading-5 text-[var(--text3)]">{work.summary}</p>
         <div className="vv-card-actions">
-          <a href={work.demoUrl} target="_blank" rel="noreferrer" className="vv-btn-nav">Demo link</a>
+          <Link href={`/vacavaca/works/${work.slug}`} className="vv-btn-nav">View work</Link>
           <Link href={`/start?vacaVacaReference=${work.slug}`} className="vv-btn-reg">Use reference</Link>
         </div>
       </div>
