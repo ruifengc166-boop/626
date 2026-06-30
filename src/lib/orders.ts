@@ -1,6 +1,6 @@
 import { promises as fs } from "fs";
 import path from "path";
-import { defaultChecklist, type Order, type OrderPlan, type OrderSourceChannel, type OrderStatus } from "@/lib/order-types";
+import { defaultChecklist, type Order, type OrderPlan, type OrderSourceChannel, type OrderStatus, type OrderTargetFormat } from "@/lib/order-types";
 
 const ordersPath = path.join(process.cwd(), "data", "orders.json");
 const ONE_DAY_MS = 24 * 60 * 60 * 1000;
@@ -197,7 +197,7 @@ function normalizeSourceChannel(value: unknown, sourceReviewId?: string): OrderS
   return sourceReviewId ? "free_ad_review" : undefined;
 }
 
-function normalizeTargetPlatform(value: unknown): Order["targetPlatform"] {
+function normalizeTargetPlatform(value: unknown): OrderTargetFormat {
   const platform = String(value || "").trim().toLowerCase().replace(/[\s-]+/g, "_");
   switch (platform) {
     case "tiktok":
@@ -208,6 +208,20 @@ function normalizeTargetPlatform(value: unknown): Order["targetPlatform"] {
       return "youtube_shorts";
     case "meta_ads":
       return "meta_ads";
+    case "website":
+      return "website";
+    case "exhibition":
+    case "exhibition_screen":
+      return "exhibition_screen";
+    case "event":
+    case "event_screen":
+      return "event_screen";
+    case "pitch_deck":
+      return "pitch_deck";
+    case "brand_film":
+      return "brand_film";
+    case "key_visual":
+      return "key_visual";
     default:
       return "other";
   }
