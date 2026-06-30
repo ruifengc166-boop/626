@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 const items = [
-  ["Choose a VACAT reference", "Start from a representative work, creator lane or visual direction."],
+  ["Choose a VACAT reference", "Start from an award work, creator lane or international visual direction."],
   ["Submit the brief", "Send project goal, assets, format, budget and creative notes."],
-  ["Studio scopes delivery", "VacaVaca Studio confirms route, timeline and price before production."],
+  ["Receive a clear proposal", "VacaVaca Studio replies with the creative route, timeline and quote before production."],
 ];
 
 export function NewAdCTA() {
@@ -12,9 +12,9 @@ export function NewAdCTA() {
       <div className="vacat-card grid gap-6 rounded-[28px] p-7 md:p-9 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <div>
           <p className="vacat-eyebrow">Commission a custom visual work</p>
-          <h2 className="vacat-title mt-4 text-3xl font-medium md:text-5xl">Turn VacaVaca references into a scoped production brief.</h2>
+          <h2 className="vacat-title mt-4 text-3xl font-medium md:text-5xl">Turn a VACAT reference into a VacaVaca Studio brief.</h2>
           <p className="mt-5 max-w-2xl text-base leading-7 text-[var(--text3)]">
-            This is the commercial front desk: use VACAT works and creator lanes as trust and direction, then submit a real brief for visual creative production.
+            VACAT provides the award-backed references. VacaVaca Studio turns those references into commissioned visual works for brands, products, events and institutions.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <Link href="/start" className="vacat-button-primary px-6 py-3 text-sm">
