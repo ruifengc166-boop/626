@@ -21,6 +21,19 @@ export type OrderPlan =
 
 export type OrderSourceChannel = "direct" | "template" | "free_ad_review" | "manual";
 
+export type OrderTargetFormat =
+  | "tiktok"
+  | "instagram_reels"
+  | "youtube_shorts"
+  | "meta_ads"
+  | "website"
+  | "exhibition_screen"
+  | "event_screen"
+  | "pitch_deck"
+  | "brand_film"
+  | "key_visual"
+  | "other";
+
 export type ChecklistItem = {
   label: string;
   done: boolean;
@@ -44,7 +57,7 @@ export type Order = {
   sellingPoint1: string;
   sellingPoint2?: string;
   sellingPoint3?: string;
-  targetPlatform: "tiktok" | "instagram_reels" | "youtube_shorts" | "meta_ads" | "other";
+  targetPlatform: OrderTargetFormat;
   targetLanguage: string;
   ctaText: string;
   contactEmail: string;
@@ -101,18 +114,18 @@ export const orderPlans: OrderPlan[] = [
 ];
 
 export const defaultChecklist: ChecklistItem[] = [
-  "Check product assets",
-  "Check logo asset",
-  "Check selected template fit",
-  "Check VacaVaca reference fit",
-  "Replace product image",
-  "Replace logo",
-  "Replace captions",
-  "Replace CTA",
-  "Generate voiceover",
-  "Export 9:16",
-  "Check product accuracy",
-  "Check logo accuracy",
+  "Check project assets",
+  "Check identity assets",
+  "Check selected direction fit",
+  "Check VACAT reference fit",
+  "Confirm core subject",
+  "Confirm visual story",
+  "Confirm CTA or ending",
+  "Generate / produce visual assets",
+  "Art-direction review",
+  "Export target format",
+  "Check project accuracy",
+  "Check identity accuracy",
   "Check caption spelling",
   "Check audio",
   "Check visual errors",
