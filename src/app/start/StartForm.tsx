@@ -55,7 +55,7 @@ export function StartForm({ templates }: { templates: Template[] }) {
           <p className="vacat-eyebrow mb-3">VacaVaca Studio Commission</p>
           <h1 className="vacat-title text-4xl font-semibold md:text-6xl">Commission a visual creative work.</h1>
           <p className="mt-5 text-lg leading-8 text-[var(--text3)]">
-            Send the project background, target format, core subject and VACAT-style reference. The studio confirms creative scope, production route and price before payment.
+            Send the project background, target format, core subject and VACAT Award reference. VacaVaca Studio replies with the creative route, timeline and quote before payment.
           </p>
         </div>
 
@@ -69,7 +69,7 @@ export function StartForm({ templates }: { templates: Template[] }) {
           <div className="mb-8 rounded-[1.5rem] border border-[rgba(202,254,97,0.18)] bg-[rgba(202,254,97,0.07)] p-5">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold)]">VACAT reference layer</p>
             <p className="mt-3 text-sm leading-6 text-[var(--text3)]">
-              References from VACAT works help VacaVaca Studio understand visual ambition, creator-lane fit and production complexity. The project still stays inside one managed studio workflow.
+              VACAT is the award. VacaVaca Studio uses its works as references to understand visual ambition, creator-lane fit and production complexity.
             </p>
           </div>
           <div className="grid gap-5 md:grid-cols-2">
@@ -115,7 +115,7 @@ export function StartForm({ templates }: { templates: Template[] }) {
             <label className="vacat-card flex items-center gap-3 rounded-2xl p-4 text-sm text-[var(--text3)]"><input type="checkbox" name="needHumanOptimization" />I need art-direction review</label>
             <label className="vacat-card flex items-center gap-3 rounded-2xl p-4 text-sm text-[var(--text3)]"><input type="checkbox" name="needMultipleVersions" />I need multiple visual directions</label>
           </div>
-          <p className="mt-6 text-sm text-[var(--text3)]">No payment is required now. VacaVaca Studio will confirm scope before production starts.</p>
+          <p className="mt-6 text-sm text-[var(--text3)]">No payment is required now. VacaVaca Studio will reply with a quote before production starts.</p>
           {error ? <div className="mt-6 rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-100">{error}</div> : null}
           <button type="submit" disabled={isSubmitting} className="vacat-button-primary mt-8 px-6 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-60">
             {isSubmitting ? "Submitting..." : "Submit Creative Brief"}
