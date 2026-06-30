@@ -28,8 +28,8 @@ const achievements = [
   },
   {
     icon: "🤝",
-    title: "Industry conversion",
-    body: "Previous editions generated cooperation leads, project conversations and commercial connection opportunities between creators, institutions and brands.",
+    title: "Industry connection",
+    body: "Previous editions generated cooperation leads and project conversations across creators, institutions and brands, while submitted works remain protected award records.",
   },
   {
     icon: "📚",
@@ -47,16 +47,16 @@ const tracks = [
   {
     group: "AI Video",
     rows: [
-      ["AI live-action narrative film", "ANIMA (Part I), Green Screen, Longmen Inn 2067 and other selected works"],
+      ["AI live-action narrative film", "Narrative works, cinematic AI shorts and selected award records"],
       ["AI animated narrative film", "Animated story works, stylized narrative films and worldbuilding shorts"],
-      ["AI commercial creative film", "Cultural, product, city and brand-facing AI visual films"],
-      ["AI visual art film", "ECHO, Memory on the Run and other experimental moving-image works"],
+      ["AI commercial creative film", "Cultural, product, city and brand-facing AI visual films submitted to the award"],
+      ["AI visual art film", "Experimental moving-image works and visual art records"],
     ],
   },
   {
     group: "AI Image",
     rows: [
-      ["AI art poster", "EVE NO.1, Human Machine and other key visual / poster works"],
+      ["AI art poster", "Poster, key visual and image-based award records"],
     ],
   },
 ];
@@ -67,7 +67,7 @@ export default function VacaVacaOverviewPage() {
       <section className="vv-content-hero" id="overview">
         <div className="vv-container">
           <p className="vacat-eyebrow">About VACAT Award</p>
-          <h1>VACAT is the award engine behind VacaVaca Studio.</h1>
+          <h1>VACAT is the non-commercial award engine behind VacaVaca Studio.</h1>
           <p>
             VACAT stands for Vision Arts Created by AI Technology. It is a global AI visual creativity award platform that discovers works, creators and new production directions for AI-native visual culture.
           </p>
@@ -96,13 +96,14 @@ export default function VacaVacaOverviewPage() {
               VACAT is not only a showcase of AI-generated images and videos. It is an award system built around evaluation, creator discovery, public exhibition, professional judging, industry connection and applied research.
             </p>
             <p>
-              For VacaVaca Studio, VACAT provides the proof layer: awarded works, creator capability signals, judging authority, university participation, exhibition activity and industry cooperation context.
+              For VacaVaca Studio, VACAT provides a proof layer: curatorial standards, creator ecology, judging authority, university participation, exhibition activity and industry context. Submitted works are not used as commercial production assets.
             </p>
           </div>
           <div className="vv-authority-panel">
             {awardAuthority.map((item) => <p key={item}>{item}</p>)}
           </div>
         </div>
+        <RightsNotice />
       </section>
 
       <section className="vv-container vv-section" id="achievements">
@@ -131,7 +132,7 @@ export default function VacaVacaOverviewPage() {
       </section>
 
       <section className="vv-container vv-section" id="works">
-        <SectionHeader title="Representative Award Works" more={<Link href="/vacavaca/works">View all works →</Link>} />
+        <SectionHeader title="Representative Award Records" more={<Link href="/vacavaca/works">View all records →</Link>} />
         <div className="vv-video-grid">
           {featuredWorks.map((work) => <WorkCard key={work.slug} work={work} />)}
         </div>
@@ -143,7 +144,7 @@ export default function VacaVacaOverviewPage() {
           <OrgCard title="Guidance" body="Shenzhen publicity, cyberspace and cultural authorities have supported the broader award and event context." />
           <OrgCard title="Hosts and operators" body="The award has connected local government, film and media platforms, cultural-technology operators and AI visual creative organizations." />
           <OrgCard title="Industry partners" body="VACAT works as a bridge between creators, universities, institutions, technology companies and commercial project demand." />
-          <OrgCard title="Studio connection" body="VacaVaca Studio uses the award ecosystem as a reference and talent layer for managed commercial creative work." />
+          <OrgCard title="Studio connection" body="VacaVaca Studio uses the award ecosystem as a credibility and talent-context layer; commercial projects are produced separately with original briefs and authorization." />
         </div>
       </section>
 
@@ -191,10 +192,10 @@ export default function VacaVacaOverviewPage() {
 
       <section className="vv-container vv-section">
         <div className="vv-final-panel">
-          <h2>Use VACAT references in a VacaVaca Studio brief.</h2>
-          <p>Explore the award context here, then choose a creative direction or submit a commission brief for custom AI visual work.</p>
+          <h2>VACAT gives credibility. VacaVaca Studio creates original commercial work.</h2>
+          <p>Explore the award context here, then choose a commercial direction or submit a brief for original AI visual production with proper authorization.</p>
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-            <Link href="/templates" className="vacat-button-secondary px-6 py-3 text-sm">Browse Creative Directions</Link>
+            <Link href="/templates" className="vacat-button-secondary px-6 py-3 text-sm">Browse Commercial Directions</Link>
             <Link href="/start" className="vacat-button-primary px-6 py-3 text-sm">Submit Creative Brief</Link>
           </div>
         </div>
@@ -205,6 +206,14 @@ export default function VacaVacaOverviewPage() {
 
 function SectionHeader({ title, more }: { title: string; more: ReactNode }) {
   return <div className="vv-section-header"><h2>{title}</h2><span className="more">{more}</span></div>;
+}
+
+function RightsNotice() {
+  return (
+    <div className="rounded-2xl border border-[rgba(202,254,97,0.16)] bg-[rgba(202,254,97,0.06)] p-5 text-sm leading-7 text-[var(--text3)]">
+      VACAT works are displayed as non-commercial award records. They are not offered for reuse, adaptation, licensing or commercial production by VacaVaca Studio unless the original creator provides separate written authorization.
+    </div>
+  );
 }
 
 function OrgCard({ title, body }: { title: string; body: string }) {
@@ -231,8 +240,7 @@ function WorkCard({ work }: { work: typeof studioWorks[number] }) {
         <div className="meta"><span>{work.creator}</span><span>{work.track}</span></div>
         <p className="mt-3 text-xs leading-5 text-[var(--text3)]">{work.summary}</p>
         <div className="vv-card-actions">
-          <Link href={`/vacavaca/works/${work.slug}`} className="vv-btn-nav">View reference</Link>
-          <Link href={`/start?vacaVacaReference=${work.slug}`} className="vv-btn-reg">Use reference</Link>
+          <Link href={`/vacavaca/works/${work.slug}`} className="vv-btn-nav">View award record</Link>
         </div>
       </div>
     </article>
