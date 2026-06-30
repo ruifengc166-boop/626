@@ -28,51 +28,51 @@ export type StudioEvent = {
 const asset = (path: string) => `https://raw.githubusercontent.com/ruifengc166-boop/vacavaca/master/${path}`;
 
 export const studioMetrics = [
-  { value: "4,646", label: "Second-edition submissions" },
+  { value: "4,646", label: "VACAT second-edition submissions" },
   { value: "76", label: "Awarded and finalist works" },
   { value: "92", label: "Participating universities" },
-  { value: "272", label: "Cooperation leads and orders" },
+  { value: "272", label: "Industry cooperation leads" },
 ];
 
 export const studioWorks: StudioWork[] = [
-  { slug: "shanhaijing", title: "Shanhaijing", creator: "VACAT Gold Award Creator", award: "Gold Award", track: "AI mythic visual storytelling", mark: "S", summary: "A high-impact mythic visual work that proves AI-generated storytelling can break out beyond the creator circle.", demoUrl: "https://www.bilibili.com" },
-  { slug: "anima", title: "ANIMA (Part I)", creator: "VACAT Narrative Creator", award: "Selected Work", track: "AI realistic narrative film", mark: "A", summary: "A cinematic reference for atmosphere, character scenes and emotionally grounded AI visual narratives.", demoUrl: "https://www.bilibili.com" },
-  { slug: "green-screen", title: "Green Screen", creator: "VACAT Experimental Film Creator", award: "Selected Work", track: "AI realistic narrative film", mark: "G", summary: "An experimental screen-language reference for brands that need a more conceptual moving-image system.", demoUrl: "https://www.bilibili.com" },
-  { slug: "longmen-inn-2067", title: "Longmen Inn 2067", creator: "VACAT IP Remix Creator", award: "Selected Work", track: "Classic IP reinterpretation", mark: "L", summary: "A future-world and IP adaptation reference for games, virtual characters and story-led campaigns.", demoUrl: "https://www.bilibili.com" },
-  { slug: "bring-her-eyes", title: "Bring Her Eyes", creator: "VACAT Animation Creator", award: "Selected Work", track: "AI animated narrative film", mark: "E", summary: "A literary and animated storytelling reference for emotional short films and culture-led campaigns.", demoUrl: "https://www.bilibili.com" },
-  { slug: "dunhuang-journey", title: "Dunhuang Journey Season 2", creator: "VACAT Culture Visual Creator", award: "Selected Work", track: "AI animated narrative film", mark: "D", summary: "A cultural-heritage visual reference for museums, tourism, cities and cultural product campaigns.", demoUrl: "https://www.bilibili.com" },
-  { slug: "ink-style", title: "Ink Chinese Style", creator: "VACAT Art Direction Creator", award: "Selected Work", track: "AI animated narrative film", mark: "I", summary: "A stylized art-direction reference for brands that need a poetic, hand-crafted or Eastern visual identity.", demoUrl: "https://www.bilibili.com" },
-  { slug: "ai-museum", title: "AI on Cultural Museum", creator: "VACAT Commercial Creative Creator", award: "Selected Work", track: "AI commercial creative film", mark: "M", summary: "A commercial creative reference for exhibitions, cultural institutions and knowledge-led brand communication.", demoUrl: "https://www.bilibili.com" },
-  { slug: "dafen", title: "Smart Dafen Creative Infinity", creator: "VACAT City Promotion Creator", award: "Selected Work", track: "AI commercial creative film", mark: "D", summary: "A city and creative-industry promotion reference for parks, districts, exhibitions and public campaigns.", demoUrl: "https://www.bilibili.com" },
+  { slug: "anima", title: "ANIMA (Part I)", creator: "VACAT Narrative Creator", award: "Selected Work", track: "AI cinematic narrative", mark: "A", summary: "A cinematic reference for atmosphere, character presence and emotionally grounded AI visual storytelling.", demoUrl: "https://www.bilibili.com" },
+  { slug: "green-screen", title: "Green Screen", creator: "VACAT Experimental Film Creator", award: "Selected Work", track: "AI experimental film", mark: "G", summary: "A screen-language reference for brands, artists and institutions that need a more conceptual moving-image system.", demoUrl: "https://www.bilibili.com" },
   { slug: "echo", title: "ECHO", creator: "VACAT Visual Art Creator", award: "Selected Work", track: "AI visual art film", mark: "E", summary: "An abstract visual-art reference for music visuals, installations and premium image films.", demoUrl: "https://www.bilibili.com" },
-  { slug: "memory-on-the-run", title: "Memory on the Run", creator: "VACAT Poetic Film Creator", award: "Selected Work", track: "AI visual art film", mark: "M", summary: "A poetic moving-image reference for public-interest themes, emotional campaigns and concept films.", demoUrl: "https://www.bilibili.com" },
-  { slug: "porcelain-realm", title: "Porcelain Realm", creator: "VACAT Poster Creator", award: "Selected Work", track: "AI art poster", mark: "P", summary: "A premium poster and heritage-visual reference for cultural products, luxury goods and exhibition identity.", demoUrl: "https://www.bilibili.com" },
+  { slug: "memory-on-the-run", title: "Memory on the Run", creator: "VACAT Poetic Film Creator", award: "Selected Work", track: "AI poetic moving image", mark: "M", summary: "A poetic moving-image reference for emotional campaigns, concept films and public-interest themes.", demoUrl: "https://www.bilibili.com" },
+  { slug: "human-machine", title: "Human Machine", creator: "VACAT Poster Creator", award: "Selected Work", track: "AI art poster", mark: "H", summary: "A global technology-and-humanity visual reference for posters, product launches and thought-leadership campaigns.", demoUrl: "https://www.bilibili.com" },
+  { slug: "eve-no-1", title: "EVE NO.1", creator: "VACAT Key Visual Creator", award: "Selected Work", track: "AI key visual", mark: "E1", summary: "A futuristic character and identity reference for virtual IP, brand worlds and premium campaign imagery.", demoUrl: "https://www.bilibili.com" },
+  { slug: "signal-room", title: "Signal Room", creator: "VACAT Spatial Visual Creator", award: "Reference Direction", track: "AI spatial visual system", mark: "SR", summary: "A spatial screen and installation reference for events, exhibitions and immersive brand spaces.", demoUrl: "https://www.bilibili.com" },
+  { slug: "future-museum", title: "Future Museum", creator: "VACAT Commercial Creative Creator", award: "Reference Direction", track: "AI institutional visual film", mark: "FM", summary: "An international museum and institution reference for knowledge-led communication and exhibition trailers.", demoUrl: "https://www.bilibili.com" },
+  { slug: "mirror-city", title: "Mirror City", creator: "VACAT City Image Creator", award: "Reference Direction", track: "AI city image film", mark: "MC", summary: "A city and architecture reference for districts, creative parks, technology campuses and destination campaigns.", demoUrl: "https://www.bilibili.com" },
+  { slug: "synthetic-nature", title: "Synthetic Nature", creator: "VACAT Art Direction Creator", award: "Reference Direction", track: "AI nature-tech visual", mark: "SN", summary: "A nature-and-technology reference for sustainability, fashion, beauty and premium lifestyle stories.", demoUrl: "https://www.bilibili.com" },
+  { slug: "after-image", title: "After Image", creator: "VACAT Music Visual Creator", award: "Reference Direction", track: "AI music visual", mark: "AI", summary: "A performance and music-visual reference for stage screens, teasers and audiovisual releases.", demoUrl: "https://www.bilibili.com" },
+  { slug: "open-world", title: "Open World", creator: "VACAT Game Visual Creator", award: "Reference Direction", track: "AI game concept film", mark: "OW", summary: "A future-world reference for games, virtual characters, IP trailers and concept pitches.", demoUrl: "https://www.bilibili.com" },
 ];
 
 export const studioCreators: StudioCreator[] = [
-  { name: "WildPusa Studio", level: "Creator", focus: "AI visual creative direction, product films, short-form visual storytelling and studio production workflows", works: 28, likes: "3.6k", initials: "WP" },
-  { name: "VACAT Narrative Unit", level: "Creator", focus: "Realistic AI narrative, character scenes, cinematic shorts and story-led visual campaigns", works: 15, likes: "2.1k", initials: "VN" },
-  { name: "VACAT Animation Unit", level: "Creator", focus: "AI animation, literary adaptation, cultural tourism visuals and stylized short films", works: 15, likes: "1.8k", initials: "VA" },
-  { name: "VACAT Commercial Creative Unit", level: "Dreamer", focus: "Cultural institutions, city promotion, brand films and product launch visuals", works: 15, likes: "1.5k", initials: "VC" },
+  { name: "WildPusa Studio", level: "Creator", focus: "AI visual direction, campaign films, product storytelling and VacaVaca Studio production", works: 28, likes: "3.6k", initials: "WP" },
+  { name: "VACAT Narrative Unit", level: "Creator", focus: "Cinematic AI narrative, character scenes, short films and story-led visual campaigns", works: 15, likes: "2.1k", initials: "VN" },
+  { name: "VACAT Motion Unit", level: "Creator", focus: "AI animation, motion design, international campaign visuals and stylized short films", works: 15, likes: "1.8k", initials: "VM" },
+  { name: "VACAT Commercial Creative Unit", level: "Dreamer", focus: "Institutions, technology brands, city image films and product launch visuals", works: 15, likes: "1.5k", initials: "VC" },
   { name: "VACAT Visual Art Unit", level: "Dreamer", focus: "Experimental film, music visuals, installation-style image systems and art films", works: 11, likes: "1.2k", initials: "VV" },
-  { name: "VACAT Poster Unit", level: "Explorer", focus: "AI poster, virtual character identity, campaign key visuals and mood-board development", works: 14, likes: "980", initials: "VP" },
+  { name: "VACAT Key Visual Unit", level: "Explorer", focus: "AI poster, virtual character identity, campaign key visuals and mood-board development", works: 14, likes: "980", initials: "VK" },
   { name: "Battle Day Creator Pool", level: "Creator", focus: "Prompt battle, fast ideation, live creation and rapid visual exploration", works: 8, likes: "860", initials: "BD" },
-  { name: "VacaVaca Studio Desk", level: "Creator", focus: "Studio-managed adaptation from VACAT references to commissioned visual creative works", works: 20, likes: "1.9k", initials: "VS" },
+  { name: "VacaVaca Studio", level: "Creator", focus: "Client-facing creative direction and delivery built on VACAT references", works: 20, likes: "1.9k", initials: "VS" },
 ];
 
 export const studioEvents: StudioEvent[] = [
-  { date: "Oct 17", title: "Award Ceremony and Project Signing", text: "A public recognition and industry-connection moment for awarded works, creators and commercial partners.", image: asset("assets/events/day1-schedule.png") },
+  { date: "Oct 17", title: "VACAT Award Ceremony and Project Signing", text: "A public recognition and industry-connection moment for awarded works, creators and commercial partners.", image: asset("assets/events/day1-schedule.png") },
   { date: "Oct 18", title: "AI Visual Technology Workshop", text: "A learning and exchange format around AI video, AI image, short drama production and commercial creative workflows.", image: asset("assets/events/day2-workshop.png") },
   { date: "Oct 19", title: "AI Battle Day", text: "A live creation format built around prompt battles, time-limited production and creator visibility.", image: asset("assets/events/day3-competition.png") },
   { date: "Oct 17 - Nov 16", title: "AI Visual Creativity Exhibition", text: "An offline exhibition layer for works, tools, creators and industry communication.", image: asset("assets/events/exhibition.png") },
 ];
 
 export const awardAuthority = [
-  "Recognized as a leading AI visual creativity award platform.",
-  "The first-edition gold-award work Shanhaijing reached mass public attention with more than 50 million views.",
-  "The award has generated 272 cooperation leads and orders, proving a bridge from creator attention to industry demand.",
+  "VACAT is the AI visual creativity award; VacaVaca Studio is the commercial creative studio built on that award ecosystem.",
+  "VACAT has produced public breakout works and a large pool of awarded and finalist references.",
+  "The award has generated 272 industry cooperation leads, proving demand beyond creator showcases.",
   "The 2025 AI Visual Creativity Application Blue Book adds a research and standards layer to the platform.",
-  "Submissions from universities and media-art communities give VacaVaca international-facing credibility.",
+  "University participation and media-art submissions give VACAT international-facing credibility.",
 ];
 
 export const jury = [
