@@ -1,4 +1,4 @@
-export type AdReviewPlatform = "TikTok" | "Instagram Reels" | "YouTube Shorts" | "Meta Ads" | "Other";
+export type AdReviewPlatform = "TikTok" | "Instagram Reels" | "YouTube Shorts" | "Meta Ads" | "Website" | "Event Screen" | "Exhibition Screen" | "Pitch Deck" | "Other";
 
 export type RecommendedService = "Founder Pilot" | "Direction Draft" | "Polished Visual" | "Visual Sprint" | "Launch-Grade";
 
