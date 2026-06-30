@@ -36,11 +36,11 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
           )}
         </div>
         <div className="py-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/40">{template.id} · Creative Direction</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/40">{template.id} · Commercial Direction</p>
           <h1 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-white md:text-6xl">{template.title}</h1>
-          <p className="mt-4 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--gold)]">{template.referenceWork}</p>
+          <p className="mt-4 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--gold)]">{template.serviceBasis}</p>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-white/60">
-            A service lane for {template.suitableProducts.slice(0, 4).join(", ")}. Use it to describe the desired output type and visual ambition before VacaVaca Studio confirms scope and quote.
+            A service lane for {template.suitableProducts.slice(0, 4).join(", ")}. Commercial projects are produced independently from submitted award works, using original briefs and properly authorized creators or client-owned assets.
           </p>
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
             <Info label="Price From" value={`${formatCurrency(template.priceFrom)}+`} />
