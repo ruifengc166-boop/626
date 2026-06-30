@@ -55,8 +55,7 @@ export default async function AdminOrderDetailPage({ params }: { params: Promise
             <Info label="CTA" value={order.ctaText} />
             <Info label="Contact" value={`${order.contactEmail}${order.contactHandle ? ` / ${order.contactHandle}` : ""}`} />
             <Info label="Budget" value={order.budgetRange || "Not provided"} />
-            <Info label="VacaVaca Reference" value={order.vacaVacaReference || "Studio to choose if useful"} />
-            <Info label="Creative Reference Links" value={order.creativeReferenceLinks?.join("\n") || "None"} />
+            <Info label="Licensed / Client-Owned References" value={order.creativeReferenceLinks?.join("\n") || "None"} />
             <Info label="Creator / Style Fit Notes" value={order.creatorFitNotes || "None"} />
             <Info label="Things to Avoid" value={order.thingsToAvoid || "None"} />
           </div>
@@ -65,7 +64,7 @@ export default async function AdminOrderDetailPage({ params }: { params: Promise
         <form action={saveOrderAction} className="rounded-[1.75rem] border border-white/[0.08] bg-[#0d0d0d] p-6 shadow-2xl shadow-black/20">
           <input type="hidden" name="id" value={order.id} />
           <h2 className="text-xl font-semibold text-white">Internal Review</h2>
-          <p className="mt-2 text-sm leading-6 text-white/44">Use VacaVaca as an internal reference and capability signal only; keep client delivery inside the studio-managed production workflow.</p>
+          <p className="mt-2 text-sm leading-6 text-white/44">Keep commercial delivery inside the studio-managed production workflow. Check that references are client-owned, licensed, or separately authorized before production.</p>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             <Select label="Status" name="status" defaultValue={order.status} options={orderStatuses} />
             <Select label="Direction Fit" name="productFitsTemplate" defaultValue={order.productFitsTemplate || "unchecked"} options={["unchecked", "good", "acceptable", "poor"]} />
