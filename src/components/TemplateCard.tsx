@@ -49,7 +49,7 @@ export function TemplateCard({ template, showSuitableProducts = false }: { templ
             {showSuitableProducts ? formatPlan(template.recommendedPlan) : `From ${formatCurrency(template.priceFrom)}`}
           </span>
           <Link href={`/start?template=${template.id}`} className="vacat-button-primary shrink-0 px-4 py-2 text-sm">
-            Commission
+            Use Direction
           </Link>
         </div>
       </div>
