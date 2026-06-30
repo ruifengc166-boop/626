@@ -19,7 +19,7 @@ export default async function VacaVacaWorkDetailPage({ params }: { params: Promi
     <main className="vv-content-page">
       <section className="vv-content-hero">
         <div className="vv-container">
-          <p className="vacat-eyebrow">VACAT Reference Work</p>
+          <p className="vacat-eyebrow">VACAT Award Record</p>
           <h1>{work.title}</h1>
           <p>{work.summary}</p>
         </div>
@@ -47,7 +47,8 @@ export default async function VacaVacaWorkDetailPage({ params }: { params: Promi
             <h2 className="mt-3 text-3xl font-medium tracking-[-0.04em] text-[var(--text)]">{work.track}</h2>
             <div className="mt-5 space-y-3 text-sm leading-6 text-[var(--text3)]">
               <p><span className="text-[var(--text2)]">Creator lane:</span> {work.creator}</p>
-              <p><span className="text-[var(--text2)]">Reference value:</span> {work.referenceValue}</p>
+              <p><span className="text-[var(--text2)]">Archive note:</span> This work is shown as a non-commercial VACAT award record.</p>
+              <p><span className="text-[var(--text2)]">Rights boundary:</span> It is not offered for reuse, adaptation, licensing or commercial production by VacaVaca Studio without separate written authorization from the creator.</p>
             </div>
             <div className="mt-6 flex flex-wrap gap-2">
               {work.commercialUseCases.map((item) => (
@@ -55,11 +56,11 @@ export default async function VacaVacaWorkDetailPage({ params }: { params: Promi
               ))}
             </div>
             <div className="mt-8 grid gap-3">
-              <Link href={`/start?vacaVacaReference=${work.slug}`} className="vacat-button-primary px-6 py-3 text-center text-sm">
-                Use This Reference
+              <Link href="/vacavaca/works" className="vacat-button-secondary px-6 py-3 text-center text-sm">
+                Back to Award Archive
               </Link>
-              <Link href="/templates" className="vacat-button-secondary px-6 py-3 text-center text-sm">
-                Browse Creative Directions
+              <Link href="/templates" className="vacat-button-primary px-6 py-3 text-center text-sm">
+                View Commercial Directions
               </Link>
               {work.bilibiliUrl ? (
                 <a href={work.bilibiliUrl} target="_blank" rel="noreferrer" className="vv-btn-nav text-center">
