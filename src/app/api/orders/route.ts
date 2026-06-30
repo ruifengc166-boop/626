@@ -32,14 +32,14 @@ export async function POST(request: Request) {
 
 function validatePublicOrderInput(input: Record<string, unknown>) {
   const email = String(input.contactEmail || "").trim();
-  const productUrl = String(input.productUrl || "").trim();
+  const projectUrl = String(input.productUrl || "").trim();
 
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     throw new Error("Please enter a valid email.");
   }
 
-  if (productUrl && !/^https?:\/\//i.test(productUrl)) {
-    throw new Error("Product link must start with http:// or https://");
+  if (projectUrl && !/^https?:\/\//i.test(projectUrl)) {
+    throw new Error("Project link must start with http:// or https://");
   }
 }
 
