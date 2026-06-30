@@ -4,19 +4,19 @@ import { studioMetrics, studioWorks } from "@/data/vacavaca-studio";
 const supportLayers = [
   {
     title: "Curatorial standard",
-    body: "VACAT proves that the team has a long-term standard for judging AI visual quality, not just tool operation skill.",
+    body: "VACAT gives the team a long-term standard for evaluating AI visual quality, narrative clarity and production ambition.",
   },
   {
-    title: "Creator ecology",
-    body: "The award connects creators and production talent. Commercial use still requires separate authorization and project-specific agreements.",
+    title: "Creator network",
+    body: "The award connects creators, judges and production talent. Any commercial collaboration is handled through separate authorization.",
   },
   {
     title: "Production insight",
-    body: "Award tracks and judging experience become a methodology for original briefs, formats, budgets and production routes.",
+    body: "Award tracks and review experience help shape practical service categories, budgets, formats and production routes.",
   },
   {
     title: "Industry credibility",
-    body: "Submissions, universities, jury, events and research context make the studio more credible than a generic AI service page.",
+    body: "Submissions, universities, jury members, events and research work give the studio a stronger foundation than a standard AI production vendor.",
   },
 ];
 
@@ -27,12 +27,12 @@ export function VacaVacaSupport() {
     <section className="px-6 py-16">
       <div className="vacat-container">
         <div className="max-w-3xl">
-          <p className="vacat-eyebrow mb-3">How VACAT Supports Studio</p>
+          <p className="vacat-eyebrow mb-3">VACAT Award Foundation</p>
           <h2 className="vacat-title text-3xl font-medium tracking-[-0.055em] md:text-5xl">
-            Not a work library. A credibility layer for original production.
+            Award credibility behind original studio production.
           </h2>
           <p className="mt-5 max-w-2xl text-sm leading-7 text-[var(--text3)] md:text-base">
-            VACAT supports VacaVaca Studio through industry trust, curatorial standards, creator ecology and production insight. Award submissions remain non-commercial records; Studio projects are created separately through original briefs, authorized creators and licensed or client-owned assets.
+            VACAT supports VacaVaca Studio through industry trust, curatorial standards, a creator network and production insight. Award submissions remain protected records; Studio projects are created separately from original briefs and properly authorized materials.
           </p>
         </div>
 
@@ -57,7 +57,7 @@ export function VacaVacaSupport() {
         <div className="mt-12 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="vacat-eyebrow mb-3">Award Archive</p>
-            <h3 className="vacat-title text-2xl font-medium tracking-[-0.045em] md:text-4xl">Non-commercial award records</h3>
+            <h3 className="vacat-title text-2xl font-medium tracking-[-0.045em] md:text-4xl">Selected award records</h3>
           </div>
           <div className="flex gap-3">
             <Link href="/vacavaca" className="vacat-button-secondary px-5 py-3 text-sm">About VACAT</Link>
