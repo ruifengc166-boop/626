@@ -7,12 +7,14 @@ import { studioWorks } from "@/data/vacavaca-studio";
 import { formatCurrency } from "@/lib/utils";
 import type { OrderPlan } from "@/lib/order-types";
 
-const platforms = ["TikTok", "Instagram Reels", "YouTube Shorts", "Website", "Exhibition Screen", "Event Screen", "Pitch Deck", "Other"];
+const platforms = ["TikTok", "Instagram Reels", "YouTube Shorts", "Website", "Exhibition Screen", "Event Screen", "Pitch Deck", "Brand Film", "Key Visual", "Other"];
 
 export function StartForm({ templates }: { templates: Template[] }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [templateId, setTemplateId] = useState(searchParams.get("template") || "");
+  const initialReference = searchParams.get("vacaVacaReference") || "";
+  const [templateId, setTemplateId] = useState(() => searchParams.get("template") || inferTemplateIdFromReference(initialReference, templates));
+  const [vacaVacaReference, setVacaVacaReference] = useState(initialReference);
   const recommendedPlan = searchParams.get("plan") || "";
   const sourceReviewId = searchParams.get("review") || "";
   const mappedOrderPlan = useMemo(() => mapRecommendedServiceToOrderPlan(recommendedPlan), [recommendedPlan]);
@@ -55,13 +57,13 @@ export function StartForm({ templates }: { templates: Template[] }) {
           <p className="vacat-eyebrow mb-3">VacaVaca Studio Commission</p>
           <h1 className="vacat-title text-4xl font-semibold md:text-6xl">Commission a visual creative work.</h1>
           <p className="mt-5 text-lg leading-8 text-[var(--text3)]">
-            Send the project background, target format, core subject and VACAT Award reference. VacaVaca Studio replies with the creative route, timeline and quote before payment.
+            Send the project background, target format, core subject and VACAT reference. VacaVaca Studio replies with the creative route, timeline and quote before payment.
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="vacat-card vacat-card-glow rounded-[1.75rem] p-6 md:p-8">
           <input type="hidden" name="sourceReviewId" value={sourceReviewId} />
-          <input type="hidden" name="sourceChannel" value={sourceReviewId ? "creative_review" : templateId ? "creative_menu" : "direct"} />
+          <input type="hidden" name="sourceChannel" value={sourceReviewId ? "free_ad_review" : templateId ? "template" : "direct"} />
           <input type="hidden" name="plan" value={mappedOrderPlan} />
           {recommendedPlan ? <div className="mb-6 rounded-2xl border border-[rgba(202,254,97,0.18)] bg-[rgba(202,254,97,0.07)] p-4 text-sm text-[var(--text3)]">Recommended route: <span className="text-[var(--text)]">{recommendedPlan}</span></div> : null}
           {sourceReviewId ? <div className="mb-6 rounded-2xl border border-[rgba(202,254,97,0.18)] bg-[rgba(202,254,97,0.07)] p-4 text-sm text-[var(--text3)]">Source review: <span className="text-[var(--text)]">{sourceReviewId}</span></div> : null}
@@ -69,7 +71,7 @@ export function StartForm({ templates }: { templates: Template[] }) {
           <div className="mb-8 rounded-[1.5rem] border border-[rgba(202,254,97,0.18)] bg-[rgba(202,254,97,0.07)] p-5">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold)]">VACAT reference layer</p>
             <p className="mt-3 text-sm leading-6 text-[var(--text3)]">
-              VACAT is the award. VacaVaca Studio uses its works as references to understand visual ambition, creator-lane fit and production complexity.
+              VACAT is the award-backed reference system. VacaVaca Studio uses its works to understand visual ambition, creator-lane fit and production complexity.
             </p>
           </div>
           <div className="grid gap-5 md:grid-cols-2">
@@ -83,7 +85,7 @@ export function StartForm({ templates }: { templates: Template[] }) {
             <Input label="Work Title or Campaign Name" name="productName" required />
             <Input label="Project Link" name="productUrl" type="url" required />
             <Input label="Asset Links" name="productAssetLinks" placeholder="Drive, Dropbox, website, deck, references" required />
-            <Input label="Identity Asset Link" name="logoAssetLinks" placeholder="Logo, event identity, city/IP mark, visual guideline" />
+            <Input label="Identity Asset Link" name="logoAssetLinks" placeholder="Logo, event identity, visual guideline" />
             <Input label="Core Message" name="sellingPoint1" required />
             <Input label="Visual Story / Scene Direction" name="sellingPoint2" />
             <Input label="Audience or Use Scenario" name="sellingPoint3" />
@@ -93,7 +95,7 @@ export function StartForm({ templates }: { templates: Template[] }) {
               </select>
             </Field>
             <Field label="VACAT Work Reference">
-              <select name="vacaVacaReference" className="input" defaultValue="">
+              <select name="vacaVacaReference" className="input" value={vacaVacaReference} onChange={(event) => setVacaVacaReference(event.target.value)}>
                 <option value="">Let the studio choose if useful</option>
                 {studioWorks.map((work) => (
                   <option key={work.slug} value={work.slug}>{work.title}</option>
@@ -108,7 +110,7 @@ export function StartForm({ templates }: { templates: Template[] }) {
             <Input label="Anything to Avoid" name="thingsToAvoid" />
           </div>
           <div className="mt-5 grid gap-5 md:grid-cols-2">
-            <Textarea label="Creative Reference Links" name="creativeReferenceLinks" placeholder="VACAT work, competitor film, exhibition reference, mood board, YouTube/TikTok/Bilibili link" />
+            <Textarea label="Creative Reference Links" name="creativeReferenceLinks" placeholder="VACAT work, competitor film, exhibition reference, mood board, video link" />
             <Textarea label="Creator / Style Fit Notes" name="creatorFitNotes" placeholder="Creator lane, visual energy, art direction, story atmosphere or event context" />
           </div>
           <div className="mt-6 grid gap-3 md:grid-cols-2">
@@ -124,6 +126,11 @@ export function StartForm({ templates }: { templates: Template[] }) {
       </div>
     </main>
   );
+}
+
+function inferTemplateIdFromReference(reference: string, templates: Template[]) {
+  if (!reference) return "";
+  return templates.find((template) => template.slug.startsWith(reference))?.id || "";
 }
 
 function mapRecommendedServiceToOrderPlan(service: string): OrderPlan {
