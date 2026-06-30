@@ -116,8 +116,8 @@ export const orderPlans: OrderPlan[] = [
 export const defaultChecklist: ChecklistItem[] = [
   "Check project assets",
   "Check identity assets",
-  "Check selected direction fit",
-  "Check VACAT reference fit",
+  "Check selected commercial direction fit",
+  "Check reference rights / licensed asset status",
   "Confirm core subject",
   "Confirm visual story",
   "Confirm CTA or ending",
