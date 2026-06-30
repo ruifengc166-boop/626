@@ -13,9 +13,9 @@ export default async function TemplatesPage() {
     <main className="vacat-shell px-5 py-16 md:py-20">
       <div className="vacat-container relative z-10">
         <SectionHeader
-          eyebrow="VacaVaca Studio Creative Menu"
-          title="Choose an international VACAT-inspired direction"
-          description="VACAT is the award. VacaVaca Studio uses the award's works and creator ecosystem as references for client commissions: films, key visuals, event visuals, city image films, music visuals, launch campaigns and brand image systems."
+          eyebrow="VacaVaca Studio Creative Directions"
+          title="Choose an award-backed visual direction"
+          description="These are not fixed templates. They are VACAT-inspired reference lanes that help clients describe the visual ambition, production complexity and creative route before commissioning custom work."
         />
 
         <div className="mt-10 grid gap-3 md:grid-cols-5">
