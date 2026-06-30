@@ -48,7 +48,7 @@ export default async function VacaVacaWorkDetailPage({ params }: { params: Promi
             <div className="mt-5 space-y-3 text-sm leading-6 text-[var(--text3)]">
               <p><span className="text-[var(--text2)]">Creator lane:</span> {work.creator}</p>
               <p><span className="text-[var(--text2)]">Archive note:</span> {work.archiveNote}</p>
-              <p><span className="text-[var(--text2)]">Rights boundary:</span> It is not offered for reuse, adaptation, licensing or commercial production by VacaVaca Studio without separate written authorization from the creator.</p>
+              <p><span className="text-[var(--text2)]">Rights note:</span> This award record is not offered for reuse, adaptation, licensing or commercial production by VacaVaca Studio without separate written authorization from the creator.</p>
             </div>
             <div className="mt-6 flex flex-wrap gap-2">
               {work.archiveTags.map((item) => (
@@ -60,7 +60,7 @@ export default async function VacaVacaWorkDetailPage({ params }: { params: Promi
                 Back to Award Archive
               </Link>
               <Link href="/templates" className="vacat-button-primary px-6 py-3 text-center text-sm">
-                View Commercial Directions
+                View Studio Services
               </Link>
               {work.bilibiliUrl ? (
                 <a href={work.bilibiliUrl} target="_blank" rel="noreferrer" className="vv-btn-nav text-center">
