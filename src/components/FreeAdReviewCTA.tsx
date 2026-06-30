@@ -8,9 +8,9 @@ export function FreeAdReviewCTA() {
       <div className="vacat-card grid gap-6 rounded-[28px] p-7 md:p-9 lg:grid-cols-[1fr_0.9fr] lg:items-center">
         <div>
           <p className="vacat-eyebrow">Free ad / creative review</p>
-          <h2 className="vacat-title mt-4 text-3xl font-medium md:text-5xl">Keep the low-friction lead entry.</h2>
+          <h2 className="vacat-title mt-4 text-3xl font-medium md:text-5xl">Start with a quick creative diagnosis.</h2>
           <p className="mt-5 max-w-2xl text-base leading-7 text-[var(--text3)]">
-            Brands can paste an existing ad, video or rough visual link and receive an instant review. Strong leads can then move into a VacaVaca Studio commission brief.
+            Paste an existing ad, video or rough visual link. VacaVaca Studio will return an instant review, then you can decide whether to commission a full visual work.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <Link href="/free-ad-review" className="vacat-button-primary px-6 py-3 text-sm">
