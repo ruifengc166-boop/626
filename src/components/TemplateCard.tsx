@@ -31,7 +31,7 @@ export function TemplateCard({ template, showSuitableProducts = false }: { templ
         </div>
       </div>
       <div className="flex flex-1 flex-col p-5">
-        <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[var(--gold)]">Commercial direction</p>
+        <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[var(--gold)]">Studio service</p>
         <Link href={`/templates/${template.id}`} className="mt-2 transition hover:text-[var(--gold)]">
           <h3 className="text-xl font-semibold tracking-[-0.035em] text-[var(--text)]">{template.title}</h3>
         </Link>
@@ -43,7 +43,7 @@ export function TemplateCard({ template, showSuitableProducts = false }: { templ
         </div>
         {showSuitableProducts ? (
           <p className="mt-4 line-clamp-2 text-sm leading-6 text-[var(--text3)]">
-            Good for {template.suitableProducts.slice(0, 3).join(", ")}.
+            Suitable for {template.suitableProducts.slice(0, 3).join(", ")}.
           </p>
         ) : null}
         <div className="mt-auto flex items-center justify-between gap-3 pt-5">
@@ -51,7 +51,7 @@ export function TemplateCard({ template, showSuitableProducts = false }: { templ
             {showSuitableProducts ? formatPlan(template.recommendedPlan) : `From ${formatCurrency(template.priceFrom)}`}
           </span>
           <Link href={`/start?template=${template.id}`} className="vacat-button-primary shrink-0 px-4 py-2 text-sm">
-            Use Direction
+            Start Brief
           </Link>
         </div>
       </div>
