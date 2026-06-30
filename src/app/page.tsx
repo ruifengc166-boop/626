@@ -6,23 +6,23 @@ export const dynamic = "force-dynamic";
 
 const services = [
   {
-    title: "Key Visual",
+    title: "Campaign Key Visual",
     price: "From $900",
-    body: "Poster, launch image, campaign visual or institutional key art.",
+    body: "Hero image, launch poster, event visual or institutional key art for a defined campaign or presentation need.",
   },
   {
     title: "Short Visual Film",
     price: "From $2,500",
-    body: "AI-native image film, teaser, music visual or concept film.",
+    body: "AI-assisted image film, teaser, music visual or concept film built from an original brief and approved materials.",
   },
   {
-    title: "Premium Creator Work",
+    title: "Premium Visual Production",
     price: "From $3,500",
-    body: "Higher-polish creator-led work for brands, events and institutions.",
+    body: "Creator-led visual production with stronger art direction, polish and delivery support for brands, events and institutions.",
   },
 ];
 
-const steps = ["Choose a reference", "Submit a brief", "Receive scope and quote"];
+const steps = ["Choose a studio service", "Submit a brief", "Receive scope and quote"];
 
 export default function HomePage() {
   return (
@@ -33,10 +33,10 @@ export default function HomePage() {
       <section className="px-6 py-16">
         <div className="vacat-container">
           <div className="max-w-3xl">
-            <p className="vacat-eyebrow mb-3">Commission Menu</p>
-            <h2 className="vacat-title text-3xl font-medium tracking-[-0.055em] md:text-5xl">Simple ways to start a project.</h2>
+            <p className="vacat-eyebrow mb-3">Studio Services</p>
+            <h2 className="vacat-title text-3xl font-medium tracking-[-0.055em] md:text-5xl">Clear ways to start a visual project.</h2>
             <p className="mt-5 max-w-2xl text-sm leading-7 text-[var(--text3)] md:text-base">
-              Start with a clear production lane. VacaVaca Studio confirms scope, timeline and quote before production.
+              Start with a defined production category. VacaVaca Studio reviews your brief, confirms the scope and provides a quote before production begins.
             </p>
           </div>
 
@@ -72,7 +72,7 @@ export default function HomePage() {
                 Submit Creative Brief
               </Link>
               <Link href="/templates" className="vacat-button-secondary px-6 py-3 text-sm">
-                Browse Creative Directions
+                Browse Studio Services
               </Link>
             </div>
           </div>
