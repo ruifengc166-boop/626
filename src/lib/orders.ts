@@ -129,7 +129,6 @@ export async function createOrder(input: Record<string, unknown>, clientIp?: str
     existingAdsOrReferences: optionalString(input.existingAdsOrReferences, 2000),
     thingsToAvoid: optionalString(input.thingsToAvoid, 1200),
     budgetRange: optionalString(input.budgetRange, 240),
-    vacaVacaReference: optionalString(input.vacaVacaReference, 120),
     creativeReferenceLinks: creativeReferenceLinks.length ? creativeReferenceLinks : undefined,
     creatorFitNotes: optionalString(input.creatorFitNotes, 1600),
     needHumanOptimization: toBool(input.needHumanOptimization),
