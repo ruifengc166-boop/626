@@ -37,21 +37,21 @@ export default function FreeAdReviewPage() {
     <main className="vacat-shell px-6 py-16">
       <section className="vacat-container relative z-10 grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
         <div className="pt-6">
-          <p className="vacat-eyebrow mb-4">Instant Creative Review</p>
-          <h1 className="vacat-title text-4xl font-semibold md:text-6xl">Review a visual work before commissioning production.</h1>
+          <p className="vacat-eyebrow mb-4">Free Creative Review</p>
+          <h1 className="vacat-title text-4xl font-semibold md:text-6xl">Review a visual idea before starting production.</h1>
           <p className="mt-5 max-w-xl text-lg leading-8 text-[var(--text3)]">
-            Paste a current video, concept, mood reference or draft visual. The review checks hook, clarity, pacing, visual consistency and fit for the intended format.
+            Share a video, draft, concept link or mood reference. The review looks at clarity, pacing, visual consistency, message fit and suitability for the target format.
           </p>
           <div className="mt-8 grid max-w-xl gap-3 sm:grid-cols-3">
-            <Badge title="Instant result" body="Opens next page" />
-            <Badge title="Creative only" body="No media-buying claims" />
-            <Badge title="Studio path" body="Can become a brief" />
+            <Badge title="Fast result" body="Opens after submission" />
+            <Badge title="Creative review" body="No media-buying claims" />
+            <Badge title="Studio-ready" body="Can become a brief" />
           </div>
         </div>
 
         <form onSubmit={handleSubmit} className="vacat-card rounded-[28px] p-6 md:p-8">
           <div className="mb-6 rounded-2xl border border-[rgba(202,254,97,0.18)] bg-[rgba(202,254,97,0.07)] p-4 text-sm leading-6 text-[var(--text3)]">
-            After submission, VacaVaca Studio generates the review and opens the result page directly.
+            Submit a link and VacaVaca Studio will generate a structured creative review on the next page.
           </div>
           <div className="grid gap-5 md:grid-cols-2">
             <Input label="Video / Draft / Reference Link" name="adUrl" type="url" placeholder="TikTok, Reels, YouTube, Drive, Dropbox..." required />
@@ -66,15 +66,15 @@ export default function FreeAdReviewPage() {
             <Input label="Email to Save Review" name="contactEmail" type="email" placeholder="Used to save the review and follow up if needed" required />
           </div>
           <div className="mt-5 grid gap-5">
-            <Field label="What worries you about this visual work?">
-              <textarea name="currentConcern" className="input min-h-28" placeholder="Example: The concept is strong but the pacing and visual hierarchy feel weak." />
+            <Field label="What feels unresolved about this visual work?">
+              <textarea name="currentConcern" className="input min-h-28" placeholder="Example: The concept is strong, but the pacing and visual hierarchy feel unclear." />
             </Field>
             <Field label="Caption, voiceover, story outline or rough transcript">
               <textarea name="transcriptOrCaption" className="input min-h-32" placeholder="Paste the caption, voiceover, subtitles, story outline or script if available." />
             </Field>
           </div>
           <p className="mt-5 text-sm leading-6 text-[var(--text3)]">
-            This is a creative review only. It does not predict conversion rate, distribution performance or media results.
+            This is a creative review only. It does not estimate conversion rate, distribution performance or media results.
           </p>
           {error ? <div className="mt-5 rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-100">{error}</div> : null}
           <button type="submit" disabled={isSubmitting} className="vacat-button-primary mt-7 px-6 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-60">
