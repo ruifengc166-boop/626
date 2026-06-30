@@ -52,9 +52,9 @@ export function StartForm({ templates }: { templates: Template[] }) {
       <div className="vacat-container relative z-10 max-w-5xl">
         <div className="mb-10 max-w-3xl">
           <p className="vacat-eyebrow mb-3">VacaVaca Studio Commission</p>
-          <h1 className="vacat-title text-4xl font-semibold md:text-6xl">Commission an original visual creative work.</h1>
+          <h1 className="vacat-title text-4xl font-semibold md:text-6xl">Commission original AI visual work.</h1>
           <p className="mt-5 text-lg leading-8 text-[var(--text3)]">
-            Send the project background, target format, core subject and licensed references. VacaVaca Studio replies with the creative route, timeline and quote before payment.
+            Share the project background, target format, core subject and approved reference materials. VacaVaca Studio will respond with a creative route, timeline and quote before production begins.
           </p>
         </div>
 
@@ -62,30 +62,30 @@ export function StartForm({ templates }: { templates: Template[] }) {
           <input type="hidden" name="sourceReviewId" value={sourceReviewId} />
           <input type="hidden" name="sourceChannel" value={sourceReviewId ? "free_ad_review" : templateId ? "template" : "direct"} />
           <input type="hidden" name="plan" value={mappedOrderPlan} />
-          {recommendedPlan ? <div className="mb-6 rounded-2xl border border-[rgba(202,254,97,0.18)] bg-[rgba(202,254,97,0.07)] p-4 text-sm text-[var(--text3)]">Recommended route: <span className="text-[var(--text)]">{recommendedPlan}</span></div> : null}
-          {sourceReviewId ? <div className="mb-6 rounded-2xl border border-[rgba(202,254,97,0.18)] bg-[rgba(202,254,97,0.07)] p-4 text-sm text-[var(--text3)]">Source review: <span className="text-[var(--text)]">{sourceReviewId}</span></div> : null}
+          {recommendedPlan ? <div className="mb-6 rounded-2xl border border-[rgba(202,254,97,0.18)] bg-[rgba(202,254,97,0.07)] p-4 text-sm text-[var(--text3)]">Suggested route: <span className="text-[var(--text)]">{recommendedPlan}</span></div> : null}
+          {sourceReviewId ? <div className="mb-6 rounded-2xl border border-[rgba(202,254,97,0.18)] bg-[rgba(202,254,97,0.07)] p-4 text-sm text-[var(--text3)]">Review source: <span className="text-[var(--text)]">{sourceReviewId}</span></div> : null}
           {selectedTemplate ? <SelectedTemplateCard template={selectedTemplate} /> : null}
           <div className="mb-8 rounded-[1.5rem] border border-[rgba(202,254,97,0.18)] bg-[rgba(202,254,97,0.07)] p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold)]">Original commercial production</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold)]">Original production only</p>
             <p className="mt-3 text-sm leading-6 text-[var(--text3)]">
-              VACAT award works are not reused, adapted or licensed through this brief form. Commercial work is produced independently with original briefs, client-owned assets, licensed references and authorized creators.
+              VACAT award submissions are not reused, adapted or licensed through this form. Client projects are developed separately with original briefs, approved materials and authorized contributors.
             </p>
           </div>
           <div className="grid gap-5 md:grid-cols-2">
-            <Field label="Preferred Creative Direction">
+            <Field label="Preferred Studio Service">
               <select name="selectedTemplateId" value={templateId} onChange={(event) => setTemplateId(event.target.value)} className="input" required>
-                <option value="">Select a direction</option>
+                <option value="">Select a service</option>
                 {templates.map((template) => <option key={template.id} value={template.id}>{template.title}</option>)}
               </select>
             </Field>
             <Input label="Organization / Brand / Project Name" name="brandName" required />
             <Input label="Work Title or Campaign Name" name="productName" required />
             <Input label="Project Link" name="productUrl" type="url" required />
-            <Input label="Asset Links" name="productAssetLinks" placeholder="Drive, Dropbox, website, deck, licensed references" required />
-            <Input label="Identity Asset Link" name="logoAssetLinks" placeholder="Logo, event identity, visual guideline" />
+            <Input label="Asset Links" name="productAssetLinks" placeholder="Drive, Dropbox, website, deck, approved references" required />
+            <Input label="Identity Asset Link" name="logoAssetLinks" placeholder="Logo, event identity or visual guideline" />
             <Input label="Core Message" name="sellingPoint1" required />
             <Input label="Visual Story / Scene Direction" name="sellingPoint2" />
-            <Input label="Audience or Use Scenario" name="sellingPoint3" />
+            <Input label="Audience or Use Case" name="sellingPoint3" />
             <Field label="Target Format">
               <select name="targetPlatform" className="input" required>
                 {platforms.map((platform) => <option key={platform} value={platform}>{platform}</option>)}
@@ -95,16 +95,16 @@ export function StartForm({ templates }: { templates: Template[] }) {
             <Input label="Desired Action / Ending" name="ctaText" placeholder="Visit site / Join event / Apply / Watch full film" />
             <Input label="Contact Email" name="contactEmail" type="email" required />
             <Input label="Contact Handle" name="contactHandle" placeholder="Optional" />
-            <Input label="Expected Budget" name="budgetRange" defaultValue={recommendedPlan} placeholder="$300 concept / $900 key visual / $3,500 premium visual film" />
+            <Input label="Expected Budget" name="budgetRange" defaultValue={recommendedPlan} placeholder="$900 key visual / $2,500 short film / $3,500 premium production" />
             <Input label="Anything to Avoid" name="thingsToAvoid" />
           </div>
           <div className="mt-5 grid gap-5 md:grid-cols-2">
-            <Textarea label="Licensed / Client-Owned Reference Links" name="creativeReferenceLinks" placeholder="Client-owned footage, licensed references, mood board, brand assets, approved examples" />
-            <Textarea label="Creator / Style Fit Notes" name="creatorFitNotes" placeholder="Creator lane, visual energy, art direction, story atmosphere or event context" />
+            <Textarea label="Approved Reference Links" name="creativeReferenceLinks" placeholder="Client-owned footage, licensed references, mood board, brand assets or approved examples" />
+            <Textarea label="Style / Production Notes" name="creatorFitNotes" placeholder="Visual tone, production needs, art direction, story atmosphere or event context" />
           </div>
           <div className="mt-6 grid gap-3 md:grid-cols-2">
             <label className="vacat-card flex items-center gap-3 rounded-2xl p-4 text-sm text-[var(--text3)]"><input type="checkbox" name="needHumanOptimization" />I need art-direction review</label>
-            <label className="vacat-card flex items-center gap-3 rounded-2xl p-4 text-sm text-[var(--text3)]"><input type="checkbox" name="needMultipleVersions" />I need multiple visual directions</label>
+            <label className="vacat-card flex items-center gap-3 rounded-2xl p-4 text-sm text-[var(--text3)]"><input type="checkbox" name="needMultipleVersions" />I need multiple visual routes</label>
           </div>
           <p className="mt-6 text-sm text-[var(--text3)]">No payment is required now. VacaVaca Studio will reply with a quote before production starts.</p>
           {error ? <div className="mt-6 rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-100">{error}</div> : null}
@@ -138,7 +138,7 @@ function SelectedTemplateCard({ template }: { template: Template }) {
     <div className="vacat-card mb-8 grid gap-5 rounded-[1.5rem] p-4 md:grid-cols-[160px_1fr]">
       <img src={template.thumbnailUrl} alt={template.title} className="aspect-[9/12] w-full rounded-[1rem] object-cover" />
       <div className="flex flex-col justify-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold)]">Selected commercial direction</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold)]">Selected studio service</p>
         <h2 className="mt-3 text-2xl font-semibold tracking-tight text-[var(--text)]">{template.title}</h2>
         <div className="mt-4 flex flex-wrap gap-2 text-sm text-[var(--text3)]">
           <span className="vacat-chip rounded-full px-3 py-1">Original production</span>
