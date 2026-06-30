@@ -85,11 +85,9 @@ export async function createOrder(input: Record<string, unknown>, clientIp?: str
     "productName",
     "productUrl",
     "productAssetLinks",
-    "logoAssetLinks",
     "sellingPoint1",
     "targetPlatform",
     "targetLanguage",
-    "ctaText",
     "contactEmail",
   ];
 
@@ -162,7 +160,7 @@ export async function updateOrder(id: string, input: Record<string, unknown>) {
     recommendedTemplateId: optionalString(input.recommendedTemplateId),
     recommendedPlan: (optionalString(input.recommendedPlan) as OrderPlan) || undefined,
     estimatedDeliveryTime: optionalString(input.estimatedDeliveryTime),
-    estimatedModelCostUsd: optionalNumber(input.estimatedModelCostUsd),
+    estimatedModelCostUsd: optionalNumber(input.estimatedDeliveryTime),
     estimatedHumanMinutes: optionalNumber(input.estimatedHumanMinutes),
     quoteUsd: optionalNumber(input.quoteUsd),
     internalNotes: optionalString(input.internalNotes, 4000),
