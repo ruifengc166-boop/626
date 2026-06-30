@@ -37,7 +37,7 @@ export async function GET() {
   return new NextResponse(rows.join("\n"), {
     headers: {
       "Content-Type": "text/csv; charset=utf-8",
-      "Content-Disposition": `attachment; filename="ai-ad-remix-orders.csv"`,
+      "Content-Disposition": `attachment; filename="vacavaca-studio-orders.csv"`,
     },
   });
 }
