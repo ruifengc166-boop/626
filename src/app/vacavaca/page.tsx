@@ -10,10 +10,10 @@ export default function VacaVacaOverviewPage() {
     <main className="vv-content-page">
       <section className="vv-content-hero" id="overview">
         <div className="vv-container">
-          <p className="vacat-eyebrow">VacaVaca Studio</p>
-          <h1>VACAT authority, representative works and creator capability in one studio.</h1>
+          <p className="vacat-eyebrow">Learn about VACAT</p>
+          <h1>VACAT is the award behind the VacaVaca Studio service.</h1>
           <p>
-            VacaVaca Studio creates commissioned AI visual creative works. The homepage keeps the core story clear: representative VACAT works, measurable influence and an expert-backed creator ecosystem.
+            VACAT is the AI visual creativity award. VacaVaca Studio is the creative service that uses VACAT's works, creators and professional credibility as references for commissioned visual projects.
           </p>
           <div className="vv-metric-row">
             {studioMetrics.map((metric) => <div key={metric.label} className="vv-data-card"><strong>{metric.value}</strong><span>{metric.label}</span></div>)}
@@ -29,7 +29,7 @@ export default function VacaVacaOverviewPage() {
       </section>
 
       <section className="vv-container vv-section" id="award">
-        <SectionHeader title="VACAT Influence and Authority" more="Why VacaVaca Studio is credible" />
+        <SectionHeader title="VACAT Influence and Authority" more="Why the award matters" />
         <div className="vv-award-intro">
           <div>
             <h2>Vision Arts Created by AI Technology.</h2>
@@ -37,7 +37,7 @@ export default function VacaVacaOverviewPage() {
               VACAT is an AI visual creativity award and creator-community platform. It organizes AI film, AI image, commercial creative, visual-art and poster works into an industry-facing reference system.
             </p>
             <p>
-              VacaVaca Studio uses that system as a creative foundation: works become visual references, creators become capability lanes, events become community proof, and expert judging gives the studio a stronger authority layer than a generic production vendor.
+              VacaVaca Studio uses that system as a creative foundation: works become visual references, creators become capability lanes, events become community proof, and expert judging strengthens client trust.
             </p>
           </div>
           <div className="vv-authority-panel">
@@ -57,9 +57,9 @@ export default function VacaVacaOverviewPage() {
       </section>
 
       <section className="vv-container vv-section">
-        <SectionHeader title="Explore the Content Layer" more="Works, creators and events live on focused pages" />
+        <SectionHeader title="Explore VACAT References" more="Works, creators and events live on focused pages" />
         <div className="vv-referral">
-          <Link href="/vacavaca/works" className="vv-referral-step"><strong>Works</strong><h3>Representative work library</h3><p>Browse VACAT-inspired works with reference links and commission entry points.</p></Link>
+          <Link href="/vacavaca/works" className="vv-referral-step"><strong>Works</strong><h3>Representative work library</h3><p>Browse international-facing VACAT works with reference links and commission entry points.</p></Link>
           <Link href="/vacavaca/creators" className="vv-referral-step"><strong>Creators</strong><h3>Creator capability lanes</h3><p>See the creator roster and the production directions each lane supports.</p></Link>
           <Link href="/vacavaca/events" className="vv-referral-step"><strong>Events</strong><h3>Community and event proof</h3><p>Review award ceremony, workshop, Battle Day and exhibition formats.</p></Link>
           <Link href="/templates" className="vv-referral-step"><strong>Studio</strong><h3>Creative commission menu</h3><p>Choose a VACAT-inspired direction and start a VacaVaca Studio brief.</p></Link>
@@ -69,7 +69,7 @@ export default function VacaVacaOverviewPage() {
       <section className="vv-container vv-section">
         <div className="vv-final-panel">
           <h2>Commission a visual creative work from VacaVaca Studio.</h2>
-          <p>Start from a representative work or creator lane, then submit a structured visual brief for studio scoping.</p>
+          <p>Start from a representative VACAT work or creator lane, then submit a visual brief for a quote and production plan.</p>
           <Link href="/start" className="vacat-button-primary px-6 py-3 text-sm">Commission Work</Link>
         </div>
       </section>
