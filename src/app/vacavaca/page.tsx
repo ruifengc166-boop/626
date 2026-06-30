@@ -6,6 +6,15 @@ export const dynamic = "force-dynamic";
 
 const featuredWorks = studioWorks.slice(0, 6);
 
+const navItems = [
+  ["Overview", "#overview"],
+  ["Achievements", "#achievements"],
+  ["Works", "#works"],
+  ["Jury", "#jury"],
+  ["Tracks", "#tracks"],
+  ["Events", "#events"],
+];
+
 const achievements = [
   {
     icon: "🏆",
@@ -67,6 +76,16 @@ export default function VacaVacaOverviewPage() {
           </div>
         </div>
       </section>
+
+      <nav className="vv-container py-5">
+        <div className="flex flex-wrap gap-2 rounded-2xl border border-[rgba(202,254,97,0.14)] bg-[rgba(35,52,95,0.42)] p-2">
+          {navItems.map(([label, href]) => (
+            <a key={href} href={href} className="rounded-full px-4 py-2 text-sm text-[var(--text3)] transition hover:bg-[rgba(202,254,97,0.08)] hover:text-[var(--gold)]">
+              {label}
+            </a>
+          ))}
+        </div>
+      </nav>
 
       <section className="vv-container vv-section" id="about">
         <SectionHeader title="What is VACAT?" more="Vision Arts Created by AI Technology" />
@@ -212,7 +231,7 @@ function WorkCard({ work }: { work: typeof studioWorks[number] }) {
         <div className="meta"><span>{work.creator}</span><span>{work.track}</span></div>
         <p className="mt-3 text-xs leading-5 text-[var(--text3)]">{work.summary}</p>
         <div className="vv-card-actions">
-          <Link href={`/vacavaca/works/${work.slug}`} className="vv-btn-nav">View work</Link>
+          <Link href={`/vacavaca/works/${work.slug}`} className="vv-btn-nav">View reference</Link>
           <Link href={`/start?vacaVacaReference=${work.slug}`} className="vv-btn-reg">Use reference</Link>
         </div>
       </div>
