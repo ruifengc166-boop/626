@@ -9,16 +9,16 @@ export function VacaVacaSupport() {
       <div className="vacat-container">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
-            <p className="vacat-eyebrow mb-3">VacaVaca proof layer</p>
+            <p className="vacat-eyebrow mb-3">VACAT Award proof</p>
             <h2 className="vacat-title max-w-2xl text-3xl font-medium md:text-5xl">
-              VACAT content is used as trust, taste and reference—not as a separate archive site.
+              VACAT is the award. VacaVaca Studio is the client-facing creative service built on it.
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-7 text-[var(--text3)]">
-              The homepage keeps the commercial path visible: existing ad review, reference selection, commission brief, studio scoping and production. VacaVaca works and creators support that path with authority and visual examples.
+              The award gives VacaVaca Studio credible references, creator signals and visual taste. Clients can use these works as direction, then submit a brief for a clear quote and production plan.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link href="/vacavaca/works" className="vacat-button-secondary px-6 py-3 text-sm">
-                View Works
+                View VACAT Works
               </Link>
               <Link href="/start" className="vacat-button-primary px-6 py-3 text-sm">
                 Submit Brief
