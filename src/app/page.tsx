@@ -19,7 +19,6 @@ export default async function HomePage() {
   return (
     <main>
       <HeroSection template={heroTemplate} />
-      <FreeAdReviewCTA />
       <VacaVacaSupport />
       <NewAdCTA />
       <StudioIdentity />
@@ -29,31 +28,18 @@ export default async function HomePage() {
       <section className="px-6 py-24">
         <div className="vacat-container">
           <div className="max-w-2xl">
-            <p className="vacat-eyebrow mb-3">Commission Menu</p>
-            <h2 className="vacat-title text-3xl font-medium md:text-5xl">Choose the path that fits the request.</h2>
+            <p className="vacat-eyebrow mb-3">Service Packages</p>
+            <h2 className="vacat-title text-3xl font-medium md:text-5xl">Choose the right entry point for the brief.</h2>
             <p className="mt-5 text-base leading-7 text-[var(--text3)]">
-              VACAT provides the award credibility and visual references. VacaVaca Studio turns them into client-ready creative proposals and finished visual works.
+              VACAT references help define taste and ambition. VacaVaca Studio turns the selected direction into a scoped creative proposal and finished AI visual work.
             </p>
           </div>
 
-          <div className="mt-10 grid gap-8 lg:grid-cols-2">
-            <div className="vacat-card rounded-[24px] p-5">
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold)]">Review / direction entry</p>
-              <div className="grid gap-5 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                <PricingCard title="Free Review" price="$0" lines={["Ad or visual diagnosis", "Instant review page"]} />
-                <PricingCard title="Direction Draft" price="From $300" lines={["Reference mapping", "Creative route"]} featured />
-                <PricingCard title="Visual Sprint" price="From $1,800" lines={["3-5 visual routes", "Art-direction review"]} />
-              </div>
-            </div>
-
-            <div className="vacat-card rounded-[24px] p-5">
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold)]">Custom production</p>
-              <div className="grid gap-5 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                <PricingCard title="Key Visual" price="From $900" lines={["Poster or campaign visual", "Studio art direction"]} />
-                <PricingCard title="Short Visual Film" price="From $2,500" lines={["VACAT-inspired film", "One review round"]} featured />
-                <PricingCard title="Premium Visual Work" price="From $3,500" lines={["Cinematic direction", "Creator-level polish"]} />
-              </div>
-            </div>
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            <PricingCard title="Direction Draft" price="From $300" lines={["Reference mapping", "Creative route", "Scope suggestion"]} />
+            <PricingCard title="Key Visual" price="From $900" lines={["Poster or campaign visual", "Studio art direction", "Delivery pack"]} featured />
+            <PricingCard title="Short Visual Film" price="From $2,500" lines={["VACAT-inspired film", "One review round", "Use-case fit check"]} />
+            <PricingCard title="Premium Creator Work" price="From $3,500" lines={["Cinematic direction", "Creator-level polish", "Launch-ready asset"]} />
           </div>
 
           <div className="vacat-card mt-8 rounded-[24px] p-5 md:flex md:items-center md:justify-between">
@@ -66,16 +52,18 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <FreeAdReviewCTA />
+
       <section className="vacat-container px-0 py-24">
         <div className="max-w-2xl">
           <p className="vacat-eyebrow mb-3">FAQ</p>
           <h2 className="vacat-title text-3xl font-medium md:text-5xl">How VacaVaca Studio starts a project.</h2>
         </div>
         <div className="vacat-card mt-10 overflow-hidden rounded-[24px]">
-          <FAQItem question="Is the free review still part of the flow?" answer="Yes. Free ad / creative review is the easy first step. It helps clients understand what is weak in an existing ad, video or visual draft before commissioning a new work." />
+          <FAQItem question="Is the free review still part of the flow?" answer="Yes. Free creative review is the low-friction first step for clients who are not ready to commission yet. The main service flow is still brief, scope, quote and production." />
           <FAQItem question="Is this only for advertising?" answer="No. The commission menu covers visual creative works: ads, AI films, key visuals, campaign image systems, event visuals, city promotion, music visuals and IP concept films." />
           <FAQItem question="How do VACAT works support projects?" answer="VACAT is the award. Its works provide reference directions, creator capability signals and authority. VacaVaca Studio turns those references into commissioned creative work." />
-          <FAQItem question="Can I choose a specific VACAT reference?" answer="Yes. You can select a creative direction, use a representative work as reference, or mention a creator lane in the brief." />
+          <FAQItem question="Can I choose a specific VACAT reference?" answer="Yes. You can select a representative work as reference, choose a creative direction, or mention a creator lane in the brief." />
           <FAQItem question="Do users pay immediately?" answer="No. Submit the brief first. VacaVaca Studio replies with the creative route, timeline and quote before production starts." />
         </div>
       </section>
