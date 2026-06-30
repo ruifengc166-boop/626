@@ -1,7 +1,7 @@
 const points = [
-  ["VACAT-backed references", "Representative works guide the visual ambition and creative route."],
-  ["Creator-lane scoping", "The studio maps briefs to narrative, animation, commercial, visual-art or poster directions."],
-  ["Managed production", "Every commission is scoped, reviewed and delivered through VacaVaca Studio."],
+  ["VACAT-backed references", "Representative award works guide the visual ambition and creative route."],
+  ["Creator capability", "The brief can align with narrative, animation, commercial, visual-art or key-visual directions."],
+  ["Client-ready delivery", "VacaVaca Studio turns the selected direction into a proposal, production plan and finished work."],
 ];
 
 export function StudioIdentity() {
@@ -11,10 +11,10 @@ export function StudioIdentity() {
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
             <p className="vacat-eyebrow">Who makes the work</p>
-            <h2 className="vacat-title mt-5 text-3xl font-medium md:text-5xl">A visual creative studio grown from the VacaVaca creator ecosystem.</h2>
+            <h2 className="vacat-title mt-5 text-3xl font-medium md:text-5xl">A client-facing creative studio built on the VACAT Award ecosystem.</h2>
           </div>
           <p className="max-w-2xl text-base leading-7 text-[var(--text3)]">
-            VacaVaca Studio connects commissioned visual projects with the taste, reference works and creator capability built through VACAT.
+            VACAT is the award and reference system. VacaVaca Studio is the service that turns those references into commissioned visual creative work.
           </p>
         </div>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
