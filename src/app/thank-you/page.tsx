@@ -11,18 +11,18 @@ export default async function ThankYouPage({ searchParams }: { searchParams: Pro
       <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-white/40">Brief Received</p>
       <h1 className="text-4xl font-semibold tracking-[-0.04em] text-white md:text-6xl">Thanks. We will review the fit.</h1>
       <p className="mt-5 text-lg leading-8 text-white/60">
-        We will confirm the style, scope and price before any payment or production starts.
+        We will confirm the creative direction, scope and price before any payment or production starts.
       </p>
       {order || template || brand ? (
         <div className="mt-8 rounded-[1.5rem] border border-white/[0.08] bg-white/[0.04] px-5 py-4 text-sm text-white/62">
           {order ? <p>Request ID: <span className="text-white">{order}</span></p> : null}
-          {template ? <p className="mt-1">Preferred style: <span className="text-white">{template}</span></p> : null}
-          {brand ? <p className="mt-1">Brand: <span className="text-white">{brand}</span></p> : null}
+          {template ? <p className="mt-1">Preferred direction: <span className="text-white">{template}</span></p> : null}
+          {brand ? <p className="mt-1">Project / Brand: <span className="text-white">{brand}</span></p> : null}
         </div>
       ) : null}
       <div className="mt-8 flex flex-wrap justify-center gap-3">
         <Link href="/templates" className="rounded-full border border-white/10 bg-white/[0.06] px-6 py-3 text-sm font-medium text-white transition hover:border-white/25 hover:bg-white/[0.1]">
-          Browse More Styles
+          Browse Creative Directions
         </Link>
         <Link href="/" className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-white/85">
           Back Home
