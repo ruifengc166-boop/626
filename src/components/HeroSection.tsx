@@ -3,7 +3,7 @@ import type { Template } from "@/data/templates";
 import { studioMetrics } from "@/data/vacavaca-studio";
 import { VideoFrame } from "@/components/VideoFrame";
 
-const trustLabels = ["VACAT award authority", "Representative works as references", "Free review → brief → studio delivery"];
+const trustLabels = ["VACAT is the award", "VacaVaca Studio is the creative service", "Review → reference → brief → quote"];
 const heroMetrics = studioMetrics.slice(0, 3);
 
 export function HeroSection({ template }: { template: Template }) {
@@ -16,10 +16,10 @@ export function HeroSection({ template }: { template: Template }) {
             VacaVaca Studio
           </div>
           <h1 className="vacat-title max-w-5xl text-[3.2rem] font-semibold md:text-7xl lg:text-[5.4rem]">
-            Custom AI visual creative works, powered by VACAT references.
+            Custom AI visual creative works, backed by the VACAT Award.
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-[var(--text3)] md:text-lg">
-            VacaVaca Studio is the commercial front desk of the VACAT creator ecosystem: review an existing ad or visual, choose a representative VacaVaca direction, submit a brief, and let the studio scope delivery.
+            VACAT is the AI visual creativity award. VacaVaca Studio turns that award ecosystem into a client-facing creative service: review an existing ad or visual, choose an international reference direction, and submit a brief for a clear quote.
           </p>
 
           <div className="mt-8 grid max-w-3xl gap-3 sm:grid-cols-3">
@@ -52,7 +52,7 @@ export function HeroSection({ template }: { template: Template }) {
             <VideoFrame template={template} />
           </div>
           <div className="mt-4 rounded-2xl border border-[rgba(202,254,97,0.16)] bg-[rgba(202,254,97,0.08)] p-4 text-sm leading-6 text-[var(--text3)]">
-            Featured VacaVaca-inspired reference direction. The commercial flow stays clear: reference selection, brief submission, studio scoping, production and approved case return.
+            Featured international creative direction from the VacaVaca Studio menu. Start with a reference, then send the project context for a quote and production plan.
           </div>
         </div>
       </div>
