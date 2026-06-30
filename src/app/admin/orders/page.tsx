@@ -88,6 +88,18 @@ function formatPlatform(value: string) {
       return "YouTube Shorts";
     case "meta_ads":
       return "Meta Ads";
+    case "website":
+      return "Website";
+    case "exhibition_screen":
+      return "Exhibition Screen";
+    case "event_screen":
+      return "Event Screen";
+    case "pitch_deck":
+      return "Pitch Deck";
+    case "brand_film":
+      return "Brand Film";
+    case "key_visual":
+      return "Key Visual";
     default:
       return "Other";
   }
