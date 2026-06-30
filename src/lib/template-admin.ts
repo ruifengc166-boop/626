@@ -17,7 +17,7 @@ export type TemplateAdminRecord = {
 };
 
 const storePath = path.join(process.cwd(), "data", "template-admin.json");
-const defaultFeaturedIds = ["T001", "T002", "T007", "T011", "T015", "T018"];
+const defaultFeaturedIds = ["V001", "V003", "V005", "V007", "V009", "V012"];
 
 async function ensureStore() {
   await fs.mkdir(path.dirname(storePath), { recursive: true });
