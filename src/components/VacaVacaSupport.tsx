@@ -13,7 +13,10 @@ export function VacaVacaSupport() {
             A real award ecosystem behind the studio.
           </h2>
           <p className="mt-5 max-w-2xl text-sm leading-7 text-[var(--text3)] md:text-base">
-            VACAT has collected thousands of AI visual submissions and selected awarded and finalist works across AI film, visual art, key visual, music visual and commercial creative. These works give VacaVaca Studio a visible reference system rather than a generic AI portfolio.
+            VACAT has collected thousands of AI visual submissions and selected awarded and finalist works across AI film, visual art, key visual, music visual and commercial creative. These works are shown as non-commercial award records that demonstrate curatorial standard, creator ecology and industry influence.
+          </p>
+          <p className="mt-4 max-w-2xl rounded-2xl border border-[rgba(202,254,97,0.16)] bg-[rgba(202,254,97,0.06)] p-4 text-xs leading-6 text-[var(--text3)]">
+            Submitted VACAT works are not offered for reuse, adaptation, licensing or commercial production by VacaVaca Studio unless the original creator provides separate written authorization. Commercial projects are produced independently through original briefs and authorized creators.
           </p>
         </div>
 
@@ -29,11 +32,11 @@ export function VacaVacaSupport() {
         <div className="mt-12 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="vacat-eyebrow mb-3">Representative Works</p>
-            <h3 className="vacat-title text-2xl font-medium tracking-[-0.045em] md:text-4xl">Selected VACAT references</h3>
+            <h3 className="vacat-title text-2xl font-medium tracking-[-0.045em] md:text-4xl">Non-commercial award records</h3>
           </div>
           <div className="flex gap-3">
             <Link href="/vacavaca" className="vacat-button-secondary px-5 py-3 text-sm">About VACAT</Link>
-            <Link href="/vacavaca/works" className="vacat-button-primary px-5 py-3 text-sm">View All Works</Link>
+            <Link href="/vacavaca/works" className="vacat-button-primary px-5 py-3 text-sm">View Award Archive</Link>
           </div>
         </div>
 
