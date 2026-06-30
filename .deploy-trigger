@@ -1,4 +1,4 @@
 Tencent Cloud deployment trigger
-Triggered at: 2026-06-30T03:04:00Z
+Triggered at: 2026-06-30T03:18:00Z
 Branch: main
-Reason: deploy build stabilization fixes
+Reason: deploy expanded VACAT overview page
