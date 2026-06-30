@@ -11,10 +11,10 @@ export function FinalCTA() {
         </p>
         <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
           <Link href="/templates" className="vacat-button-secondary px-6 py-3 text-sm">
-            Browse Creative Menu
+            Browse Creative Directions
           </Link>
           <Link href="/start" className="vacat-button-primary px-6 py-3 text-sm">
-            Commission Work
+            Submit Creative Brief
           </Link>
         </div>
       </div>
