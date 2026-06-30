@@ -37,8 +37,8 @@ export default async function AdminOrderDetailPage({ params }: { params: Promise
         <section className="rounded-[1.75rem] border border-white/[0.08] bg-[#0d0d0d] p-6 shadow-2xl shadow-black/20">
           <h2 className="text-xl font-semibold text-white">Client Brief</h2>
           <div className="mt-6 space-y-4 text-sm">
-            <Info label="Product" value={order.productName} />
-            <Info label="Template" value={order.selectedTemplateId} />
+            <Info label="Work" value={order.productName} />
+            <Info label="Creative Direction" value={order.selectedTemplateId} />
             <Info label="Source" value={order.sourceChannel || "direct"} />
             {order.sourceReviewId ? (
               <div>
@@ -46,11 +46,11 @@ export default async function AdminOrderDetailPage({ params }: { params: Promise
                 <Link href={`/admin/ad-reviews/${order.sourceReviewId}`} className="mt-1 inline-block text-white underline decoration-white/30 underline-offset-4">{order.sourceReviewId}</Link>
               </div>
             ) : null}
-            <Info label="Website" value={order.productUrl} />
-            <Info label="Product Assets" value={order.productAssetLinks.join("\n")} />
-            <Info label="Logo Assets" value={order.logoAssetLinks.join("\n")} />
-            <Info label="Selling Points" value={[order.sellingPoint1, order.sellingPoint2, order.sellingPoint3].filter(Boolean).join("\n")} />
-            <Info label="Platform" value={formatPlatform(order.targetPlatform)} />
+            <Info label="Project Link" value={order.productUrl} />
+            <Info label="Project Assets" value={order.productAssetLinks.join("\n")} />
+            <Info label="Identity Assets" value={order.logoAssetLinks.join("\n")} />
+            <Info label="Core Message / Story" value={[order.sellingPoint1, order.sellingPoint2, order.sellingPoint3].filter(Boolean).join("\n")} />
+            <Info label="Target Format" value={formatPlatform(order.targetPlatform)} />
             <Info label="Language" value={order.targetLanguage} />
             <Info label="CTA" value={order.ctaText} />
             <Info label="Contact" value={`${order.contactEmail}${order.contactHandle ? ` / ${order.contactHandle}` : ""}`} />
@@ -68,8 +68,8 @@ export default async function AdminOrderDetailPage({ params }: { params: Promise
           <p className="mt-2 text-sm leading-6 text-white/44">Use VacaVaca as an internal reference and capability signal only; keep client delivery inside the studio-managed production workflow.</p>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             <Select label="Status" name="status" defaultValue={order.status} options={orderStatuses} />
-            <Select label="Product Fit" name="productFitsTemplate" defaultValue={order.productFitsTemplate || "unchecked"} options={["unchecked", "good", "acceptable", "poor"]} />
-            <Input label="Recommended Template" name="recommendedTemplateId" defaultValue={order.recommendedTemplateId || ""} />
+            <Select label="Direction Fit" name="productFitsTemplate" defaultValue={order.productFitsTemplate || "unchecked"} options={["unchecked", "good", "acceptable", "poor"]} />
+            <Input label="Recommended Direction" name="recommendedTemplateId" defaultValue={order.recommendedTemplateId || ""} />
             <Select label="Recommended Plan" name="recommendedPlan" defaultValue={order.recommendedPlan || "not_sure"} options={orderPlans} />
             <Input label="Estimated Delivery" name="estimatedDeliveryTime" defaultValue={order.estimatedDeliveryTime || ""} />
             <Input label="Quote USD" name="quoteUsd" type="number" defaultValue={order.quoteUsd || ""} />
@@ -132,6 +132,18 @@ function formatPlatform(value: string) {
       return "YouTube Shorts";
     case "meta_ads":
       return "Meta Ads";
+    case "website":
+      return "Website";
+    case "exhibition_screen":
+      return "Exhibition Screen";
+    case "event_screen":
+      return "Event Screen";
+    case "pitch_deck":
+      return "Pitch Deck";
+    case "brand_film":
+      return "Brand Film";
+    case "key_visual":
+      return "Key Visual";
     default:
       return "Other";
   }
