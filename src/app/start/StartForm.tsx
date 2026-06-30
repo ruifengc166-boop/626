@@ -3,7 +3,6 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import type { Template } from "@/data/templates";
-import { studioWorks } from "@/data/vacavaca-studio";
 import { formatCurrency } from "@/lib/utils";
 import type { OrderPlan } from "@/lib/order-types";
 
@@ -12,9 +11,7 @@ const platforms = ["TikTok", "Instagram Reels", "YouTube Shorts", "Website", "Ex
 export function StartForm({ templates }: { templates: Template[] }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const initialReference = searchParams.get("vacaVacaReference") || "";
-  const [templateId, setTemplateId] = useState(() => searchParams.get("template") || inferTemplateIdFromReference(initialReference, templates));
-  const [vacaVacaReference, setVacaVacaReference] = useState(initialReference);
+  const [templateId, setTemplateId] = useState(() => searchParams.get("template") || "");
   const recommendedPlan = searchParams.get("plan") || "";
   const sourceReviewId = searchParams.get("review") || "";
   const mappedOrderPlan = useMemo(() => mapRecommendedServiceToOrderPlan(recommendedPlan), [recommendedPlan]);
@@ -55,9 +52,9 @@ export function StartForm({ templates }: { templates: Template[] }) {
       <div className="vacat-container relative z-10 max-w-5xl">
         <div className="mb-10 max-w-3xl">
           <p className="vacat-eyebrow mb-3">VacaVaca Studio Commission</p>
-          <h1 className="vacat-title text-4xl font-semibold md:text-6xl">Commission a visual creative work.</h1>
+          <h1 className="vacat-title text-4xl font-semibold md:text-6xl">Commission an original visual creative work.</h1>
           <p className="mt-5 text-lg leading-8 text-[var(--text3)]">
-            Send the project background, target format, core subject and VACAT reference. VacaVaca Studio replies with the creative route, timeline and quote before payment.
+            Send the project background, target format, core subject and licensed references. VacaVaca Studio replies with the creative route, timeline and quote before payment.
           </p>
         </div>
 
@@ -69,9 +66,9 @@ export function StartForm({ templates }: { templates: Template[] }) {
           {sourceReviewId ? <div className="mb-6 rounded-2xl border border-[rgba(202,254,97,0.18)] bg-[rgba(202,254,97,0.07)] p-4 text-sm text-[var(--text3)]">Source review: <span className="text-[var(--text)]">{sourceReviewId}</span></div> : null}
           {selectedTemplate ? <SelectedTemplateCard template={selectedTemplate} /> : null}
           <div className="mb-8 rounded-[1.5rem] border border-[rgba(202,254,97,0.18)] bg-[rgba(202,254,97,0.07)] p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold)]">VACAT reference layer</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold)]">Original commercial production</p>
             <p className="mt-3 text-sm leading-6 text-[var(--text3)]">
-              VACAT is the award-backed reference system. VacaVaca Studio uses its works to understand visual ambition, creator-lane fit and production complexity.
+              VACAT award works are not reused, adapted or licensed through this brief form. Commercial work is produced independently with original briefs, client-owned assets, licensed references and authorized creators.
             </p>
           </div>
           <div className="grid gap-5 md:grid-cols-2">
@@ -84,7 +81,7 @@ export function StartForm({ templates }: { templates: Template[] }) {
             <Input label="Organization / Brand / Project Name" name="brandName" required />
             <Input label="Work Title or Campaign Name" name="productName" required />
             <Input label="Project Link" name="productUrl" type="url" required />
-            <Input label="Asset Links" name="productAssetLinks" placeholder="Drive, Dropbox, website, deck, references" required />
+            <Input label="Asset Links" name="productAssetLinks" placeholder="Drive, Dropbox, website, deck, licensed references" required />
             <Input label="Identity Asset Link" name="logoAssetLinks" placeholder="Logo, event identity, visual guideline" />
             <Input label="Core Message" name="sellingPoint1" required />
             <Input label="Visual Story / Scene Direction" name="sellingPoint2" />
@@ -92,14 +89,6 @@ export function StartForm({ templates }: { templates: Template[] }) {
             <Field label="Target Format">
               <select name="targetPlatform" className="input" required>
                 {platforms.map((platform) => <option key={platform} value={platform}>{platform}</option>)}
-              </select>
-            </Field>
-            <Field label="VACAT Work Reference">
-              <select name="vacaVacaReference" className="input" value={vacaVacaReference} onChange={(event) => setVacaVacaReference(event.target.value)}>
-                <option value="">Let the studio choose if useful</option>
-                {studioWorks.map((work) => (
-                  <option key={work.slug} value={work.slug}>{work.title}</option>
-                ))}
               </select>
             </Field>
             <Input label="Target Language" name="targetLanguage" defaultValue="English" required />
@@ -110,7 +99,7 @@ export function StartForm({ templates }: { templates: Template[] }) {
             <Input label="Anything to Avoid" name="thingsToAvoid" />
           </div>
           <div className="mt-5 grid gap-5 md:grid-cols-2">
-            <Textarea label="Creative Reference Links" name="creativeReferenceLinks" placeholder="VACAT work, competitor film, exhibition reference, mood board, video link" />
+            <Textarea label="Licensed / Client-Owned Reference Links" name="creativeReferenceLinks" placeholder="Client-owned footage, licensed references, mood board, brand assets, approved examples" />
             <Textarea label="Creator / Style Fit Notes" name="creatorFitNotes" placeholder="Creator lane, visual energy, art direction, story atmosphere or event context" />
           </div>
           <div className="mt-6 grid gap-3 md:grid-cols-2">
@@ -126,11 +115,6 @@ export function StartForm({ templates }: { templates: Template[] }) {
       </div>
     </main>
   );
-}
-
-function inferTemplateIdFromReference(reference: string, templates: Template[]) {
-  if (!reference) return "";
-  return templates.find((template) => template.slug.startsWith(reference))?.id || "";
 }
 
 function mapRecommendedServiceToOrderPlan(service: string): OrderPlan {
@@ -154,10 +138,10 @@ function SelectedTemplateCard({ template }: { template: Template }) {
     <div className="vacat-card mb-8 grid gap-5 rounded-[1.5rem] p-4 md:grid-cols-[160px_1fr]">
       <img src={template.thumbnailUrl} alt={template.title} className="aspect-[9/12] w-full rounded-[1rem] object-cover" />
       <div className="flex flex-col justify-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold)]">Selected creative direction</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold)]">Selected commercial direction</p>
         <h2 className="mt-3 text-2xl font-semibold tracking-tight text-[var(--text)]">{template.title}</h2>
         <div className="mt-4 flex flex-wrap gap-2 text-sm text-[var(--text3)]">
-          <span className="vacat-chip rounded-full px-3 py-1">VACAT-inspired</span>
+          <span className="vacat-chip rounded-full px-3 py-1">Original production</span>
           <span className="vacat-chip rounded-full px-3 py-1">From {formatCurrency(template.priceFrom)}</span>
         </div>
       </div>
