@@ -9,16 +9,16 @@ export function VacaVacaSupport() {
       <div className="vacat-container">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
-            <p className="vacat-eyebrow mb-3">VACAT Award proof</p>
+            <p className="vacat-eyebrow mb-3">Why VACAT backs this studio</p>
             <h2 className="vacat-title max-w-2xl text-3xl font-medium md:text-5xl">
-              VACAT is the award. VacaVaca Studio is the client-facing creative service built on it.
+              The award is the proof layer. The studio is the service layer.
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-7 text-[var(--text3)]">
-              The award gives VacaVaca Studio credible references, creator signals and visual taste. Clients can use these works as direction, then submit a brief for a clear quote and production plan.
+              VACAT gives VacaVaca Studio visible works, creator signals, jury credibility and industry context. Clients use those references to choose a direction before commissioning custom AI visual work.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link href="/vacavaca/works" className="vacat-button-secondary px-6 py-3 text-sm">
-                View VACAT Works
+                View Reference Works
               </Link>
               <Link href="/start" className="vacat-button-primary px-6 py-3 text-sm">
                 Submit Brief
@@ -29,11 +29,20 @@ export function VacaVacaSupport() {
           <div className="grid gap-5">
             <div className="grid gap-3 sm:grid-cols-2">
               {featuredWorks.map((work) => (
-                <Link key={work.slug} href={`/start?vacaVacaReference=${work.slug}`} className="vacat-card vacat-card-glow rounded-2xl p-4">
-                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--gold)]">{work.track}</p>
-                  <h3 className="mt-3 text-base font-semibold tracking-[-0.03em] text-[var(--text)]">{work.title}</h3>
-                  <p className="mt-3 text-xs leading-5 text-[var(--text3)]">{work.summary}</p>
-                  <p className="mt-4 text-xs font-semibold text-[var(--gold)]">Use this reference →</p>
+                <Link key={work.slug} href={`/vacavaca/works/${work.slug}`} className="vacat-card vacat-card-glow overflow-hidden rounded-2xl">
+                  <div className="aspect-video overflow-hidden video-shell">
+                    {work.previewVideoUrl ? (
+                      <video src={work.previewVideoUrl} poster={work.posterUrl} className="h-full w-full object-cover" muted loop playsInline preload="metadata" />
+                    ) : (
+                      <img src={work.posterUrl} alt={work.title} className="h-full w-full object-cover" />
+                    )}
+                  </div>
+                  <div className="p-4">
+                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--gold)]">{work.track}</p>
+                    <h3 className="mt-3 text-base font-semibold tracking-[-0.03em] text-[var(--text)]">{work.title}</h3>
+                    <p className="mt-3 text-xs leading-5 text-[var(--text3)]">{work.summary}</p>
+                    <p className="mt-4 text-xs font-semibold text-[var(--gold)]">View work →</p>
+                  </div>
                 </Link>
               ))}
             </div>
