@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const platforms = ["TikTok", "Instagram Reels", "YouTube Shorts", "Website", "Event Screen", "Exhibition Screen", "Pitch Deck", "Other"];
+const platforms = ["TikTok", "Instagram Reels", "YouTube Shorts", "Website", "Event Screen", "Exhibition Screen", "Pitch Deck", "Brand Film", "Key Visual", "Other"];
 
 export default function FreeAdReviewPage() {
   const router = useRouter();
