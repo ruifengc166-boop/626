@@ -8,9 +8,9 @@ const asset = (path: string) => `https://raw.githubusercontent.com/ruifengc166-b
 
 const navItems = [
   ["Overview", "#overview"],
-  ["Sections", "#sections"],
+  ["Explore", "#sections"],
   ["About", "#about"],
-  ["Support Model", "#support-model"],
+  ["Studio Support", "#support-model"],
   ["Achievements", "#achievements"],
   ["Data", "#data"],
   ["Moments", "#moments"],
@@ -21,33 +21,33 @@ const navItems = [
 ];
 
 const publicSections = [
-  { label: "VACAT Overview", href: "/vacavaca", body: "Award background, impact and support model." },
-  { label: "Award Archive", href: "/vacavaca/works", body: "Non-commercial award records and selected works." },
+  { label: "VACAT Overview", href: "/vacavaca", body: "Award background, impact and relationship to the studio." },
+  { label: "Award Archive", href: "/vacavaca/works", body: "Selected VACAT award records." },
   { label: "Award Events", href: "/vacavaca/events", body: "Ceremony, workshop, battle day and exhibition context." },
-  { label: "Commercial Directions", href: "/templates", body: "Studio production lanes for original commercial projects." },
-  { label: "Submit Brief", href: "/start", body: "Start an original VacaVaca Studio commission." },
+  { label: "Studio Services", href: "/templates", body: "Original AI visual production categories." },
+  { label: "Submit Brief", href: "/start", body: "Start a VacaVaca Studio commission." },
 ];
 
 const supportModel = [
   {
     title: "1. Curatorial standards",
-    body: "VACAT gives the Studio a visible standard for judging AI-native image quality, narrative structure, visual language and production ambition.",
+    body: "VACAT gives the Studio a clear standard for evaluating AI-native image quality, narrative clarity, visual language and production ambition.",
   },
   {
     title: "2. Industry credibility",
-    body: "Submissions, universities, jury participation, exhibitions and research context show that VacaVaca is an industry node, not a generic AI service page.",
+    body: "Submissions, universities, jury participation, exhibitions and research work show that VacaVaca is a serious industry participant, not a generic AI production vendor.",
   },
   {
-    title: "3. Creator ecology",
-    body: "VACAT helps the team understand and connect with creator talent. Commercial collaboration still requires separate authorization and project agreements.",
+    title: "3. Creator network",
+    body: "VACAT helps the team understand and connect with AI visual creators. Any commercial collaboration is handled through separate authorization and project agreements.",
   },
   {
     title: "4. Production methodology",
-    body: "Award tracks and review experience become commercial production lanes such as brand film, key visual, city image film, stage visuals, institutional film and IP concept work.",
+    body: "Award tracks and review experience inform practical studio services such as brand film, key visual, city image film, stage visuals, institutional film and IP concept work.",
   },
   {
     title: "5. Independent delivery",
-    body: "VacaVaca Studio creates new work from original briefs, licensed materials, client-owned assets and authorized creators. Submitted award works are not commercialized by default.",
+    body: "VacaVaca Studio creates new work from original briefs, approved materials and authorized contributors. Award submissions are not used for client work unless separate permission is confirmed.",
   },
 ];
 
@@ -55,7 +55,7 @@ const achievements = [
   {
     icon: "🏆",
     title: "Industry benchmark",
-    body: "VACAT has been described by major media as a leading AI creativity competition in China and is positioned as a benchmark platform for AI visual creativity.",
+    body: "VACAT has been described by major media as a leading AI creativity competition in China and has become a benchmark platform for AI visual creativity.",
   },
   {
     icon: "🎬",
@@ -65,7 +65,7 @@ const achievements = [
   {
     icon: "🤝",
     title: "Industry connection",
-    body: "The first edition generated 272 intended cooperation leads and project orders, helping shape a local AI visual creative ecosystem in Longgang.",
+    body: "The first edition generated 272 intended cooperation leads and project opportunities, helping shape an AI visual creativity ecosystem in Longgang.",
   },
   {
     icon: "📚",
@@ -75,7 +75,7 @@ const achievements = [
   {
     icon: "🌍",
     title: "International reach",
-    body: "The second edition received invited submissions from Beijing Film Academy and the International Student Media Art Festival, strengthening its role as a global exchange platform.",
+    body: "The second edition received invited submissions from Beijing Film Academy and the International Student Media Art Festival, strengthening VACAT as an international exchange platform.",
   },
 ];
 
@@ -126,7 +126,7 @@ export default function VacaVacaOverviewPage() {
           <p className="vacat-eyebrow">VACAT Award</p>
           <h1>Global AI Visual Creativity Award</h1>
           <p>
-            Vision Arts Created by AI Technology. VACAT is a non-commercial award platform, an industry credibility layer and a creator-ecology signal behind VacaVaca Studio.
+            Vision Arts Created by AI Technology. VACAT is a non-commercial award platform and an industry foundation behind VacaVaca Studio, connecting creators, institutions, judges and new visual practices.
           </p>
           <div className="vv-metric-row">
             {studioMetrics.map((metric) => <div key={metric.label} className="vv-data-card"><strong>{metric.value}</strong><span>{metric.label}</span></div>)}
@@ -148,7 +148,7 @@ export default function VacaVacaOverviewPage() {
       </nav>
 
       <section className="vv-container vv-section" id="sections">
-        <SectionHeader title="VACAT Platform Sections" more="Public-facing navigation" />
+        <SectionHeader title="Explore VACAT" more="Award archive and studio services" />
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {publicSections.map((item) => (
             <Link key={item.label} href={item.href} className="vacat-card rounded-2xl p-5 transition hover:-translate-y-1 hover:border-[rgba(202,254,97,0.3)]">
@@ -165,10 +165,10 @@ export default function VacaVacaOverviewPage() {
           <div>
             <h2>A competition platform for AI visual creativity.</h2>
             <p>
-              VACAT is built around AI video, AI image, visual art, commercial creative exploration, creator discovery, professional judging, exhibition and industry exchange.
+              VACAT is built around AI video, AI image, visual art, applied visual communication, creator discovery, professional judging, exhibition and industry exchange.
             </p>
             <p>
-              For VacaVaca Studio, VACAT is not a commercial work library. It supports the Studio through industry credibility, curatorial standards, creator ecology and production methodology. Commercial projects are produced independently through original briefs, authorized creators and client-owned or licensed assets.
+              For VacaVaca Studio, VACAT is not a library of commercial assets. It supports the Studio through industry credibility, curatorial standards, a creator network and production methodology. Client projects are produced independently through original briefs, authorized contributors and approved materials.
             </p>
           </div>
           <div className="overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.03)]">
@@ -179,7 +179,7 @@ export default function VacaVacaOverviewPage() {
       </section>
 
       <section className="vv-container vv-section" id="support-model">
-        <SectionHeader title="How VACAT Supports the Studio" more="Proof layer, not work library" />
+        <SectionHeader title="How VACAT Supports the Studio" more="Award foundation, not a work library" />
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
           {supportModel.map((item) => (
             <div key={item.title} className="vacat-card rounded-2xl p-5">
@@ -282,10 +282,10 @@ export default function VacaVacaOverviewPage() {
       <section className="vv-container vv-section">
         <div className="vv-final-panel">
           <h2>The next VACAT edition is coming.</h2>
-          <p>Commercial Studio content will be added separately. Award submissions remain non-commercial records unless separate authorization is confirmed.</p>
+          <p>Studio service examples will be added separately. Award submissions remain protected records unless separate authorization is confirmed.</p>
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
             <Link href="/vacavaca/works" className="vacat-button-secondary px-6 py-3 text-sm">View Award Archive</Link>
-            <Link href="/templates" className="vacat-button-primary px-6 py-3 text-sm">Commercial Directions</Link>
+            <Link href="/templates" className="vacat-button-primary px-6 py-3 text-sm">View Studio Services</Link>
           </div>
         </div>
       </section>
@@ -300,7 +300,7 @@ function SectionHeader({ title, more }: { title: string; more: ReactNode }) {
 function RightsNotice() {
   return (
     <div className="mt-6 rounded-2xl border border-[rgba(202,254,97,0.16)] bg-[rgba(202,254,97,0.06)] p-5 text-sm leading-7 text-[var(--text3)]">
-      VACAT works are displayed as non-commercial award records. They are not offered for reuse, adaptation, licensing or commercial production by VacaVaca Studio unless the original creator provides separate written authorization.
+      VACAT works are presented as award records. They are not offered for reuse, adaptation, licensing or client production by VacaVaca Studio unless the original creator provides separate written authorization.
     </div>
   );
 }
