@@ -20,6 +20,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <img src={logo} alt="VacaVaca Studio" />
             </Link>
             <div className="vv-nav-actions">
+              <Link href="/templates" className="vv-btn-nav">Creative Menu</Link>
+              <Link href="/free-ad-review" className="vv-btn-nav">Free Review</Link>
+              <Link href="/start" className="vv-btn-nav">Commission Brief</Link>
               <Link href="/vacavaca" className="vv-btn-reg">Learn about VACAT</Link>
             </div>
           </div>
