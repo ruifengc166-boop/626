@@ -21,7 +21,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             </Link>
             <div className="vv-nav-actions">
               <Link href="/templates" className="vv-btn-nav">Creative Directions</Link>
-              <Link href="/vacavaca/works" className="vv-btn-nav">Reference Works</Link>
+              <Link href="/vacavaca" className="vv-btn-nav">About VACAT</Link>
               <Link href="/free-ad-review" className="vv-btn-nav">Free Review</Link>
               <Link href="/start" className="vv-btn-reg">Submit Brief</Link>
             </div>
