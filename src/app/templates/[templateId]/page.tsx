@@ -36,33 +36,33 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
           )}
         </div>
         <div className="py-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/40">{template.id} · Commercial Direction</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/40">{template.id} · Studio Service</p>
           <h1 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-white md:text-6xl">{template.title}</h1>
           <p className="mt-4 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--gold)]">{template.serviceBasis}</p>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-white/60">
-            A service lane for {template.suitableProducts.slice(0, 4).join(", ")}. Commercial projects are produced independently from submitted award works, using original briefs and properly authorized creators or client-owned assets.
+            Designed for {template.suitableProducts.slice(0, 4).join(", ")}. Each project is developed from a fresh brief and produced with authorized contributors, client-owned materials or licensed references.
           </p>
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
-            <Info label="Price From" value={`${formatCurrency(template.priceFrom)}+`} />
-            <Info label="Recommended Plan" value={formatPlan(template.recommendedPlan)} />
-            <Info label="Difficulty" value={template.difficulty} />
-            <Info label="Delivery" value={template.deliveryEstimate} />
+            <Info label="Starting Price" value={`${formatCurrency(template.priceFrom)}+`} />
+            <Info label="Suggested Production Route" value={formatPlan(template.recommendedPlan)} />
+            <Info label="Complexity" value={template.difficulty} />
+            <Info label="Estimated Delivery" value={template.deliveryEstimate} />
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href={`/start?template=${template.id}`} className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-white/85">
-              Use This Direction
+              Start Brief
             </Link>
             <Link href="/templates" className="rounded-full border border-white/10 bg-white/[0.06] px-6 py-3 text-sm font-medium text-white transition hover:border-white/25 hover:bg-white/[0.1]">
-              Back to Directions
+              Back to Services
             </Link>
           </div>
         </div>
       </div>
 
       <div className="mt-16 grid gap-6 lg:grid-cols-3">
-        <DetailBlock title="Good For" items={template.suitableProducts} />
-        <DetailBlock title="Not Suitable For" items={template.unsuitableProducts} />
-        <DetailBlock title="Needed Brief Materials" items={template.requiredAssets} />
+        <DetailBlock title="Best For" items={template.suitableProducts} />
+        <DetailBlock title="Not Designed For" items={template.unsuitableProducts} />
+        <DetailBlock title="Brief Materials Needed" items={template.requiredAssets} />
       </div>
 
       <section className="mt-8 rounded-[1.75rem] border border-white/[0.08] bg-[#0d0d0d] p-7 shadow-2xl shadow-black/20">
