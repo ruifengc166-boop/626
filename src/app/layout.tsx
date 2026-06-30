@@ -7,7 +7,7 @@ const logo = "https://raw.githubusercontent.com/ruifengc166-boop/vacavaca/master
 
 export const metadata: Metadata = {
   title: "VacaVaca Studio",
-  description: "VacaVaca Studio creates commissioned AI visual creative works backed by the VACAT Award ecosystem.",
+  description: "VacaVaca Studio creates original AI visual work as a commercial production service from the organizers of the non-commercial VACAT Award.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -20,8 +20,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <img src={logo} alt="VacaVaca Studio" />
             </Link>
             <div className="vv-nav-actions">
-              <Link href="/templates" className="vv-btn-nav">Creative Directions</Link>
-              <Link href="/vacavaca" className="vv-btn-nav">About VACAT</Link>
+              <Link href="/templates" className="vv-btn-nav">Commercial Directions</Link>
+              <Link href="/vacavaca" className="vv-btn-nav">How VACAT Supports</Link>
               <Link href="/free-ad-review" className="vv-btn-nav">Free Review</Link>
               <Link href="/start" className="vv-btn-reg">Submit Brief</Link>
             </div>
