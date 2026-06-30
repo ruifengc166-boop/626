@@ -14,8 +14,8 @@ export default async function TemplatesPage() {
       <div className="vacat-container relative z-10">
         <SectionHeader
           eyebrow="VacaVaca Studio Creative Menu"
-          title="Choose a VACAT-inspired visual direction"
-          description="These are not product ad templates. They are starting points for commissioned AI visual creative works: films, key visuals, event visuals, city promotion, music visuals, cultural campaigns and brand image systems."
+          title="Choose an international VACAT-inspired direction"
+          description="VACAT is the award. VacaVaca Studio uses the award's works and creator ecosystem as references for client commissions: films, key visuals, event visuals, city image films, music visuals, launch campaigns and brand image systems."
         />
 
         <div className="mt-10 grid gap-3 md:grid-cols-5">
