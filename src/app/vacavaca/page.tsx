@@ -18,9 +18,9 @@ const navItems = [
 ];
 
 const publicSections = [
-  { label: "Award Archive", href: "/vacavaca/works", tag: "Records", image: asset("assets/carousel/carousel-01.jpg"), body: "Selected VACAT award records and representative works." },
-  { label: "Award Events", href: "/vacavaca/events", tag: "Events", image: asset("assets/events/day1-schedule.png"), body: "Ceremony, workshop, Battle Day and exhibition context." },
-  { label: "Studio Services", href: "/templates", tag: "Production", image: asset("assets/about/vacat-about.png"), body: "Original AI visual production categories from VacaVaca Studio." },
+  { label: "Award Archive", href: "/vacavaca/works", tag: "Records", mark: "01", body: "Selected VACAT award records and representative works." },
+  { label: "Award Events", href: "/vacavaca/events", tag: "Events", mark: "02", body: "Ceremony, workshop, Battle Day and exhibition context." },
+  { label: "Studio Services", href: "/templates", tag: "Production", mark: "03", body: "Original AI visual production categories from VacaVaca Studio." },
 ];
 
 const achievements = [
@@ -143,7 +143,12 @@ export default function VacaVacaOverviewPage() {
         <div className="grid gap-4 md:grid-cols-3">
           {publicSections.map((item) => (
             <a key={item.label} href={item.href} className="vacat-link-card overflow-hidden rounded-2xl">
-              <img src={item.image} alt={item.label} className="aspect-video w-full object-cover" />
+              <div className="aspect-video border-b border-[rgba(255,255,255,0.08)] bg-[radial-gradient(circle_at_24%_18%,rgba(202,254,97,0.28),rgba(35,52,95,0.42)_42%,rgba(5,5,5,0.92)_100%)] p-5">
+                <div className="flex h-full items-end justify-between rounded-2xl border border-[rgba(255,255,255,0.1)] bg-[rgba(0,0,0,0.18)] p-5">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--gold)]">{item.tag}</span>
+                  <span className="text-5xl font-semibold tracking-[-0.08em] text-white/18">{item.mark}</span>
+                </div>
+              </div>
               <div className="p-5">
                 <p className="tag">{item.tag}</p>
                 <h3 className="mt-3 text-xl font-semibold tracking-[-0.035em] text-[var(--text)]">{item.label}</h3>
