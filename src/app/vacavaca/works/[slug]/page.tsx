@@ -47,8 +47,7 @@ export default async function VacaVacaWorkDetailPage({ params }: { params: Promi
             <h2 className="mt-3 text-3xl font-medium tracking-[-0.04em] text-[var(--text)]">{work.track}</h2>
             <div className="mt-5 space-y-3 text-sm leading-6 text-[var(--text3)]">
               <p><span className="text-[var(--text2)]">Creator lane:</span> {work.creator}</p>
-              <p><span className="text-[var(--text2)]">Archive note:</span> {work.archiveNote}</p>
-              <p><span className="text-[var(--text2)]">Rights note:</span> This award record is not offered for reuse, adaptation, licensing or commercial production by VacaVaca Studio without separate written authorization from the creator.</p>
+              <p>{work.summary}</p>
             </div>
             <div className="mt-6 flex flex-wrap gap-2">
               {work.archiveTags.map((item) => (
@@ -56,13 +55,15 @@ export default async function VacaVacaWorkDetailPage({ params }: { params: Promi
               ))}
             </div>
             <div className="mt-8 grid gap-3">
+              {work.sourceUrl ? (
+                <a href={work.sourceUrl} target="_blank" rel="noreferrer" className="vacat-button-primary px-6 py-3 text-center text-sm">
+                  Open in VACAT Works Page
+                </a>
+              ) : null}
               <Link href="/vacavaca/works" className="vacat-button-secondary px-6 py-3 text-center text-sm">
                 Back to Award Archive
               </Link>
-              <Link href="/templates" className="vacat-button-primary px-6 py-3 text-center text-sm">
-                View Studio Services
-              </Link>
-              {work.bilibiliUrl ? (
+              {work.bilibiliUrl && work.bilibiliUrl !== "https://www.bilibili.com" ? (
                 <a href={work.bilibiliUrl} target="_blank" rel="noreferrer" className="vv-btn-nav text-center">
                   Also published on Bilibili
                 </a>
