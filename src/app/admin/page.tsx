@@ -24,48 +24,53 @@ export default async function AdminPage() {
     { label: "New", value: String(orders.filter((order) => order.status === "new").length) },
     { label: "Quoted", value: formatCurrency(totalQuote) },
     { label: "Paid / Active", value: String(paidOrders.length) },
-    { label: "Templates", value: String(templates.length) },
+    { label: "Services", value: String(templates.length) },
     { label: "Cases", value: String(cases.length) },
     { label: "Free Reviews", value: String(reviews.length) },
-    { label: "Hot Reviews", value: String(hotReviews.length) },
+    { label: "Hot Leads", value: String(hotReviews.length) },
     { label: "Avg Human Time", value: `${avgHumanMinutes} min` },
     { label: "Avg Model Cost", value: formatCurrency(avgModelCost) },
   ];
 
   return (
-    <main className="mx-auto max-w-[1200px] px-6 py-16">
-      <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/40">Internal</p>
-          <h1 className="text-4xl font-semibold tracking-[-0.04em] text-white md:text-6xl">Admin Dashboard</h1>
-        </div>
-        <form action="/api/admin/logout" method="post">
-          <button className="rounded-full border border-white/10 bg-white/[0.06] px-5 py-3 text-sm font-medium text-white">Logout</button>
-        </form>
-      </div>
-      <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
-        {stats.map((item) => (
-          <div key={item.label} className="rounded-[1.5rem] border border-white/[0.08] bg-[#0d0d0d] p-6 shadow-2xl shadow-black/20">
-            <p className="text-xs uppercase tracking-[0.2em] text-white/36">{item.label}</p>
-            <h2 className="mt-3 text-3xl font-semibold text-white">{item.value}</h2>
+    <main className="vacat-shell admin-shell px-6 pb-20">
+      <div className="vacat-container relative z-10">
+        <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="admin-kicker mb-3">Studio Operations</p>
+            <h1 className="admin-title">Admin Dashboard</h1>
+            <p className="admin-copy mt-5 max-w-2xl">Manage briefs, service categories, cases and free creative review leads from one studio operations panel.</p>
           </div>
-        ))}
+          <form action="/api/admin/logout" method="post">
+            <button className="admin-button">Logout</button>
+          </form>
+        </div>
+
+        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+          {stats.map((item) => (
+            <div key={item.label} className="admin-stat rounded-[1.5rem] p-6">
+              <p className="text-xs uppercase tracking-[0.2em]">{item.label}</p>
+              <h2 className="mt-3 text-3xl font-semibold">{item.value}</h2>
+            </div>
+          ))}
+        </div>
+
+        <section className="mt-10 grid gap-4 md:grid-cols-4">
+          <AdminLink href="/admin/orders" title="Orders" description="Review briefs, quote projects and track production." />
+          <AdminLink href="/admin/templates" title="Studio Services" description="Manage service status, pricing, assets and production notes." />
+          <AdminLink href="/admin/cases" title="Cases" description="Manage public case previews and case-study assets." />
+          <AdminLink href="/admin/ad-reviews" title="Free Reviews" description="Review lead scores, project context and recommended next steps." />
+        </section>
       </div>
-      <section className="mt-10 grid gap-4 md:grid-cols-4">
-        <AdminLink href="/admin/orders" title="Orders" description="Review submissions, quote projects, and track delivery." />
-        <AdminLink href="/admin/templates" title="Templates" description="Manage template status, prices, asset URLs and production notes." />
-        <AdminLink href="/admin/cases" title="Cases" description="Manage homepage case previews and case-study video assets." />
-        <AdminLink href="/admin/ad-reviews" title="Free Reviews" description="Review instant diagnostics, lead scores, emails, and recommended services." />
-      </section>
     </main>
   );
 }
 
 function AdminLink({ href, title, description }: { href: string; title: string; description: string }) {
   return (
-    <Link href={href} className="rounded-[1.5rem] border border-white/[0.08] bg-[#0d0d0d] p-6 shadow-2xl shadow-black/20 transition hover:border-white/[0.18] hover:bg-white/[0.04]">
+    <Link href={href} className="admin-panel rounded-[1.5rem] p-6 transition hover:-translate-y-1 hover:border-[rgba(202,254,97,0.28)]">
       <h2 className="text-xl font-semibold text-white">{title}</h2>
-      <p className="mt-3 text-sm text-white/56">{description}</p>
+      <p className="mt-3 text-sm leading-6 text-white/56">{description}</p>
     </Link>
   );
 }
