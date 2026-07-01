@@ -21,11 +21,12 @@ const navItems = [
 ];
 
 const publicSections = [
-  { label: "VACAT Overview", href: "/vacavaca", body: "Award background, impact and relationship to the studio." },
-  { label: "Award Archive", href: "/vacavaca/works", body: "Selected VACAT award records." },
-  { label: "Award Events", href: "/vacavaca/events", body: "Ceremony, workshop, battle day and exhibition context." },
-  { label: "Studio Services", href: "/templates", body: "Original AI visual production categories." },
-  { label: "Submit Brief", href: "/start", body: "Start a VacaVaca Studio commission." },
+  { label: "Award Archive", href: "/vacavaca/works", tag: "Records", image: asset("assets/carousel/carousel-01.jpg"), body: "Selected VACAT award records and representative works." },
+  { label: "Award Events", href: "/vacavaca/events", tag: "Events", image: asset("assets/events/day1-schedule.png"), body: "Ceremony, workshop, Battle Day and exhibition context." },
+  { label: "AI Visual Workshop", href: "/vacavaca/events", tag: "Program", image: asset("assets/events/day2-workshop.png"), body: "A public program for AI video, image and creative workflow exchange." },
+  { label: "AI Battle Day", href: "/vacavaca/events", tag: "Live creation", image: asset("assets/events/day3-competition.png"), body: "Prompt battle, time-limited creation and creator visibility." },
+  { label: "Studio Services", href: "/templates", tag: "Production", image: asset("assets/about/vacat-about.png"), body: "Original AI visual production categories from VacaVaca Studio." },
+  { label: "Submit Brief", href: "/start", tag: "Commission", image: asset("assets/events/exhibition.png"), body: "Start a studio-managed original visual production brief." },
 ];
 
 const supportModel = [
@@ -148,13 +149,17 @@ export default function VacaVacaOverviewPage() {
       </nav>
 
       <section className="vv-container vv-section" id="sections">
-        <SectionHeader title="Explore VACAT" more="Award archive and studio services" />
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        <SectionHeader title="Explore VACAT" more="Visible links across award content and studio services" />
+        <div className="grid gap-4 md:grid-cols-3">
           {publicSections.map((item) => (
-            <Link key={item.label} href={item.href} className="vacat-card rounded-2xl p-5 transition hover:-translate-y-1 hover:border-[rgba(202,254,97,0.3)]">
-              <p className="text-lg font-semibold text-[var(--text)]">{item.label}</p>
-              <p className="mt-3 text-xs leading-5 text-[var(--text3)]">{item.body}</p>
-            </Link>
+            <a key={item.label} href={item.href} className="vacat-link-card overflow-hidden rounded-2xl">
+              <img src={item.image} alt={item.label} className="aspect-video w-full object-cover" />
+              <div className="p-5">
+                <p className="tag">{item.tag}</p>
+                <h3 className="mt-3 text-xl font-semibold tracking-[-0.035em] text-[var(--text)]">{item.label}</h3>
+                <p className="mt-3 text-sm leading-6 text-[var(--text3)]">{item.body}</p>
+              </div>
+            </a>
           ))}
         </div>
       </section>
