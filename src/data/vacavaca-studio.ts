@@ -9,6 +9,7 @@ export type StudioWork = {
   posterUrl: string;
   previewVideoUrl?: string;
   fullVideoUrl?: string;
+  sourceUrl?: string;
   bilibiliUrl?: string;
   archiveTags: string[];
   archiveNote: string;
@@ -31,6 +32,7 @@ export type StudioEvent = {
 };
 
 const asset = (path: string) => `https://raw.githubusercontent.com/ruifengc166-boop/vacavaca/master/${path}`;
+export const originalVacatWorksUrl = "https://ruifengc166-boop.github.io/vacavaca/works.html";
 const bilibili = "https://www.bilibili.com";
 
 function workPoster(mark: string, title: string) {
@@ -59,6 +61,7 @@ function work(
     mark,
     summary,
     posterUrl: workPoster(mark, title),
+    sourceUrl: originalVacatWorksUrl,
     bilibiliUrl,
     archiveTags,
     archiveNote,
