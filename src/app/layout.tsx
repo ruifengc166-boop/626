@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
 import "./vacavaca-full.css";
-
-const logo = "https://raw.githubusercontent.com/ruifengc166-boop/vacavaca/master/assets/logo/nav-logo.png";
+import "./studio-admin.css";
 
 export const metadata: Metadata = {
   title: "VacaVaca Studio",
@@ -17,7 +16,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <header className="vv-navbar">
           <div className="vv-container">
             <Link href="/" className="vv-logo" aria-label="VacaVaca Studio">
-              <img src={logo} alt="VacaVaca Studio" />
+              <span className="vv-logo-mark" aria-hidden="true" />
+              <span className="vv-logo-text">
+                <span className="vv-logo-word">VacaVaca</span>
+                <span className="vv-logo-sub">Studio</span>
+              </span>
             </Link>
             <div className="vv-nav-actions">
               <Link href="/templates" className="vv-btn-nav">Studio Services</Link>
