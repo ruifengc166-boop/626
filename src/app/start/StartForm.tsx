@@ -66,9 +66,9 @@ export function StartForm({ templates }: { templates: Template[] }) {
           {sourceReviewId ? <div className="mb-6 rounded-2xl border border-[rgba(202,254,97,0.18)] bg-[rgba(202,254,97,0.07)] p-4 text-sm text-[var(--text3)]">Review source: <span className="text-[var(--text)]">{sourceReviewId}</span></div> : null}
           {selectedTemplate ? <SelectedTemplateCard template={selectedTemplate} /> : null}
           <div className="mb-8 rounded-[1.5rem] border border-[rgba(202,254,97,0.18)] bg-[rgba(202,254,97,0.07)] p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold)]">Original production only</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold)]">Rights-safe production</p>
             <p className="mt-3 text-sm leading-6 text-[var(--text3)]">
-              VACAT award submissions are not reused, adapted or licensed through this form. Client projects are developed separately with original briefs, approved materials and authorized contributors.
+              Please only submit materials, references and links you are allowed to share for project review.
             </p>
           </div>
           <div className="grid gap-5 md:grid-cols-2">
