@@ -14,12 +14,8 @@ export default async function TemplatesPage() {
         <SectionHeader
           eyebrow="VacaVaca Studio Services"
           title="Choose the type of original visual work you want to commission"
-          description="These service categories are based on studio production methods, not on reuse of VACAT submissions. VACAT informs our standards and creator network; every client project is produced separately with authorized contributors and approved materials."
+          description="These are service categories for new studio production. Select the output you need, then submit a brief with your approved materials and references."
         />
-
-        <div className="mt-8 rounded-2xl border border-[rgba(202,254,97,0.16)] bg-[rgba(202,254,97,0.06)] p-5 text-sm leading-7 text-[var(--text3)]">
-          Award archive entries are not reused or adapted through this page. Choose a service category to describe your intended output, and VacaVaca Studio will propose an original production route after reviewing your brief.
-        </div>
 
         <div className="mt-12">
           <TemplateGrid templates={activeTemplates} />
