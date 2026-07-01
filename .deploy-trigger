@@ -1,4 +1,4 @@
 Tencent Cloud deployment trigger
-Triggered at: 2026-07-01T01:55:00Z
+Triggered at: 2026-07-01T02:05:00Z
 Branch: main
-Reason: deploy deduplicated VACAT and VacaVaca Studio pages
+Reason: deploy non-duplicated VACAT explore and moments visuals
