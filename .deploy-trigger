@@ -1,4 +1,4 @@
 Tencent Cloud deployment trigger
-Triggered at: 2026-06-30T05:28:00Z
+Triggered at: 2026-06-30T05:45:00Z
 Branch: main
-Reason: deploy Studio header admin redesign and VACAT link cards
+Reason: deploy VACAT works link and detail copy fixes
