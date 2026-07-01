@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { HeroSection } from "@/components/HeroSection";
-import { VacaVacaSupport } from "@/components/VacaVacaSupport";
 
 export const dynamic = "force-dynamic";
 
@@ -28,7 +27,25 @@ export default function HomePage() {
   return (
     <main>
       <HeroSection />
-      <VacaVacaSupport />
+
+      <section className="px-6 py-14">
+        <div className="vacat-container">
+          <div className="rounded-[28px] border border-[rgba(202,254,97,0.14)] bg-[rgba(255,255,255,0.035)] p-6 md:p-8">
+            <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
+              <div className="max-w-2xl">
+                <p className="vacat-eyebrow mb-3">Studio Foundation</p>
+                <h2 className="vacat-title text-3xl font-medium tracking-[-0.055em] md:text-5xl">Backed by an award context, focused on new studio work.</h2>
+                <p className="mt-4 text-sm leading-7 text-[var(--text3)] md:text-base">
+                  VACAT provides the curatorial and creator-network background. VacaVaca Studio commissions are produced separately from original briefs and approved materials.
+                </p>
+              </div>
+              <Link href="/vacavaca" className="vacat-button-secondary px-6 py-3 text-sm">
+                About VACAT
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="px-6 py-16">
         <div className="vacat-container">
